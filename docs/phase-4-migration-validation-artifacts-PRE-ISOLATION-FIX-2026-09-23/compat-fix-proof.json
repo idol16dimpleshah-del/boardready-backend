@@ -1,0 +1,28 @@
+{
+  "sqliteBaseline": {
+    "totals": {
+      "subjects": 5,
+      "chapters": 79,
+      "questions": 1326
+    },
+    "subjectCountType": "number"
+  },
+  "postgresRawBroken": {
+    "totals": {
+      "subjects": null,
+      "chapters": null,
+      "questions": null
+    },
+    "matchesBaseline": false
+  },
+  "postgresThroughShim": {
+    "totals": {
+      "subjects": 5,
+      "chapters": 79,
+      "questions": 1326
+    },
+    "subjectCountType": "number",
+    "matchesBaseline": true
+  },
+  "conclusion": "COMPATIBILITY SHIM PROVEN: identical output to SQLite, real numbers not strings"
+}

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Board Ready</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app" data-theme="light">
+
+  <!-- ===================== SCREEN 1 : LOGIN / LANDING ===================== -->
+  <section class="screen scr-login" data-screen="login">
+    <div class="login-hero">
+      <div class="topline">
+        <div class="brandmark">
+          <svg aria-hidden="true" width="28" height="28" viewBox="0 0 40 40" fill="none"><path d="M20 2 L36 11 V29 L20 38 L4 29 V11 Z" fill="url(#hexg2)"/><path d="M13 20l5 5 10-10" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <span>BOARD READY</span>
+        </div>
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle theme">☾</button>
+      </div>
+      <div class="board-chips" id="landingBoardChips">
+        <button class="p-chip active" data-board="CBSE" type="button" aria-pressed="true">CBSE</button>
+        <button class="p-chip" data-board="ICSE" type="button" aria-pressed="false">ICSE</button>
+        <span class="p-chip" style="cursor:default;">Class 10</span>
+      </div>
+      <h1>Don't prepare for easy.<br><span class="text-grad">Prepare for anything.</span></h1>
+      <p class="sub">Board-pattern tests built to challenge you — then a Readiness Score, computed from your real attempts, that shows exactly how ready you are.</p>
+
+      <div class="core-hero-row">
+        <div class="core-wrap" style="--core-size:220px;" id="landingCore">
+          <div class="core-orbit"><svg aria-hidden="true" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="none" stroke="var(--violet-2)" stroke-width="4" stroke-dasharray="180 449" opacity=".9"/></svg></div>
+          <div class="core-sphere"></div>
+          <div class="core-face"><b class="core-num">—</b><span>Sign in to see yours</span></div>
+        </div>
+        <div class="core-caption">This dial shows your real Readiness Score once you've signed in and attempted questions — not a demo number.</div>
+      </div>
+
+      <div class="cta-row">
+        <button class="p-btn p-btn-primary" id="tryDemoBtn" type="button">Try instantly (new demo account) →</button>
+      </div>
+
+      <div class="stat-row" id="landingStats">
+        <div class="stat"><b id="statQuestions">—</b><span>Questions</span></div>
+        <div class="stat"><b id="statChapters">—</b><span>Chapters</span></div>
+        <div class="stat"><b id="statSubjects">—</b><span>Subjects</span></div>
+      </div>
+      <div class="stat-note">Live counts from the question bank, filtered to the board selected above.</div>
+    </div>
+
+    <div class="login-panel">
+      <div class="login-card p-card">
+        <h2>Already training with us?</h2>
+        <div class="tabrow"><button class="on" id="tabLoginBtn" type="button">Log in</button><button id="tabCreateBtn" type="button">Create account</button></div>
+
+        <form id="loginForm">
+          <div class="field"><label for="loginEmail">Email</label><input type="email" id="loginEmail" name="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="field"><label for="loginPassword">Password</label><input type="password" id="loginPassword" name="password" autocomplete="current-password" required placeholder="••••••••"></div>
+          <div class="form-error" id="loginError" hidden></div>
+          <button class="p-btn p-btn-primary" type="submit">Enter Board Ready
+            <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+
+        <form id="createForm" hidden>
+          <div class="onboard">
+            <h4>Which board will you start with?</h4>
+            <div class="board-pick" id="createBoardPick">
+              <button type="button" class="pick-card sel" data-board="CBSE" aria-pressed="true"><b>CBSE</b><span>NCERT pattern</span></button>
+              <button type="button" class="pick-card" data-board="ICSE" aria-pressed="false"><b>ICSE</b><span>CISCE pattern</span></button>
+            </div>
+            <div class="pick-note">Used to preselect your subject list after signup — accounts aren't board-locked, you can switch anytime.</div>
+          </div>
+          <div class="field" style="margin-top:14px;"><label for="createName">Full name</label><input id="createName" name="name" autocomplete="name" required placeholder="e.g. Aarav Mehta"></div>
+          <div class="field"><label for="createEmail">Email</label><input type="email" id="createEmail" name="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="field"><label for="createPassword">Password</label><input type="password" id="createPassword" name="new-password" autocomplete="new-password" required minlength="6" placeholder="At least 6 characters"></div>
+          <div class="form-error" id="createError" hidden></div>
+          <button class="p-btn p-btn-primary" type="submit">Create my account</button>
+        </form>
+
+        <div class="login-foot" id="loginFoot">New here? <a href="#" id="switchToCreate">Create a free account</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCREEN 2 : STUDENT DASHBOARD ===================== -->
+  <section class="screen scr-dash" data-screen="dash" hidden>
+    <div class="dash-topbar">
+      <div class="dash-brand"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 40 40" fill="none"><path d="M20 2 L36 11 V29 L20 38 L4 29 V11 Z" fill="url(#hexg2)"/><path d="M13 20l5 5 10-10" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span>Board Ready</span></div>
+      <div class="topbar-right">
+        <div class="board-chips" id="dashBoardChips">
+          <button class="p-chip active" data-board="CBSE" type="button" aria-pressed="true">CBSE</button>
+          <button class="p-chip" data-board="ICSE" type="button" aria-pressed="false">ICSE</button>
+        </div>
+        <button class="theme-btn" id="themeBtn2" type="button" aria-label="Toggle theme">☾</button>
+        <div class="avatar" id="avatarInitials">--</div>
+        <button class="p-btn p-btn-ghost p-btn-sm" id="logoutBtn" type="button">Log out</button>
+      </div>
+    </div>
+    <div class="dash-greet"><h2 id="greetName">Good day</h2><p id="greetSub">—</p></div>
+
+    <div class="p-glass readiness-card">
+      <div class="core-wrap" style="--core-size:150px;" id="dashCore" data-pct="0">
+        <div class="core-orbit"><svg aria-hidden="true" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="none" stroke="var(--violet-2)" stroke-width="4" stroke-dasharray="0 449" opacity=".9"/></svg></div>
+        <div class="core-sphere"></div>
+        <div class="core-face"><b class="core-num">—</b><span id="dashCoreLabel">Readiness</span></div>
+      </div>
+      <div class="readiness-copy">
+        <div class="p-card-label">Exam Readiness (all subjects)</div>
+        <h3 id="readinessHeadline">Take a test to get your first Readiness Score</h3>
+        <div class="delta" id="readinessMastery" hidden></div>
+        <p class="note" id="readinessNote">We're not predicting your board score — we're measuring how ready you are for whatever it asks, from your real attempts.</p>
+      </div>
+    </div>
+
+    <div class="p-card mission-card" id="missionCard" hidden>
+      <div class="mission-body">
+        <div class="flag">
+          <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+          Your next move
+        </div>
+        <h3 id="missionTitle">—</h3>
+        <div class="meta" id="missionMeta">—</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="p-btn p-btn-primary" id="missionBtn" type="button">Train this →</button>
+      </div>
+    </div>
+
+    <div class="p-card mission-card locked" id="lockedCard" hidden>
+      <div class="mission-body">
+        <div class="flag"><svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg> Locked</div>
+        <h3 id="lockedMsg">Unlock your Board Ready Report to see chapter-by-chapter diagnostics.</h3>
+        <div class="meta">Demo unlock — activates the real subscriptions API, no payment wired up yet.</div>
+      </div>
+      <button class="p-btn p-btn-ghost" id="unlockBtn" type="button">Unlock (demo) →</button>
+    </div>
+
+    <div class="p-card challenge-strip">
+      <div class="txt"><b>Board Simulation — this subject</b><span id="challengeSub">20 timed questions, no feedback until you submit — a genuine, independent score</span></div>
+      <button class="p-btn p-btn-ghost p-btn-sm" id="fullTestBtn" type="button" title="Assessment mode: no per-question feedback, just like the real exam">Start Board Simulation →</button>
+    </div>
+
+    <div class="row2">
+      <div class="p-card streak-card">
+        <div class="p-card-label">Your activity (real)</div>
+        <div class="streak-top">
+          <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="var(--violet-2)" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <b id="activityAttempted">0</b>
+        </div>
+        <div class="streak-mid"><span>questions attempted</span><b id="activityAttempts">0 attempts</b></div>
+        <div class="p-bar-track"><div class="p-bar-fill" id="activityBar" data-fill="0"></div></div>
+        <div class="streak-note" id="activityEvidence">No attempts yet.</div>
+      </div>
+      <div class="p-card subjects-card">
+        <div class="p-card-label">Your subjects</div>
+        <div id="subjectsList"><div class="empty-note">No subjects yet.</div></div>
+      </div>
+    </div>
+
+    <div class="p-card" id="improvementCard" hidden>
+      <div class="p-card-label" style="margin-bottom:8px;">Improvement across retests</div>
+      <div id="improvementList"></div>
+    </div>
+
+    <div class="continue-strip" id="continueStrip" hidden>
+      <span id="continueText">—</span>
+      <a href="#" id="continueLink">Resume →</a>
+    </div>
+
+    <div class="p-card chapters-card">
+      <div class="p-card-label" style="margin-bottom:10px;">Chapters — <span id="chaptersSubjectName">choose a subject</span></div>
+      <div id="subjectPicker" class="subject-picker"></div>
+      <div id="chaptersList"></div>
+    </div>
+  </section>
+
+  <!-- ===================== SCREEN 3 : TEST-TAKING ===================== -->
+  <section class="screen scr-test" data-screen="test" hidden>
+    <div class="test-top">
+      <div class="chapter"><div class="mini-core"></div><div class="chapter-info"><b id="testChapterName">—</b><span id="testSubjectName">—</span><span class="mode-badge" id="modeBadge" hidden></span></div></div>
+      <div class="qcount" id="testQCount">Question 1 of 1</div>
+      <div class="timer" id="testTimer" role="timer"><span class="sr-only">Time remaining: </span><span id="testTimerValue">--:--</span></div>
+    </div>
+    <div class="sr-only" id="qLiveRegion" aria-live="polite" aria-atomic="true"></div>
+    <div class="track" id="testTrack" role="group" aria-label="Question navigator"></div>
+    <div class="test-body">
+      <div class="qcard p-card">
+        <div class="qtop">
+          <div class="eyebrow" id="qEyebrow">MCQ · 1 mark</div>
+          <div class="difficulty" id="qDifficulty">— <span class="lv"><i></i><i></i><i></i></span></div>
+        </div>
+        <div id="qText" class="qcard-heading" role="heading" aria-level="3">—</div>
+        <div id="qDiagramWrap" class="q-diagram-wrap" hidden role="button" tabindex="0" aria-label="Zoom diagram">
+          <img id="qDiagramImg" class="q-diagram-img" alt="Question diagram">
+          <!-- qDiagramSvgHost (Workstream 3B, 2026-09-25): a native, redrawn
+               Board Ready diagram (asset_type='ai_generated') is inlined
+               here as real SVG markup instead of an <img src>, so its
+               colors are drawn from this page's own --ink/--violet/etc.
+               tokens and track the app's light/dark toggle exactly — an
+               <img src="....svg"> can only ever see the OS/browser's
+               prefers-color-scheme, which is a different signal from this
+               app's own in-app theme button (see app.js's loadDiagram). A
+               raster crop (asset_type='source_cropped') still uses the
+               plain <img> above unchanged. -->
+          <div id="qDiagramSvgHost" class="q-diagram-svg-host" hidden aria-hidden="true"></div>
+          <span class="zoom-hint" aria-hidden="true">Tap to zoom</span>
+        </div>
+        <div id="qOptions"></div>
+      </div>
+    </div>
+    <div class="test-bottom">
+      <button class="p-btn p-btn-ghost" id="prevBtn" type="button">← Previous</button>
+      <button class="p-btn p-btn-ghost flag-btn" id="flagBtn" type="button">Mark for review</button>
+      <button class="p-btn p-btn-primary" id="nextBtn" type="button">Next →</button>
+    </div>
+  </section>
+
+  <!-- ===================== SCREEN 4 : RESULTS ===================== -->
+  <section class="screen scr-results" data-screen="results" hidden>
+    <div class="res-top">
+      <button class="p-btn p-btn-ghost p-btn-sm" id="resultsBackBtn" aria-label="Back" type="button">←</button>
+      <div class="chapter"><b>Test Results</b><span id="resSubtitle">—</span></div>
+    </div>
+
+    <div class="p-glass res-hero" id="resHero">
+      <div class="burst"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="core-wrap" style="--core-size:120px;" id="resCore" data-pct="0">
+        <div class="core-orbit"><svg aria-hidden="true" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="none" stroke="var(--violet-2)" stroke-width="4" stroke-dasharray="0 449" opacity=".9"/></svg></div>
+        <div class="core-sphere"></div>
+        <div class="core-face"><b class="core-num">0<span style="font-size:.5em;">%</span></b></div>
+      </div>
+      <div class="meta">
+        <div class="pb-badge" id="pbBadge" hidden>★ New personal best for this chapter</div>
+        <p><b id="resCorrectLine">— correct</b></p>
+        <span class="delta" id="resDelta" hidden></span>
+      </div>
+    </div>
+
+    <div class="core-evolved" id="coreEvolved" hidden>Readiness&nbsp;<span id="evolveFrom">—</span> → <b class="evolve-num" id="evolveTo">—</b></div>
+
+    <div class="p-glass improve-compare-card" id="improveCompareCard" hidden>
+      <div class="p-card-label" style="margin-bottom:10px;">Improvement test result</div>
+      <div class="ic-scores">
+        <div class="ic-score"><span>First test</span><b id="icFirstPct">—</b></div>
+        <div class="ic-arrow">→</div>
+        <div class="ic-score now"><span>Improvement test</span><b id="icNowPct">—</b></div>
+      </div>
+      <div class="ic-bars" id="icBars">
+        <div class="ic-bar-row"><span class="ic-bar-label">First</span><div class="ic-bar-track"><div class="ic-bar-fill first" id="icBarFirst" style="width:0%"></div></div></div>
+        <div class="ic-bar-row"><span class="ic-bar-label">Now</span><div class="ic-bar-track"><div class="ic-bar-fill now" id="icBarNow" style="width:0%"></div></div></div>
+      </div>
+      <div class="ic-delta" id="icDelta">—</div>
+      <div id="icSubRows" class="ic-sub-rows"></div>
+    </div>
+
+    <div class="p-card weakspot-hero" id="weakspotHero" hidden>
+      <div class="flag">
+        <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+        Here's what to conquer next
+      </div>
+      <h3 id="weakspotTitle">—</h3>
+      <div class="stat-line"><span>This attempt <b id="weakspotAcc">—</b></span><span class="tgt">Strong bar <b>80%+</b></span></div>
+      <p id="weakspotBody">—</p>
+      <div class="weakspot-foot">
+        <button class="p-btn p-btn-ghost" id="weakspotTrainBtn" type="button">Train this topic
+          <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-card strengths-card" id="strengthsCard" hidden>
+      <div class="p-card-label" style="flex:none;">You were strong in</div>
+      <div id="strengthsList"></div>
+    </div>
+
+    <div class="p-card mistake-list" style="padding:20px 22px;" id="mistakeCard" hidden>
+      <div class="p-card-label" style="margin-bottom:10px;">Where marks were lost, this attempt</div>
+      <div id="mistakeRows"></div>
+    </div>
+
+    <div class="p-card explain-card" id="explainCard" hidden>
+      <div class="p-card-label" style="margin-bottom:10px;">Your answer, the correct answer, and why</div>
+      <div id="explainRows"></div>
+    </div>
+
+    <div class="p-card bat-strip" id="batStrip" hidden>
+      <div class="col"><span>First attempt</span><b id="batFirst">—</b></div>
+      <div class="col now"><span>This attempt</span><b id="batNow">—</b></div>
+      <div class="col next"><span>Strong bar</span><b>80+</b></div>
+    </div>
+
+    <div class="p-card mission-card" id="improveCard" hidden>
+      <div class="mission-body">
+        <div class="flag">
+          <svg aria-hidden="true" class="p-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+          Your next move
+        </div>
+        <h3 id="improveTitle">Improve your score</h3>
+        <div class="meta" id="improveMeta">A new, targeted test from the areas where you lost marks.</div>
+      </div>
+      <button class="p-btn p-btn-primary" id="improveScoreBtn" type="button">Improve My Score →</button>
+    </div>
+
+    <div class="retest-row">
+      <button class="p-btn p-btn-ghost" id="retakeBtn" type="button">Retake this set →</button>
+      <button class="p-btn p-btn-ghost" id="backToDashBtn" type="button">Back to dashboard</button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <div class="diagram-lightbox" id="diagramLightbox" role="dialog" aria-modal="true" aria-label="Zoomed diagram" hidden>
+    <button type="button" class="lightbox-close" id="lightboxCloseBtn" aria-label="Close zoomed diagram">✕</button>
+    <img id="lightboxImg" alt="Question diagram, zoomed">
+    <!-- lightboxSvgHost: the zoomed-view counterpart to #qDiagramSvgHost —
+         same reasoning (see the comment above #qDiagramWrap): an
+         asset_type='ai_generated' SVG is inlined here too, rather than
+         loaded via <img src>, so it keeps reading --ink/--violet/etc. from
+         the live page and tracks the app's in-app theme toggle at full
+         zoom, not just in the inline card. -->
+    <div id="lightboxSvgHost" class="q-diagram-svg-host lightbox-svg-host" hidden aria-hidden="true"></div>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden;" aria-hidden="true">
+  <defs><linearGradient id="hexg2" x1="0" y1="0" x2="40" y2="40"><stop offset="0" stop-color="#7B3BFF"/><stop offset="1" stop-color="#22DFFF"/></linearGradient></defs>
+</svg>
+
+<script src="/app.js"></script>
+</body>
+</html>

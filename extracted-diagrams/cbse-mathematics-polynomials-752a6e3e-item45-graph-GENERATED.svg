@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" role="img" aria-labelledby="grTitle grDesc">
+  <title id="grTitle">Graph of y = p(x) for Question 45</title>
+  <desc id="grDesc">A qualitative sketch graph on unlabeled x/y axes. The curve y = p(x) is a single downward-opening hump: it enters from below the x-axis at lower-left, crosses the x-axis once, rises to one peak above the x-axis, descends and crosses the x-axis a second time, then continues below the x-axis at lower-right. The curve crosses the x-axis at exactly two points, so p(x) has 2 zeroes.</desc>
+  <!--
+    Board Ready generated visual (Workstream 3D, 2026-09-25).
+    asset_type: ai_generated — a clean, native redraw of the ORIGINAL SOURCE
+    figure below, not the source figure itself. Colors are read from this
+    host page's own CSS custom properties (the ink and violet tokens) via
+    var(), with no @media (prefers-color-scheme) fallback, for the same
+    reason documented in the 3070 number-line SVG: this file is only ever
+    used inlined into the DOM (see public/app.js's
+    createDiagramLoader/loadDiagram), where it inherits the real
+    #app[data-theme] cascade the app's own in-app theme toggle drives — a
+    standalone <img src="this.svg"> would see the wrong (OS-level) signal
+    and is not a supported way to use this file.
+
+    SOURCE OF TRUTH this was redrawn from (never modified, see provenance
+    doc docs/workstream-3d-4575-graph-visual-provenance-and-qa.md):
+    source_library/CBSE/Mathematics/ch1-2.pdf, page index 10 (printed page
+    2.22), item 45, "Fig. 2.19" — cross-referenced against the question's
+    own stored text ("The graph of y = p(x) is given (Fig. 2.19), for a
+    polynomial p(x). The number of zeroes of p(x) from the graph is") and
+    its verified answer key (option (c), 2 zeroes), plus pixel-level
+    inspection of the scanned figure (see the provenance doc's Section 5 for
+    the axis/curve pixel measurements this was traced from).
+
+    Semantic content reproduced exactly, not invented or reinterpreted: the
+    source figure carries NO numeric scale, NO axis ticks, and NO plotted
+    coordinate values — it is a qualitative sketch, and this redraw is
+    likewise qualitative, preserving only what the source actually asserts:
+    (1) standard coordinate axes with arrowheads at both ends of each axis,
+    labeled x' / x (horizontal) and y / y' (vertical), no origin label, no
+    scale numbers; (2) a single smooth curve, arrow-terminated at both ends
+    (indicating it continues beyond the frame, exactly as in the source);
+    (3) the curve sits below the x-axis at the y-axis (x=0), matching the
+    source's pixel measurement (curve row ~396 vs. axis row 286, i.e.
+    strictly below at x=0); (4) the curve crosses the x-axis exactly twice,
+    both crossings on the positive-x side of the y-axis (source: both
+    measured crossing columns, ~420 and ~462, fall right of the y-axis at
+    column 315), with a single peak above the x-axis between them — this is
+    the fact the question and its verified answer (c) 2 depend on, and it is
+    preserved exactly; (5) the "y = p(x)" label sits near the curve's
+    right-hand descending arrow, matching the source's placement.
+    Deliberately NOT preserved pixel-for-pixel (both are legibility choices,
+    not changes to the curve's zero count, sign pattern, or overall shape —
+    the same "professional presentation of the same evidence" principle
+    applied to 3070's number line): (a) the source's peak clears the x-axis
+    by only ~1px at scan resolution (the noise floor of the scan, not a
+    meaningful data point — there is no coordinate grid asserting a specific
+    height), so this redraw gives the peak a clearly legible height instead
+    of an ambiguous hairline; (b) the source's two crossings sit only ~42px
+    apart at scan resolution against a ~280px-wide curve, hard to read as
+    two distinct crossings at a glance — this redraw widens the gap between
+    them somewhat for legibility while keeping both crossings well inside
+    the region the source shows them in (clearly right of the y-axis, well
+    short of either arrow tip).
+  -->
+  <style>
+    .gr-axis { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; fill: none; }
+    .gr-curve { stroke: var(--violet); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .gr-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 28px; }
+    .gr-fn-label { fill: var(--violet); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 28px; font-style: italic; }
+  </style>
+
+  <!-- x-axis, arrowheads both ends -->
+  <line class="gr-axis" x1="30" y1="260" x2="670" y2="260" />
+  <path class="gr-axis" d="M 46,250 L 30,260 L 46,270" />
+  <path class="gr-axis" d="M 654,250 L 670,260 L 654,270" />
+  <text class="gr-label" x="30" y="296" text-anchor="middle">x&#8242;</text>
+  <text class="gr-label" x="670" y="296" text-anchor="middle">x</text>
+
+  <!-- y-axis, arrowheads both ends -->
+  <line class="gr-axis" x1="300" y1="30" x2="300" y2="430" />
+  <path class="gr-axis" d="M 290,46 L 300,30 L 310,46" />
+  <path class="gr-axis" d="M 290,414 L 300,430 L 310,414" />
+  <text class="gr-label" x="300" y="22" text-anchor="middle">y</text>
+  <text class="gr-label" x="278" y="452" text-anchor="end">y&#8242;</text>
+
+  <!-- curve y = p(x): single downward hump, below the x-axis at x=0,
+       crossing the x-axis twice (both crossings right of the y-axis),
+       peak above the axis between the crossings, arrow-terminated both
+       ends -->
+  <path class="gr-curve" d="M 282,380 C 300,330 355,280 400,260 C 415,230 485,230 500,260 C 545,280 590,330 611,379" />
+  <path class="gr-axis" style="stroke:var(--violet)" d="M 292.9,369.7 L 282,380 L 280.1,365.1" />
+  <path class="gr-axis" style="stroke:var(--violet)" d="M 599.5,369.4 L 611,379 L 612.0,364.0" />
+
+  <text class="gr-fn-label" x="500" y="412">y = p(x)</text>
+</svg>

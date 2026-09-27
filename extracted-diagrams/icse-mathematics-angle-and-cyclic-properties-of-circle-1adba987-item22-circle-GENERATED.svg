@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 580" role="img" aria-labelledby="cyTitle cyDesc">
+  <title id="cyTitle">Circle diagram for Question 1594</title>
+  <desc id="cyDesc">A circle with diameter AB. Points D and C lie on the upper arc, with D to the left of centre and C to the right. Chords AD, DC and CB are drawn, so ADCB forms a cyclic quadrilateral. DC is parallel to AB, shown by matching arrowhead tick marks on both segments. A dashed diagonal joins A to C, and the angle between AB and this diagonal at vertex A is marked 35 degrees.</desc>
+  <!--
+    Board Ready generated visual (Workstream 3-Task4, proposed, NOT yet
+    associated with the live question — see
+    docs/workstream-3i-1594-1230-visual-reconstruction.md).
+    asset_type (if approved): ai_generated — a clean, native redraw of the
+    ORIGINAL SOURCE figure below, not the source figure itself. Colors are
+    read from this host page's own CSS custom properties (the ink and violet
+    tokens) via var(), with no prefers-color-scheme fallback, matching every
+    other generated visual in this pipeline (see 3070's and 4575's SVGs):
+    this file is only ever used inlined into the DOM, where it inherits the
+    real #app[data-theme] cascade.
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/ICSE/Mathematics/chap_17.pdf, printed page 17.4, item (22).
+    Cross-referenced directly against the rendered source page (not the
+    text layer). Semantic content reproduced exactly, not invented:
+      - AB is a diameter (A left, B right), with centre O marked on it.
+      - D and C lie on the arc above AB; D is left of centre, C is right
+        of centre (confirmed against the source, not merely assumed).
+      - Chords AD, DC, CB are drawn (ADCB is a cyclic quadrilateral).
+      - DC is parallel to AB — the source marks this with a ">>"
+        double-arrowhead tick on both AB (near O) and DC (near its
+        midpoint); both are reproduced here in the same style and position
+        relative to their segment.
+      - A dashed diagonal joins A to C (not D to B — confirmed by close
+        inspection of the source page; an earlier crop of a neighbouring,
+        unrelated circle problem on the same page was initially mistaken
+        for this one during this session and was re-verified before use).
+      - The angle CAB, between ray AB and the dashed diagonal AC, is
+        marked 35 degrees at vertex A. No other angle values are printed
+        in the source figure.
+      - No point other than A, B, C, D, O is labelled or drawn in the
+        source.
+
+    One deliberate, disclosed departure from the source's hand-drawn
+    sketch, which does not affect the answer: the source diagram is not
+    drawn to scale (by eye, its angle at A looks larger than 35 degrees,
+    a common textbook-sketch imprecision — compare the already-corrected
+    4575 graph, which is also explicitly "no scale"). This redraw instead
+    places D and C using exact circle geometry so that the angle actually
+    drawn at A is exactly 35 degrees: for a diameter AB and a point C on
+    the circle at angle theta from the positive x-axis (measured from the
+    centre), the angle CAB equals theta/2 exactly (a standard half-angle
+    identity), so C is placed at theta = 70 degrees from centre, and D is
+    placed as the mirror point of C across the vertical through the
+    centre (the only way a chord can be parallel to a horizontal diameter
+    is if it is symmetric about that vertical line — a mathematical
+    necessity, not a simplification). This makes the redraw slightly more
+    geometrically precise than the source sketch while preserving every
+    labelled fact the source actually asserts (which side D and C are on,
+    the parallel marking, the dashed diagonal, the 35-degree angle, the
+    diameter). It does not add, remove, or change any given fact, and the
+    correct answer (20 degrees, independently re-derived two ways in
+    docs/workstream-3e-geometry-content-qa-1594-1230.md) is unaffected —
+    it depends only on the given 35 degrees and the parallel/diameter
+    facts, not on exact pixel placement.
+  -->
+  <style>
+    .cy-circle { fill: none; stroke: var(--ink); stroke-width: 3; }
+    .cy-chord { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .cy-diagonal { fill: none; stroke: var(--violet); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 10 8; }
+    .cy-tick { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .cy-centre { fill: var(--ink); }
+    .cy-angle-arc { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+    .cy-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 30px; }
+    .cy-angle-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 24px; }
+  </style>
+
+  <circle class="cy-circle" cx="300" cy="300" r="220" />
+
+  <!-- Chords forming the cyclic quadrilateral ADCB, plus diameter AB -->
+  <line class="cy-chord" x1="80" y1="300" x2="520" y2="300" />
+  <line class="cy-chord" x1="80" y1="300" x2="225" y2="93" />
+  <line class="cy-chord" x1="225" y1="93" x2="375" y2="93" />
+  <line class="cy-chord" x1="375" y1="93" x2="520" y2="300" />
+
+  <!-- Dashed diagonal AC -->
+  <line class="cy-diagonal" x1="80" y1="300" x2="375" y2="93" />
+
+  <!-- Parallel-marker tick (>>) on AB, near O -->
+  <path class="cy-tick" d="M 315 292 L 327 300 L 315 308" />
+  <!-- Parallel-marker tick (>>) on DC, near its midpoint -->
+  <path class="cy-tick" d="M 288 85 L 300 93 L 288 101" />
+
+  <!-- Angle arc + label for the 35 degree angle at A -->
+  <path class="cy-angle-arc" d="M 128 300 A 48 48 0 0 0 118.6 265.3" />
+  <text class="cy-angle-label" x="122" y="272">35&#176;</text>
+
+  <!-- Centre point O -->
+  <circle class="cy-centre" cx="300" cy="300" r="4.5" />
+
+  <!-- Point labels -->
+  <text class="cy-label" x="40" y="312">A</text>
+  <text class="cy-label" x="532" y="312">B</text>
+  <text class="cy-label" x="198" y="72">D</text>
+  <text class="cy-label" x="382" y="72">C</text>
+  <text class="cy-label" x="288" y="340">O</text>
+</svg>

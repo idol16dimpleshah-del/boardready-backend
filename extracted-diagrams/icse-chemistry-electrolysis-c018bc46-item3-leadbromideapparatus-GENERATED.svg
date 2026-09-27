@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" role="img" aria-labelledby="ebTitle ebDesc">
+  <title id="ebTitle">Electrolysis apparatus for molten lead bromide, Question 2061</title>
+  <desc id="ebDesc">A circuit with a battery, switch, rheostat, and ammeter connects two graphite electrodes labelled X and Y, dipping into a crucible of molten lead bromide, which sits on a stand and is heated from below by a Bunsen burner flame.</desc>
+  <!--
+    Board Ready generated visual (Batch 15, Task 11, PROPOSED, NOT associated
+    with the live question -- content gate for 2061 has not been
+    independently cleared for this purpose; question 2061's `correct` field
+    format defect was already fixed live under Task 7
+    (docs/workstream-4g-2061-format-correction-record.md), which is a
+    SEPARATE, already-completed correction unrelated to this visual).
+    asset_type (if approved): ai_generated -- a clean, native redraw of the
+    ORIGINAL SOURCE figure below, not the source figure itself. Colors read
+    from this host page's ink/violet CSS custom properties via var(), no
+    prefers-color-scheme fallback -- matches every other generated visual in
+    this pipeline.
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/ICSE/Chemistry/competency.pdf, file page index 8
+    (Chapter 5: Electrolysis, MCQ item 3), sha256
+    e595a5875e64ecbbbf35edb8a2549f5ab4ab6836725b1fb45608c38be9708d6e. A clean
+    crop of the source figure is saved as the immutable source_cropped
+    reference:
+    extracted-diagrams/icse-chemistry-electrolysis-c018bc46-item3-leadbromideapparatus-CANDIDATE.png
+    (some unavoidable bleed of adjacent option text is visible at the crop's
+    edges -- this page's diagram is embedded inline within wrapped body text
+    in the source scan, with no separate image bbox to crop against
+    precisely; the crop still shows the whole apparatus and both electrode
+    labels unambiguously).
+
+    Semantic content reproduced exactly, not invented (read directly off the
+    source scan at high zoom this session):
+      - A circuit loop: starting from a corner, a wire carries a "+" label,
+        then an open-switch symbol (a small angled break in the wire), then
+        continues to a 2-cell battery symbol (four parallel bars,
+        alternating long/short), then a "-" label, then continues to a
+        second corner.
+      - From the "+" corner, the wire runs down through a rheostat
+        (zigzag/coil resistor symbol) and then across to the left graphite
+        electrode, labelled "Graphite [X]" via a leader line with an
+        arrowhead pointing at the electrode.
+      - From the "-" corner, the wire runs down through an ammeter (a
+        circle containing "A") and then across to the right graphite
+        electrode, labelled "Graphite [Y]" via a leader line with an
+        arrowhead pointing at the electrode.
+      - Both electrodes dip down into a crucible (drawn in the source as a
+        rounded bowl/basin shape, shown here as the same bowl silhouette),
+        which is labelled "Molten lead bromide" via a leader line pointing
+        into the liquid between the two electrodes.
+      - The crucible rests on a stand (the source draws a solid, wide
+        triangular support), beneath which a Bunsen burner (a vertical
+        barrel on a round base) burns with a visible flame, heating the
+        crucible from below/outside -- directly illustrating option (b)'s
+        text ("the crucible is heated from outside").
+      - No numeric values, angles, or extra components appear in the source
+        figure beyond what is listed above; none are added here either.
+
+    DESIGN DECISIONS (disclosed, none of which change any labelled
+    component, connection, or the circuit's topology):
+      - The crucible's photographic shading/gradient and the burner's
+        photographic metal/glass rendering in the source scan are replaced
+        with flat, theme-aware fills and strokes (var(--ink) / var(--violet))
+        -- the same "clean redraw, not a photo trace" treatment used for
+        every other generated visual in this pipeline. The crucible and its
+        liquid are drawn as a single simplified bowl silhouette (a smooth
+        curved basin with a curved rim) rather than the source's more
+        detailed 3D-shaded vessel -- the same silhouette shape, viewed from
+        the same front-on angle, with the same two electrodes visibly
+        piercing the liquid.
+      - The stand is simplified to two angled support legs plus a base line
+        (the essential "the crucible sits on a stand above a flame" fact)
+        rather than reproducing the source's solid, photographically-shaded
+        triangular block exactly stroke-for-stroke.
+      - The battery symbol's exact bar proportions are a standard schematic
+        redraw (alternating long/short parallel bars) of the same 2-cell
+        symbol the source draws, not a pixel trace of it.
+  -->
+  <style>
+    .eb-wire { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .eb-zig { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .eb-celllong { stroke: var(--ink); stroke-width: 4; }
+    .eb-cellshort { stroke: var(--ink); stroke-width: 4; }
+    .eb-elec { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; }
+    .eb-stand { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+    .eb-crucible { fill: var(--violet); fill-opacity: 0.18; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+    .eb-liquid { fill: var(--violet); fill-opacity: 0.28; stroke: none; }
+    .eb-flame { fill: var(--violet); fill-opacity: 0.5; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+    .eb-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 20px; }
+    .eb-leader { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+    .eb-amm { fill: none; stroke: var(--ink); stroke-width: 3; }
+  </style>
+
+  <!-- top wire with switch and battery -->
+  <path class="eb-wire" d="M 70 70 L 140 70 L 160 52 L 182 70 L 255 70" />
+  <path class="eb-wire" d="M 330 70 L 530 70" />
+  <!-- battery: 2 cells, long-short-long-short -->
+  <line class="eb-celllong" x1="270" y1="50" x2="270" y2="90" />
+  <line class="eb-cellshort" x1="285" y1="60" x2="285" y2="80" />
+  <line class="eb-celllong" x1="300" y1="50" x2="300" y2="90" />
+  <line class="eb-cellshort" x1="315" y1="60" x2="315" y2="80" />
+  <line class="eb-wire" x1="255" y1="70" x2="270" y2="70" />
+  <line class="eb-wire" x1="315" y1="70" x2="330" y2="70" />
+
+  <text class="eb-label" x="95" y="48">+</text>
+  <text class="eb-label" x="345" y="48">-</text>
+
+  <!-- left branch: rheostat then down to electrode X -->
+  <line class="eb-wire" x1="70" y1="70" x2="70" y2="105" />
+  <path class="eb-zig" d="M 70 105 L 82 115 L 58 125 L 82 135 L 58 145 L 82 155 L 70 165" />
+  <line class="eb-wire" x1="70" y1="165" x2="70" y2="210" />
+  <line class="eb-wire" x1="70" y1="210" x2="230" y2="210" />
+
+  <!-- right branch: ammeter then down to electrode Y -->
+  <line class="eb-wire" x1="530" y1="70" x2="530" y2="94" />
+  <circle class="eb-amm" cx="530" cy="112" r="18" />
+  <text class="eb-label" x="522" y="119">A</text>
+  <line class="eb-wire" x1="530" y1="130" x2="530" y2="210" />
+  <line class="eb-wire" x1="530" y1="210" x2="370" y2="210" />
+
+  <!-- crucible: front-view bowl, a single closed vesica (bottom curve + top rim curve) -->
+  <path class="eb-crucible" d="M 165 300 Q 300 410 435 300 Q 300 282 165 300 Z" />
+  <path class="eb-liquid" d="M 185 302 Q 300 388 415 302 Q 300 288 185 302 Z" />
+
+  <!-- electrodes drawn on top of the crucible/liquid so the dipped tips are visible piercing the liquid -->
+  <line class="eb-elec" x1="230" y1="210" x2="230" y2="318" />
+  <line class="eb-elec" x1="370" y1="210" x2="370" y2="318" />
+
+  <!-- stand -->
+  <path class="eb-stand" d="M 210 300 L 110 490" />
+  <path class="eb-stand" d="M 390 300 L 490 490" />
+  <line class="eb-stand" x1="80" y1="490" x2="520" y2="490" />
+
+  <!-- burner -->
+  <line class="eb-stand" x1="300" y1="490" x2="300" y2="430" />
+  <path class="eb-flame" d="M 300 430 C 288 415 288 398 300 385 C 312 398 312 415 300 430 Z" />
+  <ellipse class="eb-stand" cx="300" cy="500" rx="40" ry="8" />
+
+  <!-- labels with leaders -->
+  <text class="eb-label" x="10" y="245" text-anchor="start">Graphite [X]</text>
+  <line class="eb-leader" x1="150" y1="238" x2="228" y2="224" />
+
+  <text class="eb-label" x="590" y="245" text-anchor="end">Graphite [Y]</text>
+  <line class="eb-leader" x1="450" y1="238" x2="372" y2="224" />
+
+  <text class="eb-label" x="460" y="330">Molten lead</text>
+  <text class="eb-label" x="460" y="352">bromide</text>
+  <line class="eb-leader" x1="458" y1="335" x2="365" y2="320" />
+</svg>

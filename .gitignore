@@ -1,0 +1,21 @@
+# Local environment / secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# SQLite database files — production data must live on a persistent
+# volume or be migrated to Postgres, never committed to git. See
+# PROJECT_PROGRESS.md and README.md for the current persistence plan.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.db.bak-*
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+*.swp

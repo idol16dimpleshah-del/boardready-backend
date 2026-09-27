@@ -1,0 +1,19 @@
+{
+  "name": "board-ready-backend",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Board Ready API — rebuilt after a workspace reset wiped the original implementation. See REBUILD_NOTES.md.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "test": "node scripts/run-tests-with-live-db-guard.js",
+    "test:raw": "NODE_ENV=test node --test 'test/*.test.js'"
+  },
+  "dependencies": {
+    "pg": "^8.23.0"
+  }
+}

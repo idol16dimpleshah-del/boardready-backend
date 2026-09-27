@@ -1,0 +1,146 @@
+{
+  "results": {
+    "users": {
+      "sqliteRowsCompared": 346,
+      "postgresRows": 346,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "subjects": {
+      "sqliteRowsCompared": 5,
+      "postgresRows": 5,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "chapters": {
+      "sqliteRowsCompared": 79,
+      "postgresRows": 79,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "source_files": {
+      "sqliteRowsCompared": 124,
+      "postgresRows": 124,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "source_documents": {
+      "sqliteRowsCompared": 152,
+      "postgresRows": 152,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "source_document_files": {
+      "sqliteRowsCompared": 289,
+      "postgresRows": 289,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "questions": {
+      "sqliteRowsCompared": 4824,
+      "postgresRows": 4824,
+      "knownExcludedRows": 122,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "visual_assets": {
+      "sqliteRowsCompared": 161,
+      "postgresRows": 161,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "duplicate_flags": {
+      "sqliteRowsCompared": 409,
+      "postgresRows": 409,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "tests": {
+      "sqliteRowsCompared": 317,
+      "postgresRows": 317,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "test_questions": {
+      "sqliteRowsCompared": 3128,
+      "postgresRows": 3128,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "attempts": {
+      "sqliteRowsCompared": 309,
+      "postgresRows": 309,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "subscriptions": {
+      "sqliteRowsCompared": 3,
+      "postgresRows": 3,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    },
+    "audit_log": {
+      "sqliteRowsCompared": 237,
+      "postgresRows": 237,
+      "knownExcludedRows": 0,
+      "missingInPg": 0,
+      "extraInPg": 0,
+      "contentMismatches": 0,
+      "contentMismatchSample": [],
+      "status": "MATCH"
+    }
+  },
+  "overall": "ALL_MIGRATED_ROWS_MATCH",
+  "generatedAt": "2026-09-23T18:21:43.068Z"
+}

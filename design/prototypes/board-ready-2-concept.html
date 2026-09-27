@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Board Ready 2.0</title>
+<meta name="description" content="Visual concept prototype for Board Ready — four screens, dark + light, judge before you build.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* brand accents — constant across themes, this is what makes a screen recognizably Board Ready */
+    --violet: #7C5CFA;
+    --violet-bright: #8B5CF6;
+    --cyan: #1FB8C4;
+    --gold: #D99A24;
+    --good: #1FA97A;
+    --warn: #D99A24;
+    --bad: #DD4E40;
+    --font-display: "Unbounded", "Manrope", sans-serif;
+    --font-body: "Manrope", -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* light theme surface tokens (default) */
+    --bg-0: #F5F3FB;
+    --bg-1: #FFFFFF;
+    --bg-2: #ECE9F7;
+    --surface: rgba(23,17,51,0.04);
+    --surface-strong: rgba(23,17,51,0.065);
+    --border: rgba(23,17,51,0.10);
+    --border-strong: rgba(23,17,51,0.18);
+    --ink: #17142B;
+    --ink-soft: #514C6B;
+    --ink-faint: #8A85A6;
+    --field-bg: rgba(23,17,51,0.035);
+    --track-bg: rgba(23,17,51,0.08);
+    --chip-bg: rgba(23,17,51,0.06);
+    --hero-grad-start: #17142B;
+    --hero-grad-end: var(--violet);
+    --glow-op: 0.16;
+    --noise-op: 0.02;
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 20px 45px -28px rgba(23,17,51,0.28);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-0: #0A0C13; --bg-1: #0F1220; --bg-2: #151A2C;
+      --surface: rgba(255,255,255,0.045); --surface-strong: rgba(255,255,255,0.075);
+      --border: rgba(255,255,255,0.09); --border-strong: rgba(255,255,255,0.16);
+      --ink: #F1F3FC; --ink-soft: #A6ADC6; --ink-faint: #6C7290;
+      --field-bg: rgba(255,255,255,0.03); --track-bg: rgba(255,255,255,0.07); --chip-bg: rgba(255,255,255,0.06);
+      --hero-grad-start: #FFFFFF; --hero-grad-end: var(--violet-bright);
+      --glow-op: 0.55; --noise-op: 0.05;
+      --card-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 20px 50px -25px rgba(0,0,0,0.7);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg-0: #0A0C13; --bg-1: #0F1220; --bg-2: #151A2C;
+    --surface: rgba(255,255,255,0.045); --surface-strong: rgba(255,255,255,0.075);
+    --border: rgba(255,255,255,0.09); --border-strong: rgba(255,255,255,0.16);
+    --ink: #F1F3FC; --ink-soft: #A6ADC6; --ink-faint: #6C7290;
+    --field-bg: rgba(255,255,255,0.03); --track-bg: rgba(255,255,255,0.07); --chip-bg: rgba(255,255,255,0.06);
+    --hero-grad-start: #FFFFFF; --hero-grad-end: var(--violet-bright);
+    --glow-op: 0.55; --noise-op: 0.05;
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 20px 50px -25px rgba(0,0,0,0.7);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg-0: #F5F3FB; --bg-1: #FFFFFF; --bg-2: #ECE9F7;
+    --surface: rgba(23,17,51,0.04); --surface-strong: rgba(23,17,51,0.065);
+    --border: rgba(23,17,51,0.10); --border-strong: rgba(23,17,51,0.18);
+    --ink: #17142B; --ink-soft: #514C6B; --ink-faint: #8A85A6;
+    --field-bg: rgba(23,17,51,0.035); --track-bg: rgba(23,17,51,0.08); --chip-bg: rgba(23,17,51,0.06);
+    --hero-grad-start: #17142B; --hero-grad-end: var(--violet);
+    --glow-op: 0.16; --noise-op: 0.02;
+    --card-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 20px 45px -28px rgba(23,17,51,0.28);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; overflow-x: hidden; }
+  body {
+    margin: 0;
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* ambient grain + glow, shared across screens */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: var(--noise-op);
+    mix-blend-mode: overlay;
+  }
+
+  .glow { position: fixed; z-index: 0; pointer-events: none; filter: blur(70px); border-radius: 50%; }
+  .glow-violet { width: 520px; height: 520px; background: radial-gradient(circle, var(--violet) 0%, transparent 70%); top: -180px; left: -140px; opacity: var(--glow-op); }
+  .glow-cyan { width: 460px; height: 460px; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); bottom: -160px; right: -120px; opacity: calc(var(--glow-op) * 0.6); }
+
+  /* ---------- viewer chrome (hidden in clean screenshots — never part of the real product) ---------- */
+  .viewer-toolbar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 10px 16px;
+    background: color-mix(in srgb, var(--bg-0) 85%, transparent); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-body); flex-wrap: wrap;
+  }
+  body.clean .viewer-toolbar { display: none; }
+  .tb-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tb-btn {
+    appearance: none; border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft);
+    font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
+    padding: 7px 12px; border-radius: 999px; cursor: pointer;
+  }
+  .tb-btn.active { background: var(--violet); border-color: var(--violet); color: #fff; }
+  .tb-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-right: 4px; align-self: center; }
+  .tb-tag { color: var(--ink-faint); font-weight: 500; font-size: 0.72rem; }
+
+  .stage { position: relative; z-index: 1; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  body.device-mobile .stage { max-width: 400px; margin: 0 auto; }
+
+  /* ---------- shared bits ---------- */
+  .wordmark { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; color: var(--ink); }
+  .wordmark b { color: var(--violet-bright); font-weight: 800; }
+
+  .glass {
+    background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; padding: 5px 11px; border-radius: 999px; letter-spacing: 0.02em; }
+  .pill-good { background: rgba(31,169,122,0.14); color: var(--good); }
+  .pill-warn { background: rgba(217,154,36,0.14); color: var(--warn); }
+  .pill-bad { background: rgba(221,78,64,0.14); color: var(--bad); }
+  .pill-violet { background: rgba(124,92,250,0.14); color: var(--violet-bright); }
+  .pill-shimmer { position: relative; overflow: hidden; }
+  .pill-shimmer::after {
+    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+    animation: shimmer 2.6s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0% { left: -60%; } 100% { left: 120%; } }
+
+  .btn { appearance: none; border: none; cursor: pointer; font-family: var(--font-body); border-radius: 14px; font-weight: 700; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--violet) 0%, #6D3FE0 100%);
+    color: #fff; box-shadow: 0 10px 24px -8px rgba(124,92,250,0.55);
+  }
+  .btn-ghost { background: var(--surface); border: 1px solid var(--border-strong); color: var(--ink); }
+
+  h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .flame { display: inline-block; animation: flicker 2.4s ease-in-out infinite; transform-origin: 50% 80%; }
+  @keyframes flicker { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(1.12) rotate(-4deg); opacity: 0.85; } }
+
+  /* ---------- Readiness Core — the signature 3D element, reused on login / dashboard / results ---------- */
+  .core-wrap { perspective: 900px; flex: none; }
+  .core { position: relative; width: var(--core-size, 132px); height: var(--core-size, 132px); }
+  .core-spin { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateZ(20deg); }
+  body:not(.clean) .core-spin { animation: coreSpin 28s linear infinite; }
+  @keyframes coreSpin { from { transform: rotateZ(20deg); } to { transform: rotateZ(380deg); } }
+  .core-ring { position: absolute; border-radius: 50%; border: 2px solid transparent; }
+  .core-ring.r1 { inset: 2%; border-top-color: var(--violet-bright); border-right-color: var(--violet-bright); transform: rotateX(70deg) rotateY(8deg); opacity: 0.95; }
+  .core-ring.r2 { inset: 12%; border-top-color: var(--cyan); border-left-color: var(--cyan); transform: rotateX(70deg) rotateY(-55deg); opacity: 0.85; }
+  .core-ring.r3 { inset: 22%; border-bottom-color: var(--gold); border-right-color: var(--gold); transform: rotateX(70deg) rotateY(48deg); opacity: 0.8; }
+  .core-orb {
+    position: absolute; inset: 30%; border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, var(--violet-bright), var(--violet) 55%, var(--cyan) 145%);
+    box-shadow: 0 0 34px -6px var(--violet), inset 0 0 16px rgba(255,255,255,0.3);
+  }
+  .core-face { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .core-face .n { font-family: var(--font-display); font-weight: 800; line-height: 1; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+  .core-face .u { text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.85); margin-top: 2px; }
+
+  /* =========================================================
+     SCREEN 1 — Login / Landing
+     ========================================================= */
+  #screen-login .wrap { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 0; }
+  body.device-mobile #screen-login .wrap { grid-template-columns: 1fr; min-height: auto; }
+
+  .login-hero { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; position: relative; min-height: 100vh; }
+  body.device-mobile .login-hero { min-height: auto; padding: 30px 20px 16px; }
+
+  .login-hero .eyebrow-pill { align-self: flex-start; margin-bottom: 18px; }
+  .login-hero h1 {
+    font-size: clamp(2.3rem, 4.4vw, 3.7rem); line-height: 1.02; font-weight: 800;
+    background: linear-gradient(135deg, var(--hero-grad-start) 30%, var(--hero-grad-end) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .login-hero .tagline { font-size: 1.05rem; color: var(--ink-soft); margin: 16px 0 22px; max-width: 36ch; line-height: 1.55; }
+
+  /* board + goal onboarding, folded into the login hero to keep this to 4 screens but make the choice prominent */
+  .board-goal { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .bg-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .bg-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-faint); width: 52px; flex: none; }
+  .chip {
+    appearance: none; cursor: pointer; border: 1px solid var(--border-strong); background: var(--surface);
+    color: var(--ink-soft); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem;
+    padding: 7px 13px; border-radius: 999px; transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .chip:hover { transform: translateY(-1px); border-color: var(--violet); }
+  .chip.active { background: linear-gradient(135deg, var(--violet), #6D3FE0); border-color: transparent; color: #fff; }
+
+  .float-cards { position: relative; height: 220px; margin-top: 4px; }
+  body.device-mobile .float-cards { height: 300px; }
+  .fcard { position: absolute; padding: 12px 16px; display: flex; align-items: center; gap: 10px; min-width: 148px; }
+  .fcard .fnum { font-family: var(--font-mono); font-weight: 700; font-size: 1.15rem; }
+  .fcard .flabel { font-size: 0.68rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .fcard.c1 { top: 0; left: 0; transform: rotate(-3deg); }
+  .fcard.c2 { top: 6px; left: 190px; transform: rotate(2deg); }
+  .fcard.c3 { top: 100px; left: 40px; transform: rotate(2.5deg); }
+  .fcard.c4 { top: 118px; left: 250px; transform: rotate(-2deg); }
+  body.device-mobile .fcard.c1 { top: 0; left: 0; }
+  body.device-mobile .fcard.c2 { top: 0; left: unset; right: 0; }
+  body.device-mobile .fcard.c3 { top: 130px; left: 0; }
+  body.device-mobile .fcard.c4 { top: 210px; left: 130px; }
+
+  .login-panel-wrap { display: flex; align-items: center; justify-content: center; padding: 48px; background: var(--bg-1); border-left: 1px solid var(--border); position: relative; }
+  body.device-mobile .login-panel-wrap { border-left: none; border-top: 1px solid var(--border); padding: 32px 20px 44px; }
+  .login-panel { width: 100%; max-width: 380px; padding: 34px 30px; }
+  .login-panel h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+  .login-panel .sub { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 26px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 0.72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .field input {
+    width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border-strong);
+    background: var(--field-bg); color: var(--ink); font-family: var(--font-body); font-size: 0.92rem;
+  }
+  .oauth-btn { width: 100%; padding: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .divider { display: flex; align-items: center; gap: 10px; color: var(--ink-faint); font-size: 0.75rem; margin: 6px 0 18px; }
+  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+  .login-panel .btn-primary { width: 100%; padding: 13px; font-size: 0.95rem; margin-top: 6px; }
+  .login-panel .foot { text-align: center; font-size: 0.82rem; color: var(--ink-faint); margin-top: 18px; }
+  .login-panel .foot a { color: var(--violet-bright); font-weight: 600; text-decoration: none; }
+
+  /* =========================================================
+     SCREEN 2 — Dashboard
+     ========================================================= */
+  #screen-dashboard .dwrap { max-width: 1180px; margin: 0 auto; padding: 28px 32px 60px; }
+  body.device-mobile #screen-dashboard .dwrap { padding: 20px 16px 40px; }
+
+  .topbar-app { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 26px; }
+  .greet { font-size: 1rem; color: var(--ink-soft); }
+  .greet b { color: var(--ink); }
+  .streak-chip { display: flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; }
+  .streak-chip .mono { font-weight: 700; }
+
+  .dash-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; margin-bottom: 18px; }
+  body.device-mobile .dash-grid { grid-template-columns: 1fr; }
+
+  .readiness-card { padding: 26px; display: flex; align-items: center; gap: 26px; }
+  body.device-mobile .readiness-card { flex-direction: column; text-align: center; gap: 14px; }
+  .subject-mastery-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 4px; }
+  body.device-mobile .subject-mastery-row { justify-content: center; }
+  .sm-item .sm-n { font-family: var(--font-mono); font-weight: 700; font-size: 1.05rem; }
+  .sm-item .sm-l { font-size: 0.68rem; color: var(--ink-faint); }
+
+  .mission-card { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .mission-top { display: flex; justify-content: space-between; align-items: center; }
+  .track { height: 8px; border-radius: 999px; background: var(--track-bg); overflow: hidden; }
+  .track > div { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); border-radius: 999px; }
+
+  .xp-card { padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .xp-stat { text-align: center; }
+  .xp-stat .n { font-family: var(--font-mono); font-weight: 700; font-size: 1.3rem; }
+  .xp-stat .l { font-size: 0.65rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .xp-bar-wrap { flex: 1; min-width: 160px; }
+
+  .section-h { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 0 12px; }
+  .section-h h3 { font-size: 1.05rem; font-weight: 700; }
+  .section-h .see-all { font-size: 0.8rem; color: var(--violet-bright); }
+
+  .weak-list { display: flex; flex-direction: column; gap: 10px; }
+  .weak-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; gap: 12px; transition: transform 0.15s ease; }
+  .weak-row:hover { transform: translateY(-1px); }
+  .weak-left { display: flex; align-items: center; gap: 12px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .dot-bad { background: var(--bad); box-shadow: 0 0 10px var(--bad); animation: pulseBad 1.9s ease-in-out infinite; }
+  @keyframes pulseBad { 0%, 100% { box-shadow: 0 0 0 0 rgba(221,78,64,0.5); } 50% { box-shadow: 0 0 0 6px rgba(221,78,64,0); } }
+  .dot-warn { background: var(--warn); box-shadow: 0 0 10px var(--warn); }
+  .dot-good { background: var(--good); box-shadow: 0 0 10px var(--good); }
+  .weak-name { font-weight: 600; font-size: 0.92rem; }
+  .weak-pct { font-family: var(--font-mono); font-weight: 700; }
+
+  .subject-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  body.device-mobile .subject-cards { grid-template-columns: 1fr; }
+  .subj-card { padding: 18px; transition: transform 0.15s ease; }
+  .subj-card:hover { transform: translateY(-2px); }
+  .subj-card .sic { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 1.05rem; }
+  .subj-card h4 { font-size: 0.98rem; font-weight: 700; margin: 0 0 8px; }
+  .subj-card .meta { font-size: 0.76rem; color: var(--ink-faint); display: flex; gap: 10px; }
+
+  /* ---- dashboard v2: action-first ---- */
+  .quickstart-strip {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 13px 18px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .qs-left { display: flex; align-items: center; gap: 12px; }
+  .qs-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(124,92,250,0.16); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex: none; }
+  .qs-text .qs-t { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .qs-text .qs-b { font-size: 0.92rem; font-weight: 700; margin-top: 1px; }
+  .qs-right { display: flex; align-items: center; gap: 10px; }
+  .qs-new-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; }
+  .qs-new-link:hover { color: var(--violet-bright); }
+
+  .next-move-card {
+    padding: 26px; margin-bottom: 16px; position: relative; overflow: hidden;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg-1), var(--bg-1)) padding-box,
+                linear-gradient(135deg, var(--violet), var(--cyan)) border-box;
+  }
+  .next-move-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--violet-bright); font-weight: 700; margin-bottom: 10px; }
+  .next-move-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+  .next-move-why { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 14px; }
+  .next-move-meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .next-move-meta .nm-fact { font-size: 0.8rem; color: var(--ink-faint); }
+  body.device-mobile .next-move-card { padding: 20px; }
+  body.device-mobile .next-move-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+  body.device-mobile .next-move-meta .btn { width: 100%; text-align: center; }
+
+  .readiness-compact { display: flex; align-items: center; gap: 16px; padding: 16px 20px; margin-bottom: 16px; }
+  .readiness-compact .rc-text { flex: 1; }
+  .readiness-compact .rc-num { font-size: 0.85rem; color: var(--ink-soft); }
+  .readiness-compact .rc-num b { font-family: var(--font-mono); font-size: 1.2rem; color: var(--ink); }
+  .readiness-compact .sm-item { display: inline-block; margin-right: 16px; }
+
+  .opp-list { display: flex; flex-direction: column; gap: 10px; }
+  .opp-row {
+    display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; gap: 14px;
+    transition: transform 0.15s ease, border-color 0.15s ease; cursor: pointer;
+  }
+  .opp-row:hover { transform: translateY(-1px); border-color: var(--violet); }
+  .opp-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .opp-name { font-weight: 600; font-size: 0.92rem; }
+  .opp-current { font-size: 0.76rem; color: var(--ink-faint); margin-top: 1px; }
+  .opp-right { display: flex; align-items: center; gap: 12px; flex: none; }
+  .opp-train { font-size: 0.8rem; font-weight: 700; color: var(--violet-bright); opacity: 0; transform: translateX(-4px); transition: opacity 0.15s ease, transform 0.15s ease; white-space: nowrap; }
+  .opp-row:hover .opp-train, .opp-row:focus-within .opp-train { opacity: 1; transform: translateX(0); }
+  body.device-mobile .opp-train { opacity: 1; transform: none; font-size: 0.74rem; }
+
+  .secondary-h { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin: 26px 0 10px; font-weight: 700; }
+
+  /* =========================================================
+     SCREEN 3 — Test
+     ========================================================= */
+  #screen-test .twrap { max-width: 640px; margin: 0 auto; padding: 36px 24px 60px; }
+  .test-ready-card { padding: 28px; text-align: center; margin-bottom: 20px; }
+  .test-ready-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+  .test-ready-card .sub { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 20px; }
+  .test-meta-row { display: flex; justify-content: center; gap: 26px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tm-item .n { font-family: var(--font-mono); font-weight: 700; font-size: 1.1rem; }
+  .tm-item .l { font-size: 0.66rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .diff-dots { display: flex; gap: 5px; justify-content: center; margin-bottom: 22px; }
+  .diff-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--track-bg); }
+  .diff-dots span.on { background: var(--gold); }
+  .beat-btn { padding: 14px 30px; font-size: 0.98rem; }
+
+  .qcard { padding: 26px; }
+
+  /* exam-grade header: exit, question navigator trigger, timer, progress */
+  .test-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .exit-btn {
+    appearance: none; border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-soft);
+    font-family: var(--font-body); font-weight: 600; font-size: 0.82rem; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .qnav-trigger {
+    appearance: none; border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink);
+    font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  }
+  .qnav-trigger:hover { border-color: var(--violet); }
+  .q-progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .q-progress-row .track { flex: 1; }
+  .timer-pill { display: flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: var(--chip-bg); font-family: var(--font-mono); font-size: 0.78rem; flex: none; }
+
+  /* question navigator popover */
+  .qnav-panel { display: none; padding: 16px 18px; margin-bottom: 16px; }
+  .qnav-panel.open { display: block; }
+  .qnav-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.74rem; color: var(--ink-faint); margin-bottom: 12px; }
+  .qnav-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .qnav-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .qnav-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 7px; }
+  body.device-mobile .qnav-grid { grid-template-columns: repeat(6, 1fr); }
+  .qn { aspect-ratio: 1; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; border: 1px solid var(--border); cursor: pointer; }
+  .qn.answered { background: var(--violet); border-color: var(--violet); color: #fff; }
+  .qn.flagged { border-color: var(--warn); color: var(--warn); }
+  .qn.current { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .qn.unanswered { color: var(--ink-faint); }
+
+  .q-label-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .q-label { font-weight: 700; font-size: 0.82rem; color: var(--ink-faint); }
+  .flag-btn { appearance: none; border: none; background: none; color: var(--ink-faint); font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+  .flag-btn:hover, .flag-btn.on { color: var(--warn); }
+
+  .q-text { font-size: 1.12rem; font-weight: 600; line-height: 1.5; margin: 4px 0 18px; }
+  .opt { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 13px; border: 1px solid var(--border); margin-bottom: 10px; font-size: 0.94rem; transition: transform 0.12s ease; }
+  .opt:hover { transform: translateY(-1px); }
+  .opt .k { width: 26px; height: 26px; border-radius: 8px; background: var(--chip-bg); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--ink-faint); flex: none; }
+  .opt.sel { border-color: var(--violet); background: rgba(124,92,250,0.1); }
+  .opt.sel .k { background: var(--violet); color: #fff; }
+
+  .autosave-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--good); font-weight: 600; margin: 2px 0 16px; }
+  .autosave-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+
+  /* diagram / visual-question treatment */
+  .qtype-block { display: none; }
+  .qtype-block.active { display: block; }
+  .diagram-frame {
+    position: relative; border-radius: 14px; border: 1px solid var(--border); background: var(--field-bg);
+    padding: 10px; margin: 4px 0 18px; cursor: zoom-in;
+  }
+  .diagram-frame svg { display: block; width: 100%; height: auto; max-height: 220px; }
+  .zoom-hint {
+    position: absolute; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 5px;
+    font-size: 0.72rem; font-weight: 600; color: var(--ink-soft); background: var(--chip-bg);
+    padding: 5px 10px; border-radius: 999px; pointer-events: none;
+  }
+  .diagram-caption { font-size: 0.74rem; color: var(--ink-faint); text-align: center; margin: -10px 0 18px; }
+
+  .ar-block .ar-stmt { padding: 13px 15px; border-radius: 12px; border: 1px solid var(--border); background: var(--field-bg); margin-bottom: 10px; font-size: 0.92rem; line-height: 1.5; }
+  .ar-block .ar-stmt b { color: var(--violet-bright); }
+
+  /* =========================================================
+     SCREEN 4 — Results + Weak Spot
+     ========================================================= */
+  #screen-results .rwrap { max-width: 640px; margin: 0 auto; padding: 40px 24px 60px; text-align: center; }
+  .best-pill { margin-bottom: 6px; }
+  .delta-line { color: var(--good); font-weight: 700; font-size: 0.95rem; margin: 14px 0 30px; }
+
+  .mistakes-card { padding: 20px 22px; text-align: left; margin-bottom: 18px; }
+  .mistakes-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; }
+  .mrow { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--border); }
+  .mrow:first-of-type { border-top: none; }
+  .mrow-left { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; }
+  .mrow-right { font-size: 0.82rem; color: var(--ink-faint); }
+
+  .weakspot-card { padding: 24px; text-align: left; position: relative; overflow: hidden; margin-bottom: 18px; }
+  .weakspot-card::before {
+    content: ""; position: absolute; top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(221,78,64,0.22), transparent 70%);
+  }
+  .weakspot-card .tag { position: relative; }
+  .weakspot-card h3 { font-size: 1.3rem; font-weight: 800; margin: 10px 0 4px; position: relative; }
+  .weakspot-card .detail { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 18px; position: relative; }
+  .fix-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; position: relative; flex-wrap: wrap; }
+  .fix-meta { font-size: 0.8rem; color: var(--ink-faint); }
+
+  .improve-strip { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px; font-family: var(--font-mono); font-weight: 700; }
+  .improve-strip .before { color: var(--bad); }
+  .improve-strip .arrow { color: var(--ink-faint); }
+  .improve-strip .after { color: var(--good); }
+  .improve-strip .delta { margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<div class="glow glow-violet"></div>
+<div class="glow glow-cyan"></div>
+
+<div class="viewer-toolbar">
+  <div class="wordmark">Board<b>Ready</b> <span class="tb-tag">— prototype viewer, not the live app</span></div>
+  <div class="tb-group">
+    <span class="tb-label">Screen</span>
+    <button class="tb-btn active" data-screen="login">Login</button>
+    <button class="tb-btn" data-screen="dashboard">Dashboard</button>
+    <button class="tb-btn" data-screen="test">Test</button>
+    <button class="tb-btn" data-screen="results">Results</button>
+  </div>
+  <div class="tb-group">
+    <span class="tb-label">Device</span>
+    <button class="tb-btn active" data-device="desktop">Desktop</button>
+    <button class="tb-btn" data-device="mobile">Mobile</button>
+  </div>
+  <div class="tb-group">
+    <span class="tb-label">Theme</span>
+    <button class="tb-btn active" data-theme-btn="dark">Dark</button>
+    <button class="tb-btn" data-theme-btn="light">Light</button>
+  </div>
+  <div class="tb-group">
+    <span class="tb-label">Question type</span>
+    <button class="tb-btn active" data-qtype="mcq">MCQ</button>
+    <button class="tb-btn" data-qtype="diagram">Diagram</button>
+    <button class="tb-btn" data-qtype="ar">Assertion-Reason</button>
+  </div>
+</div>
+
+<div class="stage">
+
+  <!-- ============ SCREEN 1: LOGIN / LANDING ============ -->
+  <section class="screen active" id="screen-login">
+    <div class="wrap">
+      <div class="login-hero">
+        <span class="pill pill-violet eyebrow-pill">CBSE &middot; ICSE &middot; Class 10</span>
+        <h1>Know your<br>weak spots.</h1>
+        <p class="tagline">Test. Diagnose. Fix. Retest. Board Ready turns every mistake into a targeted plan &mdash; not just a score.</p>
+
+        <div class="board-goal">
+          <div class="bg-row">
+            <span class="bg-label">Board</span>
+            <button class="chip active" data-board="cbse">CBSE</button>
+            <button class="chip" data-board="icse">ICSE</button>
+          </div>
+          <div class="bg-row">
+            <span class="bg-label">Goal</span>
+            <button class="chip active" data-goal="score">Improve my score</button>
+            <button class="chip" data-goal="weak">Fix my weak spots</button>
+            <button class="chip" data-goal="full">Take a full test</button>
+          </div>
+        </div>
+
+        <div class="float-cards">
+          <div class="fcard glass c1"><span class="fnum mono flame" style="color:var(--gold)">🔥 12</span><span class="flabel">Day streak</span></div>
+          <div class="fcard glass c2">
+            <div class="core-wrap"><div class="core" style="--core-size:44px;"><div class="core-spin"><div class="core-ring r1"></div><div class="core-ring r2"></div><div class="core-ring r3"></div></div><div class="core-orb"></div><div class="core-face"><span class="n" style="font-size:0.72rem;">78%</span></div></div></div>
+            <span class="flabel">Board readiness</span>
+          </div>
+          <div class="fcard glass c3"><span class="fnum mono" style="color:var(--bad);font-size:0.92rem;">Quadratic Eqns</span><span class="flabel">Weak spot found</span></div>
+          <div class="fcard glass c4"><span class="fnum mono" style="color:var(--good)">+18%</span><span class="flabel">Improvement</span></div>
+        </div>
+      </div>
+
+      <div class="login-panel-wrap">
+        <div class="login-panel glass">
+          <h2>Welcome back 👋</h2>
+          <p class="sub">Ready to beat your last score?</p>
+
+          <button class="btn btn-ghost oauth-btn">
+            <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.9 32.7 29.4 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.4 0 10.3-2.1 14-5.5l-6.5-5.5C29.5 35.7 26.9 36.5 24 36.5c-5.3 0-9.8-3.4-11.5-8l-6.6 5.1C9.6 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 3-3.1 5.4-5.8 6.9l6.5 5.5C39.7 37.3 43 31.4 43 24c0-1.4-.1-2.7-.4-3.5z"/></svg>
+            Continue with Google
+          </button>
+          <div class="divider">or with email</div>
+          <div class="field"><label>Email</label><input type="text" placeholder="you@example.com"></div>
+          <div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+          <button class="btn btn-primary">Continue &rarr;</button>
+          <div class="foot">New here? <a href="#">Create a free account</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2: DASHBOARD ============ -->
+  <section class="screen" id="screen-dashboard">
+    <div class="dwrap">
+      <div class="topbar-app">
+        <div class="wordmark">Board<b>Ready</b></div>
+        <div class="streak-chip glass"><span class="flame">🔥</span><span class="mono">12-day streak</span></div>
+      </div>
+      <div class="greet">Good evening, <b>Aarav</b> &mdash; here's what to do next.</div>
+
+      <!-- Quick start: returning students never re-navigate from scratch -->
+      <div class="quickstart-strip glass" style="margin-top:18px;">
+        <div class="qs-left">
+          <div class="qs-icon">⚡</div>
+          <div class="qs-text"><div class="qs-t">Continue where you left off</div><div class="qs-b">Electricity &middot; Practice &mdash; 4 of 8 done</div></div>
+        </div>
+        <div class="qs-right">
+          <a href="#" class="qs-new-link">Take a new test</a>
+          <button class="btn btn-primary" style="padding:9px 18px;font-size:0.85rem;">Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Your next move: the one action that matters most right now -->
+      <div class="next-move-card glass">
+        <div class="next-move-eyebrow">Your next move</div>
+        <div class="next-move-title">Electricity &mdash; 8 questions</div>
+        <p class="next-move-why">You missed 4 questions here in your last test. This is the fastest way to gain marks.</p>
+        <div class="next-move-meta">
+          <span class="nm-fact">~8 min &middot; Targeted practice</span>
+          <button class="btn btn-primary" style="padding:12px 26px;">Start &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Readiness: still visible, now supporting rather than competing -->
+      <div class="readiness-compact glass">
+        <div class="core-wrap"><div class="core" style="--core-size:64px;"><div class="core-spin"><div class="core-ring r1"></div><div class="core-ring r2"></div><div class="core-ring r3"></div></div><div class="core-orb"></div><div class="core-face"><span class="n" style="font-size:1rem;" data-count-to="78">78</span></div></div></div>
+        <div class="rc-text">
+          <div class="rc-num"><b data-count-to="78">78</b> Board Readiness &middot; <span style="color:var(--good);">&uarr; 8% this month</span></div>
+          <div class="subject-mastery-row" style="margin-top:6px;">
+            <div class="sm-item"><span class="sm-n" style="color:var(--violet-bright);font-size:0.85rem;" data-count-to="82">82</span> <span class="sm-l">Maths</span></div>
+            <div class="sm-item"><span class="sm-n" style="color:var(--cyan);font-size:0.85rem;" data-count-to="74">74</span> <span class="sm-l">Science</span></div>
+            <div class="sm-item"><span class="sm-n" style="color:var(--gold);font-size:0.85rem;" data-count-to="79">79</span> <span class="sm-l">Soc. Sci</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-h"><h3>Where you can gain marks</h3><span class="see-all">See all &rarr;</span></div>
+      <div class="opp-list">
+        <div class="opp-row glass" tabindex="0">
+          <div class="opp-left"><span class="dot dot-bad"></span><div><div class="opp-name">Quadratic Equations</div><div class="opp-current">Current mastery: <span data-count-to="42" data-count-suffix="%">42%</span></div></div></div>
+          <div class="opp-right"><span class="opp-train">Train this &rarr;</span><span class="pill pill-bad">High opportunity</span></div>
+        </div>
+        <div class="opp-row glass" tabindex="0">
+          <div class="opp-left"><span class="dot dot-warn"></span><div><div class="opp-name">Electricity</div><div class="opp-current">Current mastery: <span data-count-to="61" data-count-suffix="%">61%</span></div></div></div>
+          <div class="opp-right"><span class="opp-train">Train this &rarr;</span><span class="pill pill-warn">Medium opportunity</span></div>
+        </div>
+        <div class="opp-row glass" tabindex="0">
+          <div class="opp-left"><span class="dot dot-good"></span><div><div class="opp-name">Carbon Compounds</div><div class="opp-current">Current mastery: <span data-count-to="78" data-count-suffix="%">78%</span></div></div></div>
+          <div class="opp-right"><span class="opp-train">Train this &rarr;</span><span class="pill pill-good">Low opportunity</span></div>
+        </div>
+      </div>
+
+      <div class="secondary-h">Streak &amp; XP</div>
+      <div class="xp-card glass">
+        <div class="xp-stat"><div class="n" style="color:var(--gold)" data-count-to="2840" data-count-comma="1">2,840</div><div class="l">XP</div></div>
+        <div class="xp-stat"><div class="n" data-count-to="17">17</div><div class="l">Level</div></div>
+        <div class="xp-bar-wrap">
+          <div class="track"><div style="width:62%;background:linear-gradient(90deg,var(--gold),var(--violet-bright));" data-fill-to="62%"></div></div>
+          <div style="font-size:0.74rem;color:var(--ink-faint);margin-top:6px;">760 XP to level 18</div>
+        </div>
+        <div class="xp-stat"><div class="n" style="color:var(--good)"><span class="flame">🔥</span> <span data-count-to="12">12</span></div><div class="l">Streak</div></div>
+      </div>
+
+      <div class="section-h"><h3>Your subjects</h3></div>
+      <div class="subject-cards">
+        <div class="subj-card glass"><div class="sic" style="background:rgba(124,92,250,0.18)">📐</div><h4>Mathematics</h4><div class="meta"><span>14 chapters</span><span>824 qs</span></div><div class="track" style="margin-top:10px;"><div style="width:82%" data-fill-to="82%"></div></div></div>
+        <div class="subj-card glass"><div class="sic" style="background:rgba(31,184,196,0.18)">🧪</div><h4>Science</h4><div class="meta"><span>13 chapters</span><span>612 qs</span></div><div class="track" style="margin-top:10px;"><div style="width:74%;background:var(--cyan);" data-fill-to="74%"></div></div></div>
+        <div class="subj-card glass"><div class="sic" style="background:rgba(217,154,36,0.18)">🌍</div><h4>Social Science</h4><div class="meta"><span>18 chapters</span><span>403 qs</span></div><div class="track" style="margin-top:10px;"><div style="width:79%;background:var(--gold);" data-fill-to="79%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 3: TEST ============ -->
+  <section class="screen" id="screen-test">
+    <div class="twrap">
+      <div class="test-ready-card glass">
+        <span class="pill pill-violet" style="margin-bottom:14px;">Science &middot; Full Board Test</span>
+        <h2>Ready?</h2>
+        <p class="sub">40 questions &middot; 60 minutes &middot; +500 XP</p>
+        <div class="test-meta-row">
+          <div class="tm-item"><div class="n">40</div><div class="l">Questions</div></div>
+          <div class="tm-item"><div class="n">60</div><div class="l">Minutes</div></div>
+          <div class="tm-item"><div class="n" style="color:var(--gold)">500</div><div class="l">XP reward</div></div>
+        </div>
+        <div class="diff-dots"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+        <button class="btn btn-primary beat-btn">Beat your 72% &rarr;</button>
+      </div>
+
+      <div class="qcard glass">
+        <div class="test-header">
+          <button class="exit-btn" title="Your progress saves automatically">&larr; Exit</button>
+          <button class="qnav-trigger" data-qnav-toggle>12 / 40</button>
+          <span class="timer-pill">⏱ 38:12</span>
+        </div>
+        <div class="q-progress-row"><div class="track"><div style="width:30%" data-fill-to="30%"></div></div></div>
+
+        <div class="qnav-panel glass" data-qnav-panel>
+          <div class="qnav-legend">
+            <span><span class="qnav-dot" style="background:var(--violet)"></span>Answered</span>
+            <span><span class="qnav-dot" style="border:1px solid var(--border-strong);background:transparent;"></span>Unanswered</span>
+            <span><span class="qnav-dot" style="background:var(--warn)"></span>Flagged</span>
+            <span><span class="qnav-dot" style="outline:1.5px solid var(--cyan);"></span>Current</span>
+          </div>
+          <div class="qnav-grid">
+            <div class="qn answered">1</div><div class="qn answered">2</div><div class="qn answered">3</div><div class="qn answered">4</div><div class="qn answered">5</div><div class="qn answered">6</div><div class="qn answered">7</div><div class="qn answered">8</div><div class="qn answered">9</div><div class="qn answered">10</div>
+            <div class="qn answered">11</div><div class="qn current answered">12</div><div class="qn unanswered">13</div><div class="qn flagged">14</div><div class="qn unanswered">15</div><div class="qn unanswered">16</div><div class="qn unanswered">17</div><div class="qn unanswered">18</div><div class="qn unanswered">19</div><div class="qn unanswered">20</div>
+          </div>
+        </div>
+
+        <div class="q-label-row">
+          <span class="q-label">QUESTION 12</span>
+          <button class="flag-btn" data-flag-toggle>&#9873; Flag for review</button>
+        </div>
+
+        <!-- MCQ (default) -->
+        <div class="qtype-block active" data-qtype-block="mcq">
+          <div class="q-text">A resistor of 10&Omega; is connected to a 5V battery. What current flows through it, per Ohm's Law?</div>
+          <div class="opt sel"><span class="k">A</span><span>0.5 A</span></div>
+          <div class="opt"><span class="k">B</span><span>2 A</span></div>
+          <div class="opt"><span class="k">C</span><span>5 A</span></div>
+          <div class="opt"><span class="k">D</span><span>50 A</span></div>
+          <div class="autosave-chip"><span class="dot"></span>Answer saved</div>
+        </div>
+
+        <!-- Diagram / visual question — the complete original figure, never a description -->
+        <div class="qtype-block" data-qtype-block="diagram">
+          <div class="q-text">In the given figure, O is the centre of the circle and PQ is a tangent at P. If OP = 5 cm and PQ = 12 cm, find the length OQ.</div>
+          <div class="diagram-frame">
+            <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+              <!-- geometrically accurate: PQ is drawn perpendicular to radius OP, per the actual tangent property -->
+              <circle cx="90" cy="110" r="55" fill="none" stroke="var(--ink-soft)" stroke-width="2"/>
+              <circle cx="90" cy="110" r="2.5" fill="var(--violet-bright)"/>
+              <text x="97" y="108" font-size="11" fill="var(--ink)" font-family="Manrope">O</text>
+              <line x1="90" y1="110" x2="145" y2="110" stroke="var(--violet-bright)" stroke-width="2"/>
+              <text x="112" y="103" font-size="11" fill="var(--violet-bright)" font-family="Manrope">5</text>
+              <line x1="145" y1="110" x2="145" y2="45" stroke="var(--cyan)" stroke-width="2"/>
+              <text x="152" y="80" font-size="11" fill="var(--cyan)" font-family="Manrope">12</text>
+              <line x1="90" y1="110" x2="145" y2="45" stroke="var(--ink-soft)" stroke-width="2" stroke-dasharray="4 3"/>
+              <rect x="135" y="100" width="10" height="10" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
+              <circle cx="145" cy="110" r="2.5" fill="var(--ink)"/>
+              <text x="150" y="124" font-size="11" fill="var(--ink)" font-family="Manrope">P</text>
+              <circle cx="145" cy="45" r="2.5" fill="var(--ink)"/>
+              <text x="150" y="42" font-size="11" fill="var(--ink)" font-family="Manrope">Q</text>
+            </svg>
+            <span class="zoom-hint">&#128269; Tap to enlarge</span>
+          </div>
+          <div class="diagram-caption">Complete original figure &middot; pinch/zoom on mobile</div>
+          <div class="opt"><span class="k">A</span><span>10 cm</span></div>
+          <div class="opt sel"><span class="k">B</span><span>13 cm</span></div>
+          <div class="opt"><span class="k">C</span><span>17 cm</span></div>
+          <div class="opt"><span class="k">D</span><span>7 cm</span></div>
+          <div class="autosave-chip"><span class="dot"></span>Answer saved</div>
+        </div>
+
+        <!-- Assertion / Reason — the renderer adapts to the real question_format, not just MCQ -->
+        <div class="qtype-block" data-qtype-block="ar">
+          <div class="ar-block">
+            <div class="ar-stmt"><b>Assertion (A):</b> The sum of the first n terms of an A.P. is S<sub>n</sub> = n/2 [2a + (n&minus;1)d].</div>
+            <div class="ar-stmt"><b>Reason (R):</b> The n-th term of an A.P. is a<sub>n</sub> = a + (n&minus;1)d, and S<sub>n</sub> is derived by pairing terms from both ends of the sequence.</div>
+          </div>
+          <div class="opt sel"><span class="k">A</span><span>Both A and R are true, and R is the correct explanation of A.</span></div>
+          <div class="opt"><span class="k">B</span><span>Both A and R are true, but R is not the correct explanation of A.</span></div>
+          <div class="opt"><span class="k">C</span><span>A is true, but R is false.</span></div>
+          <div class="opt"><span class="k">D</span><span>A is false, but R is true.</span></div>
+          <div class="autosave-chip"><span class="dot"></span>Answer saved</div>
+        </div>
+
+        <div class="btn-row" style="display:flex;gap:10px;margin-top:6px;">
+          <button class="btn btn-ghost" style="flex:1;padding:12px;">Previous</button>
+          <button class="btn btn-primary" style="flex:1;padding:12px;">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 4: RESULTS + WEAK SPOT ============ -->
+  <section class="screen" id="screen-results">
+    <div class="rwrap">
+      <span class="pill pill-good best-pill pill-shimmer">New personal best 🎉</span>
+      <div class="core-wrap" style="margin:14px auto 0;"><div class="core" style="--core-size:190px;"><div class="core-spin"><div class="core-ring r1"></div><div class="core-ring r2"></div><div class="core-ring r3"></div></div><div class="core-orb"></div><div class="core-face"><span class="n" style="font-size:3rem;">84%</span><span class="u" style="font-size:0.7rem;">34 / 40 correct</span></div></div></div>
+      <div class="delta-line">&uarr; +12% from your first attempt</div>
+
+      <div class="mistakes-card glass">
+        <h4>Where you lost marks</h4>
+        <div class="mrow"><div class="mrow-left"><span class="dot dot-bad"></span>Electricity</div><div class="mrow-right">4 mistakes</div></div>
+        <div class="mrow"><div class="mrow-left"><span class="dot dot-warn"></span>Magnetic Effects</div><div class="mrow-right">2 mistakes</div></div>
+        <div class="mrow"><div class="mrow-left"><span class="dot dot-good"></span>Light</div><div class="mrow-right">1 mistake</div></div>
+      </div>
+
+      <div class="secondary-h" style="text-align:left;margin-top:0;">Your next best move</div>
+      <div class="weakspot-card glass">
+        <span class="tag pill pill-bad">&#9888; Weak spot found</span>
+        <h3>Electricity &rarr; Ohm's Law</h3>
+        <p class="detail">You've missed 4 questions involving resistor calculations. Current mastery: <b style="color:var(--bad)">42%</b>.</p>
+        <div class="fix-row">
+          <span class="fix-meta">8 targeted questions &middot; ~8 min</span>
+          <button class="btn btn-primary" style="padding:11px 20px;">Train this &rarr;</button>
+        </div>
+      </div>
+
+      <div class="secondary-h" style="text-align:left;">Your progress</div>
+      <div class="improve-strip glass">
+        <span class="before">42%</span><span class="arrow">&rarr;</span><span class="after" data-count-from="42" data-count-to="78" data-count-suffix="%">78%</span><span class="delta pill pill-good">+36%</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('[data-screen]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-screen]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
+      document.getElementById('screen-' + btn.dataset.screen).classList.add('active');
+      animateScreenIn(btn.dataset.screen);
+    });
+  });
+  document.querySelectorAll('[data-device]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-device]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.body.classList.toggle('device-mobile', btn.dataset.device === 'mobile');
+    });
+  });
+  document.querySelectorAll('[data-theme-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-theme-btn]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.documentElement.setAttribute('data-theme', btn.dataset.themeBtn);
+    });
+  });
+  document.querySelectorAll('[data-board]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-board]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+  document.querySelectorAll('[data-goal]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-goal]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+  document.querySelectorAll('[data-qtype]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-qtype]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('[data-qtype-block]').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.qtypeBlock === btn.dataset.qtype);
+      });
+    });
+  });
+  document.querySelectorAll('[data-qnav-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.querySelector('[data-qnav-panel]');
+      if (panel) panel.classList.toggle('open');
+    });
+  });
+  document.querySelectorAll('[data-flag-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () { btn.classList.toggle('on'); });
+  });
+
+  // Motion: count-up numbers and progress-bar fills, triggered only on a live
+  // tab click (never on initial load or the ?clean=1 screenshot path) so
+  // static/automated renders always show the correct final values instantly.
+  function animateScreenIn(screenId) {
+    if (document.body.classList.contains('clean')) return;
+    var root = document.getElementById('screen-' + screenId);
+    if (!root) return;
+    root.querySelectorAll('[data-count-to]').forEach(function (el) {
+      var to = parseFloat(el.getAttribute('data-count-to'));
+      var from = parseFloat(el.getAttribute('data-count-from') || '0');
+      var suffix = el.getAttribute('data-count-suffix') || '';
+      var comma = el.getAttribute('data-count-comma') === '1';
+      var dur = 800, start = null;
+      function frame(t) {
+        if (start === null) start = t;
+        var p = Math.min(1, (t - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(from + (to - from) * eased);
+        el.textContent = (comma ? val.toLocaleString('en-IN') : val) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+    root.querySelectorAll('[data-fill-to]').forEach(function (el) {
+      var to = el.getAttribute('data-fill-to');
+      el.style.transition = 'none';
+      el.style.width = '0%';
+      requestAnimationFrame(function () {
+        el.style.transition = 'width 0.9s cubic-bezier(.2,.8,.2,1)';
+        requestAnimationFrame(function () { el.style.width = to; });
+      });
+    });
+  }
+
+  // Allow ?screen=x&device=y&theme=z&clean=1 for scripted, deterministic screenshots
+  var params = new URLSearchParams(location.search);
+  var s = params.get('screen');
+  if (s && document.getElementById('screen-' + s)) {
+    document.querySelectorAll('[data-screen]').forEach(function (b) { b.classList.toggle('active', b.dataset.screen === s); });
+    document.querySelectorAll('.screen').forEach(function (el) { el.classList.remove('active'); });
+    document.getElementById('screen-' + s).classList.add('active');
+  }
+  if (params.get('device') === 'mobile') {
+    document.body.classList.add('device-mobile');
+    document.querySelectorAll('[data-device]').forEach(function (b) { b.classList.toggle('active', b.dataset.device === 'mobile'); });
+  }
+  var theme = params.get('theme');
+  if (theme === 'light' || theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('[data-theme-btn]').forEach(function (b) { b.classList.toggle('active', b.dataset.themeBtn === theme); });
+  }
+  var qtype = params.get('qtype');
+  if (qtype && document.querySelector('[data-qtype-block="' + qtype + '"]')) {
+    document.querySelectorAll('[data-qtype]').forEach(function (b) { b.classList.toggle('active', b.dataset.qtype === qtype); });
+    document.querySelectorAll('[data-qtype-block]').forEach(function (b) { b.classList.toggle('active', b.dataset.qtypeBlock === qtype); });
+  }
+  if (params.get('qnav') === '1') { var p = document.querySelector('[data-qnav-panel]'); if (p) p.classList.add('open'); }
+  if (params.get('clean') === '1') document.body.classList.add('clean');
+})();
+</script>
+</body>
+</html>

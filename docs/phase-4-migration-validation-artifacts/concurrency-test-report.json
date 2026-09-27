@@ -1,0 +1,52 @@
+{
+  "throughput": {
+    "10": {
+      "pgResult": {
+        "n": 10,
+        "elapsedMs": 30.037353,
+        "mode": "postgres-pool-concurrent"
+      },
+      "sqliteResult": {
+        "n": 10,
+        "elapsedMs": 0.086834,
+        "mode": "sqlite-databasesync-sequential"
+      },
+      "speedup": "0.00x"
+    },
+    "50": {
+      "pgResult": {
+        "n": 50,
+        "elapsedMs": 38.284938,
+        "mode": "postgres-pool-concurrent"
+      },
+      "sqliteResult": {
+        "n": 50,
+        "elapsedMs": 0.47264,
+        "mode": "sqlite-databasesync-sequential"
+      },
+      "speedup": "0.01x"
+    },
+    "100": {
+      "pgResult": {
+        "n": 100,
+        "elapsedMs": 48.375805,
+        "mode": "postgres-pool-concurrent"
+      },
+      "sqliteResult": {
+        "n": 100,
+        "elapsedMs": 0.583026,
+        "mode": "sqlite-databasesync-sequential"
+      },
+      "speedup": "0.01x"
+    }
+  },
+  "safety": {
+    "concurrency": 25,
+    "expected": 25,
+    "safeResult": 25,
+    "unsafeResult": 1,
+    "safePathCorrect": true,
+    "unsafePathLostUpdates": true
+  },
+  "generatedAt": "2026-09-24T03:54:35.062Z"
+}

@@ -1,0 +1,43 @@
+{
+  "appliedAt": "2026-09-27T11:35:29.547Z",
+  "diffs": [
+    {
+      "id": 4589,
+      "uid": "cbse-mathematics-polynomials-a6d26fd2",
+      "correctBefore": 1,
+      "correctAfter": 3
+    },
+    {
+      "id": 4676,
+      "uid": "cbse-mathematics-quadratic-equations-cfbaaee5",
+      "correctBefore": 2,
+      "correctAfter": 1
+    },
+    {
+      "id": 4811,
+      "uid": "cbse-mathematics-co-ordinate-geometry-774a9ea6",
+      "correctBefore": 0,
+      "correctAfter": 3
+    },
+    {
+      "id": 4816,
+      "uid": "cbse-mathematics-co-ordinate-geometry-c8862b6d",
+      "correctBefore": 0,
+      "correctAfter": 2
+    },
+    {
+      "id": 4820,
+      "uid": "cbse-mathematics-co-ordinate-geometry-626fd04e",
+      "correctBefore": 0,
+      "correctAfter": 1
+    },
+    {
+      "id": 4827,
+      "uid": "cbse-mathematics-co-ordinate-geometry-ec5426fe",
+      "correctBefore": 0,
+      "correctAfter": 1
+    }
+  ],
+  "unexpectedChangedCount": 0,
+  "unexpectedChangedIds": []
+}

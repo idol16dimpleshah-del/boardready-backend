@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 200" role="img" aria-labelledby="nlTitle nlDesc">
+  <title id="nlTitle">Number line for Question 57</title>
+  <desc id="nlDesc">A number line from -4 to 6. There is an open (unfilled) circle at -4 and a filled circle at 5, with filled circles also at -3, -2, -1, 0, 1, 2, 3, and 4, showing the integer solution set greater than -4 and up to and including 5.</desc>
+  <!--
+    Board Ready generated visual (Workstream 3B, 2026-09-25).
+    asset_type: ai_generated — a clean, native redraw of the ORIGINAL SOURCE
+    figure below, not the source figure itself. Colors are read from this
+    host page's own CSS custom properties (--ink, --violet) via var(), and
+    deliberately carry no @media (prefers-color-scheme) fallback: this file
+    is only ever used inlined into the DOM (see public/app.js's
+    createDiagramLoader/loadDiagram), where it inherits the real
+    #app[data-theme] cascade the app's in-app theme toggle actually drives —
+    a standalone <img src="this.svg"> would see the wrong (OS-level) signal
+    and is not a supported way to use this file.
+
+    SOURCE OF TRUTH this was redrawn from (never modified, see provenance
+    doc): source_library/ICSE/Mathematics/ch04-linear-inequation.pdf,
+    page index 6 (printed page 4.8), item 57 — cross-referenced against the
+    question's own stored text ("... -4 to 6, hollow circle at -4, filled
+    circle at 5 ...") and zoomed pixel-level inspection of the scanned
+    figure (see docs/workstream-3b-visual-extraction-test-case-3070.md and
+    the visual-QA comparison doc). Semantic content reproduced exactly, not
+    invented: integer solution set {x in Z : -4 < x <= 5} — filled dots at
+    -3,-2,-1,0,1,2,3,4,5 (9 points), one open circle at the excluded
+    boundary -4, plain unmarked axis tick at 6 (unbounded extension, not a
+    boundary). Geometry is exact evenly-spaced integer points on a straight
+    axis with arrowheads both ends, matching the original's construction.
+  -->
+  <style>
+    .nl-line, .nl-tick { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .nl-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 30px; text-anchor: middle; }
+    .nl-dot-filled { fill: var(--violet); stroke: var(--violet); stroke-width: 2; }
+    /* Open circle: unfilled by construction (fill:none) rather than
+       fill-matched to whatever background happens to sit behind it, so it
+       reads correctly as a hollow ring no matter which host element (the
+       inline question card vs. the zoom lightbox) this gets inlined into —
+       the number line itself is visible straight through the middle, which
+       is exactly what an open/exclusive boundary marker should look like. */
+    .nl-dot-open { fill: none; stroke: var(--violet); stroke-width: 4; }
+  </style>
+  <line class="nl-line" x1="25" y1="100" x2="835" y2="100" />
+  <path class="nl-line" d="M 41 90 L 25 100 L 41 110" fill="none" />
+  <path class="nl-line" d="M 819 90 L 835 100 L 819 110" fill="none" />
+  <line class="nl-tick" x1="80" y1="91" x2="80" y2="109" />
+  <text class="nl-label" x="80" y="150">&#8722;4</text>
+  <line class="nl-tick" x1="150" y1="91" x2="150" y2="109" />
+  <text class="nl-label" x="150" y="150">&#8722;3</text>
+  <line class="nl-tick" x1="220" y1="91" x2="220" y2="109" />
+  <text class="nl-label" x="220" y="150">&#8722;2</text>
+  <line class="nl-tick" x1="290" y1="91" x2="290" y2="109" />
+  <text class="nl-label" x="290" y="150">&#8722;1</text>
+  <line class="nl-tick" x1="360" y1="91" x2="360" y2="109" />
+  <text class="nl-label" x="360" y="150">0</text>
+  <line class="nl-tick" x1="430" y1="91" x2="430" y2="109" />
+  <text class="nl-label" x="430" y="150">1</text>
+  <line class="nl-tick" x1="500" y1="91" x2="500" y2="109" />
+  <text class="nl-label" x="500" y="150">2</text>
+  <line class="nl-tick" x1="570" y1="91" x2="570" y2="109" />
+  <text class="nl-label" x="570" y="150">3</text>
+  <line class="nl-tick" x1="640" y1="91" x2="640" y2="109" />
+  <text class="nl-label" x="640" y="150">4</text>
+  <line class="nl-tick" x1="710" y1="91" x2="710" y2="109" />
+  <text class="nl-label" x="710" y="150">5</text>
+  <line class="nl-tick" x1="780" y1="91" x2="780" y2="109" />
+  <text class="nl-label" x="780" y="150">6</text>
+  <circle class="nl-dot-filled" cx="150" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="220" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="290" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="360" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="430" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="500" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="570" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="640" cy="100" r="9" />
+  <circle class="nl-dot-filled" cx="710" cy="100" r="9" />
+  <circle class="nl-dot-open" cx="80" cy="100" r="9" />
+</svg>

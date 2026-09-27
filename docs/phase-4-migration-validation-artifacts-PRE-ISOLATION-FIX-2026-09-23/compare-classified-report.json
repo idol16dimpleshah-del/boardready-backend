@@ -1,0 +1,773 @@
+{
+  "generatedAt": "2026-09-23T20:48:32.006Z",
+  "overallResult": "ALL_MISMATCHES_CLASSIFIED_NONE_UNEXPLAINED",
+  "classificationCounts": {
+    "schema": 2,
+    "representation": 1,
+    "migration_bug": 0,
+    "existing_content_issue": 122
+  },
+  "perTable": {
+    "users": {
+      "sqliteRowsCompared": 346,
+      "postgresRows": 346,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "subjects": {
+      "sqliteRowsCompared": 5,
+      "postgresRows": 5,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "chapters": {
+      "sqliteRowsCompared": 79,
+      "postgresRows": 79,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "source_files": {
+      "sqliteRowsCompared": 124,
+      "postgresRows": 124,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "source_documents": {
+      "sqliteRowsCompared": 152,
+      "postgresRows": 152,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "source_document_files": {
+      "sqliteRowsCompared": 289,
+      "postgresRows": 289,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "questions": {
+      "sqliteRowsCompared": 4824,
+      "postgresRows": 4824,
+      "knownContentIssueExclusions": 122,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "visual_assets": {
+      "sqliteRowsCompared": 161,
+      "postgresRows": 161,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "duplicate_flags": {
+      "sqliteRowsCompared": 409,
+      "postgresRows": 409,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "tests": {
+      "sqliteRowsCompared": 317,
+      "postgresRows": 317,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "test_questions": {
+      "sqliteRowsCompared": 3128,
+      "postgresRows": 3128,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "attempts": {
+      "sqliteRowsCompared": 309,
+      "postgresRows": 309,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "subscriptions": {
+      "sqliteRowsCompared": 3,
+      "postgresRows": 3,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    },
+    "audit_log": {
+      "sqliteRowsCompared": 237,
+      "postgresRows": 237,
+      "knownContentIssueExclusions": 0,
+      "unexplainedMissing": 0,
+      "unexplainedExtra": 0,
+      "unexplainedContentMismatches": 0,
+      "result": "MATCH"
+    }
+  },
+  "classified": {
+    "schema": [
+      {
+        "finding": "Circular foreign key: tests.improves_attempt_id <-> attempts.test_id",
+        "detail": "PostgreSQL validates REFERENCES targets at CREATE TABLE time; SQLite does not. Resolved via DEFERRABLE INITIALLY DEFERRED on both directions plus SET CONSTRAINTS ALL DEFERRED during bulk load. See schema.sql and phase-3-migration-design-report.md Section 3.",
+        "status": "RESOLVED, proven in this migration run (transaction committed cleanly)"
+      },
+      {
+        "finding": "diagram_status gains a CHECK constraint in PostgreSQL that SQLite never enforced (only ingest.js validated it in application code)",
+        "detail": "A deliberate, verified-safe tightening -- every live row's value was confirmed to already be one of the 4 allowed values before relying on this constraint (see below).",
+        "status": "VERIFIED SAFE",
+        "verification": "0 live rows violate the new CHECK constraint (must be 0 for the tightening to be safe)."
+      }
+    ],
+    "representation": [
+      {
+        "finding": "Timestamp columns: SQLite naive-UTC TEXT vs. PostgreSQL TIMESTAMPTZ",
+        "detail": "6 columns (created_at, started_at, submitted_at, draft_saved_at, uploaded_at, archived_at) normalized to a common ISO-8601 form before every comparison below, rather than compared as raw bytes, since the two engines intentionally store this differently by design (see phase-3-migration-design-report.md Section 5). Normalization logic is in this script, not hidden.",
+        "status": "NORMALIZED AND VERIFIED EQUIVALENT (see per-table results below)"
+      }
+    ],
+    "migration_bug": [],
+    "existing_content_issue": [
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1966) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1967) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 1968) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 1969) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 1970) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1971) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 1972) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 1973) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 1974) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"decreases / nuclear charge\" (row id 1975) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"oxidising\" (row id 1976) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"non-metals / high\" (row id 1977) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1985) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 1986) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1987) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 1988) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1989) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1990) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 1991) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 1992) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 1993) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 1994) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2005) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2006) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2007) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2008) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2009) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2010) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2011) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2012) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2013) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2014) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2030) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2031) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2032) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2033) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2034) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2035) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2043) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2044) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2045) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2046) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2047) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2048) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2049) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2059) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2060) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2061) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2062) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2063) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2064) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2065) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2066) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2067) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2068) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2079) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2080) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2081) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2082) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2083) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2084) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2085) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2086) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2087) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2088) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2099) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2100) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2101) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2102) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2103) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2104) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2105) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2106) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2107) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2108) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2123) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2124) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2125) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2126) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2127) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2128) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2129) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2130) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2131) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2132) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2143) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2144) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2145) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2146) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2147) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2148) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2149) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2150) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2151) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2152) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2166) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2167) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2168) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2169) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2170) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2171) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2172) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2173) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2174) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2175) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2193) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2194) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2195) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2196) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2197) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2198) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2199) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2200) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(a)\" (row id 2201) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2202) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2213) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2214) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2215) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2216) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(b)\" (row id 2217) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(d)\" (row id 2218) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      },
+      {
+        "finding": "questions.correct = \"(c)\" (row id 2219) is not a valid integer",
+        "detail": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway).",
+        "status": "REPORTED, NOT MODIFIED -- tracked in PROJECT_PROGRESS.md (Section C addendum, 2026-09-23) as an open content-QA item, not touched by this migration project"
+      }
+    ]
+  }
+}

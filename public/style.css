@@ -1,0 +1,538 @@
+/* Board Ready — real frontend, adapted from the "Revision 3" design prototype.
+   Visual language (tokens, Core, cards, screens) preserved from that design;
+   the reviewer-only "prototype viewer" chrome (device frame, screen tabs,
+   rubric) has been removed since this is the real app, not a design demo. */
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; height:100%; }
+[hidden]{ display:none !important; }
+::selection{ background:#7B3BFF; color:#fff; }
+a{ color:inherit; cursor:pointer; }
+button{ font-family:inherit; }
+:focus-visible{ outline: 2px solid #22DFFF; outline-offset: 2px; border-radius: 4px; }
+/* Visually hides content while keeping it in the accessibility tree — used
+   for screen-reader-only state text (e.g. "(your answer, correct)") and the
+   live region that announces question changes (2026-09-22, accessibility
+   pass). Standard clip-based pattern, not display:none (which would also
+   hide it from assistive tech). */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition-duration:.001ms !important; } }
+
+:root{
+  --font-display:'Unbounded','Segoe UI',system-ui,sans-serif;
+  --font-body:'Manrope','Segoe UI',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',monospace;
+}
+
+/* ============ PRODUCT TOKENS ============ */
+#app{
+  --bg-void:#FAF8FC; --bg-1:#F4EFFB; --bg-2:#ECE5F8;
+  --surface:#FFFFFF; --glass: rgba(255,255,255,.72); --glass-strong: rgba(255,255,255,.92);
+  --glass-border: rgba(27,19,48,.09); --glass-border-soft: rgba(27,19,48,.06);
+  /* ink-faint/success/warning/critical/cyan (2026-09-22, accessibility pass):
+     tuned by a fraction of a shade darker than the original design values —
+     the originals measured 3.1–3.8:1 against white/surface, below WCAG AA's
+     4.5:1 minimum for normal-weight text at the small sizes these tokens are
+     actually used at (labels, badges, meta text, timestamps). Every value
+     below now clears 4.5:1 against #FFFFFF while keeping the same hue, so
+     the whole app's secondary text and status colors become AA-compliant
+     without changing any component's markup or layout.
+     --ink-faint darkened a second time (same day): a real axe-core scan
+     caught that several real usages sit on a translucent color-mix tint
+     (.tabrow, .chapter-row, .q-feedback banners) rather than pure white,
+     which composites a fraction darker and dropped those specific spots
+     to 4.06–4.31:1. #6D658A clears 4.5:1 against every background this
+     token is actually used against today (4.76–5.9:1 measured), not just
+     the plain-white case the first pass checked. */
+  --ink:#1B1330; --ink-soft:#5B5478; --ink-faint:#6D658A;
+  --violet:#6B32E0; --violet-2:#8A5CFF; --cyan:#0B8098; --cyan-2:#0FBFD1; --subject3:#D6337E;
+  --success:#108655; --warning:#A86809; --critical:#D63D53;
+  --shadow-soft: rgba(88,50,180,.14); --shadow-strong: rgba(60,30,120,.22);
+  --core-hi:#FFFFFF; --core-mid:#B9A6FF; --core-lo:#7B5CF0; --core-rim:#3FD1E8; --core-shadow: rgba(107,50,224,.30);
+}
+@media (prefers-color-scheme: dark){
+  #app:not([data-theme="light"]){
+    --bg-void:#07060D; --bg-1:#0D0B1C; --bg-2:#181330;
+    --surface:#171331; --glass: rgba(255,255,255,.055); --glass-strong: rgba(255,255,255,.095);
+    --glass-border: rgba(255,255,255,.14); --glass-border-soft: rgba(255,255,255,.08);
+    /* ink-faint lightened #827C9E -> #918CAA (2026-09-22, same axe pass
+       that caught the light-theme translucent-background misses below):
+       #827C9E cleared 4.5:1 against plain --surface but the same
+       color-mix-tinted contexts (.tabrow, .chapter-row, .q-feedback
+       banners) measured 3.85–4.23:1 in dark mode too — this clears
+       4.5:1+ everywhere the token is actually used, dark or light. */
+    --ink:#F4F2FB; --ink-soft:#B7AFD6; --ink-faint:#918CAA;
+    --violet:#7B3BFF; --violet-2:#B18CFF; --cyan:#22DFFF; --cyan-2:#8FF3FF; --subject3:#FF6FB8;
+    --success:#33D690; --warning:#FFB648; --critical:#FF6F79;
+    --shadow-soft: rgba(0,0,0,.45); --shadow-strong: rgba(0,0,0,.75);
+    --core-hi:#D9CCFF; --core-mid:#7B3BFF; --core-lo:#2C1470; --core-rim:#22DFFF; --core-shadow: rgba(123,59,255,.46);
+  }
+}
+#app[data-theme="dark"]{
+  --bg-void:#07060D; --bg-1:#0D0B1C; --bg-2:#181330;
+  --surface:#171331; --glass: rgba(255,255,255,.055); --glass-strong: rgba(255,255,255,.095);
+  --glass-border: rgba(255,255,255,.14); --glass-border-soft: rgba(255,255,255,.08);
+  --ink:#F4F2FB; --ink-soft:#B7AFD6; --ink-faint:#918CAA;
+  --violet:#7B3BFF; --violet-2:#B18CFF; --cyan:#22DFFF; --cyan-2:#8FF3FF; --subject3:#FF6FB8;
+  --success:#33D690; --warning:#FFB648; --critical:#FF6F79;
+  --shadow-soft: rgba(0,0,0,.45); --shadow-strong: rgba(0,0,0,.75);
+  --core-hi:#D9CCFF; --core-mid:#7B3BFF; --core-lo:#2C1470; --core-rim:#22DFFF; --core-shadow: rgba(123,59,255,.46);
+}
+#app{
+  min-height:100vh; background: linear-gradient(180deg, var(--bg-2), var(--bg-1) 45%, var(--bg-void));
+  color:var(--ink); font-family:var(--font-body); -webkit-font-smoothing:antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+body{ background:#07060D; }
+
+.text-grad{ background:linear-gradient(100deg, var(--violet), var(--violet-2) 45%, var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.p-chip{ display:inline-flex; align-items:center; gap:6px; padding:7px 13px; border-radius:999px; background:var(--glass); border:1px solid var(--glass-border); color:var(--ink-soft); font-size:12.5px; font-weight:700; white-space:nowrap; cursor:pointer; transition: border-color .15s ease, color .15s ease, transform .15s ease; }
+.p-chip.active{ background:linear-gradient(100deg,var(--violet),var(--cyan)); color:#fff; border-color:transparent; box-shadow:0 8px 20px -8px var(--core-shadow); }
+/* Hover feedback (2026-09-23, visual polish pass) — chips look identical
+   to buttons and are just as clickable, but previously gave no visual
+   response until the .active state snapped in on click. */
+.p-chip:not(.active):hover{ border-color:var(--violet-2); color:var(--ink); transform:translateY(-1px); }
+.p-icon{ width:1em; height:1em; display:inline-block; vertical-align:-.15em; }
+.p-glass{ background:linear-gradient(180deg,var(--glass-strong),var(--glass)); border:1px solid var(--glass-border); border-radius:22px; box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 22px 50px -26px var(--shadow-strong); backdrop-filter:blur(18px) saturate(140%); }
+.p-card{ background:var(--surface); border:1px solid var(--glass-border-soft); border-radius:20px; box-shadow:0 10px 26px -20px var(--shadow-soft); }
+.p-btn{ font-weight:700; font-size:14px; border:none; cursor:pointer; border-radius:999px; padding:12px 20px; display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease; }
+.p-btn:hover{ transform:translateY(-1px); filter:brightness(1.05); }
+.p-btn:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
+.p-btn-primary{ background:linear-gradient(100deg,var(--violet),var(--violet-2) 45%,var(--cyan)); color:#fff; box-shadow:0 12px 26px -10px var(--core-shadow); }
+.p-btn-ghost{ background:var(--glass); color:var(--ink); border:1px solid var(--glass-border); }
+.p-btn-sm{ padding:8px 14px; font-size:12.5px; }
+.p-bar-track{ height:8px; border-radius:999px; background: color-mix(in srgb, var(--ink) 12%, transparent); overflow:hidden; }
+.p-bar-fill{ height:100%; border-radius:999px; background:linear-gradient(90deg,var(--violet),var(--cyan)); width:0; transition: width 1.1s cubic-bezier(.16,.84,.44,1); }
+.p-card-label{ font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-faint); display:flex; align-items:center; gap:6px; }
+.theme-btn{ background:var(--glass); border:1px solid var(--glass-border); color:var(--ink); border-radius:999px; width:36px; height:36px; cursor:pointer; font-size:15px; }
+.form-error{ color:var(--critical); font-size:12.5px; margin:-4px 0 10px; }
+.empty-note{ color:var(--ink-faint); font-size:12.5px; }
+
+/* ============ READINESS CORE ============ */
+.core-wrap{ position:relative; width:var(--core-size,200px); height:var(--core-size,200px); flex:none; perspective:900px; }
+/* Orbit ring tuning (2026-09-23, visual polish pass) — .core-orbit and
+   .core-sphere are separate siblings composited by normal DOM stacking
+   order (the sphere paints on top), not true 3D depth-sorting, so the
+   tilted ring was never going to read as "behind the sphere on one side,
+   in front on the other" the way a real Saturn-ring illustration does.
+   At the previous inset:0 size, the ring's un-tilted (horizontal) extent
+   was noticeably wider than the sphere's silhouette, so a large chunk of
+   it stuck out on either side — and because it also spun continuously,
+   that stuck-out sliver of the (partial, percentage-driven) arc kept
+   relocating, reading as a stray moving mark rather than a ring. Shrunk
+   here so only a small, deliberate edge peeks past the sphere, and the
+   continuous spin is removed so that peek is stable instead of drifting.
+   The dasharray math in app.js's setCore() is untouched — this only
+   resizes/stops the decorative ring, not the readiness percentage it
+   encodes. */
+.core-orbit{ position:absolute; inset:7%; transform-style:preserve-3d; transform:rotateX(64deg); opacity: calc(0.42 + var(--pctn, .3) * 0.58); transition: opacity 1.1s ease; }
+.core-orbit svg{ width:100%; height:100%; }
+.core-sphere{ position:absolute; inset:14%; border-radius:50%; background: radial-gradient(circle at 32% 26%, var(--core-hi) 0%, var(--core-mid) 42%, var(--core-lo) 78%, var(--core-lo) 100%); box-shadow: inset -16px -20px 40px rgba(0,0,0,.30), inset 10px 10px 22px rgba(255,255,255,.30), 0 26px 50px -18px var(--core-shadow); animation: coreBreathe 6s ease-in-out infinite; filter: brightness(calc(0.74 + var(--pctn, .3) * 0.42)); transition: filter 1.1s ease; }
+.core-sphere::after{ content:''; position:absolute; inset:0; border-radius:50%; background: radial-gradient(circle at 76% 78%, var(--core-rim) 0%, transparent 55%); opacity:.55; mix-blend-mode: screen; }
+.core-face{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:2; }
+.core-face b{ font-family:var(--font-mono); font-weight:700; font-size: calc(var(--core-size,200px) * 0.19); color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.35); line-height:1; }
+.core-face span{ font-size: calc(var(--core-size,200px) * 0.052); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-top:9px; text-shadow:0 2px 8px rgba(0,0,0,.3); }
+@keyframes coreBreathe{ 0%,100%{ filter:brightness(1);} 50%{ filter:brightness(1.06);} }
+.core-caption{ font-size:12.5px; color:var(--ink-faint); text-align:center; margin-top:8px; max-width:34ch; }
+
+/* ============ LOGIN / LANDING ============ */
+.scr-login{ display:grid; grid-template-columns: 1.05fr 1fr; min-height:100vh; }
+.login-hero{ position:relative; padding:36px 44px 30px; display:flex; flex-direction:column; gap:18px; }
+.topline{ display:flex; align-items:center; justify-content:space-between; }
+.brandmark{ display:flex; align-items:center; gap:10px; }
+.brandmark span{ font-family:var(--font-display); font-weight:800; font-size:16px; letter-spacing:.02em; }
+.board-chips{ display:flex; gap:8px; }
+.login-hero h1{ font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3.1vw,36px); line-height:1.1; margin:0; text-wrap:balance; }
+.login-hero p.sub{ font-size:14.5px; color:var(--ink-soft); line-height:1.6; max-width:44ch; margin:0; }
+.core-hero-row{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:6px; }
+.cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:2px; }
+.stat-row{ display:flex; gap:22px; }
+.stat-row .stat b{ display:block; font-family:var(--font-mono); font-weight:700; font-size:19px; }
+.stat-row .stat span{ font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; }
+.stat-note{ font-size:11px; color:var(--ink-faint); margin-top:-8px; }
+
+.login-panel{ padding:30px 36px; display:flex; align-items:center; }
+.login-card{ padding:22px 22px 20px; max-width:340px; width:100%; }
+.login-card h2{ font-family:var(--font-display); font-size:14px; font-weight:700; margin:0 0 14px; color:var(--ink-soft); }
+.tabrow{ display:flex; gap:4px; padding:4px; background: color-mix(in srgb, var(--ink) 6%, transparent); border-radius:999px; margin-bottom:18px; }
+.tabrow button{ flex:1; background:transparent; border:none; color:var(--ink-faint); font-weight:700; font-size:13px; padding:9px 0; border-radius:999px; cursor:pointer; transition: color .15s ease; }
+.tabrow button.on{ background:var(--surface); color:var(--ink); box-shadow:0 2px 8px var(--shadow-soft); }
+.tabrow button:not(.on):hover{ color:var(--ink); }
+.field{ margin-bottom:12px; }
+.field label{ font-size:11px; font-weight:700; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:6px; }
+.field input{ width:100%; background: color-mix(in srgb, var(--ink) 4%, transparent); border:1px solid var(--glass-border-soft); color:var(--ink); border-radius:12px; padding:11px 13px; font-size:14px; font-family:inherit; }
+.field input:focus{ border-color:var(--cyan); box-shadow:0 0 0 3px color-mix(in srgb, var(--cyan) 25%, transparent); outline:none; }
+.login-card .p-btn-primary{ width:100%; justify-content:center; padding:12px 0; font-size:14px; margin-top:6px; }
+.login-foot{ text-align:center; font-size:12px; color:var(--ink-faint); margin-top:14px; }
+.login-foot a{ color:var(--cyan); font-weight:700; text-decoration:none; }
+
+.onboard{ margin-top:4px; padding-top:2px; }
+.onboard h4{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); margin:0 0 8px; }
+.board-pick{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
+.pick-card{ border:1.5px solid var(--glass-border); border-radius:14px; padding:12px; cursor:pointer; text-align:left; background: color-mix(in srgb, var(--ink) 3%, transparent); font-family:inherit; transition: border-color .15s ease, transform .15s ease; }
+.pick-card b{ display:block; font-size:13.5px; color:var(--ink); }
+.pick-card span{ font-size:11px; color:var(--ink-faint); }
+.pick-card.sel{ border-color:var(--cyan); background: color-mix(in srgb, var(--cyan) 10%, transparent); }
+.pick-card:not(.sel):hover{ border-color:var(--violet-2); transform:translateY(-1px); }
+.pick-note{ font-size:10.5px; color:var(--ink-faint); margin-top:6px; }
+
+/* ============ DASHBOARD ============ */
+.scr-dash{ padding:22px 40px 40px; display:flex; flex-direction:column; gap:18px; max-width:1100px; margin:0 auto; }
+.dash-topbar{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.dash-brand{ display:flex; align-items:center; gap:9px; } .dash-brand span{ font-family:var(--font-display); font-weight:700; font-size:14px; }
+.topbar-right{ display:flex; align-items:center; gap:10px; }
+.avatar{ width:34px; height:34px; border-radius:50%; background:linear-gradient(100deg,var(--violet),var(--cyan)); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700; font-size:12.5px; color:#fff; }
+.dash-greet h2{ font-family:var(--font-display); font-weight:700; font-size:20px; margin:0 0 2px; }
+.dash-greet p{ margin:0; color:var(--ink-faint); font-size:12.5px; }
+
+.readiness-card{ display:flex; align-items:center; gap:26px; flex-wrap:wrap; padding:24px; }
+/* 18px (2026-09-23, visual polish pass) — this headline is the actual
+   centerpiece message of the dashboard (it sits beside the Readiness
+   Core), but at 15px it was smaller than the generic greeting above it
+   and than its own peer, .mission-card h3 (18px) — two cards making the
+   same kind of "here's the headline" claim at different scales. Now on
+   the same scale as .mission-card h3. */
+.readiness-copy h3{ margin:0 0 4px; font-family:var(--font-display); font-weight:700; font-size:18px; }
+.readiness-copy .delta{ display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-weight:700; font-size:12.5px; color:var(--success); margin-top:6px; }
+.readiness-copy p.note{ margin:8px 0 0; font-size:12.5px; color:var(--ink-faint); max-width:38ch; }
+
+.mission-card{ padding:22px 24px; border-left:3px solid var(--warning); display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.mission-card.locked{ border-left-color:var(--ink-faint); }
+.mission-card .flag{ display:flex; align-items:center; gap:7px; color:var(--warning); font-family:var(--font-mono); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; }
+.mission-card.locked .flag{ color:var(--ink-faint); }
+.mission-card h3{ margin:6px 0 4px; font-family:var(--font-display); font-weight:700; font-size:18px; }
+.mission-card .meta{ font-size:12.5px; color:var(--ink-soft); }
+.mission-body{ flex:1; min-width:220px; }
+
+.challenge-strip{ padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; border-top:2px solid var(--violet-2); }
+.challenge-strip .txt{ font-size:13px; }
+.challenge-strip .txt b{ display:block; font-size:13.5px; font-weight:700; }
+.challenge-strip .txt span{ font-size:11.5px; color:var(--ink-faint); }
+
+.row2{ display:grid; grid-template-columns:1fr 1.3fr; gap:18px; align-items:stretch; }
+.streak-card{ padding:20px 22px; display:flex; flex-direction:column; gap:10px; }
+.streak-top{ display:flex; align-items:center; gap:10px; }
+.streak-top b{ font-family:var(--font-mono); font-size:20px; }
+.streak-mid{ display:flex; align-items:center; justify-content:space-between; font-size:12.5px; color:var(--ink-soft); }
+.streak-mid b{ font-family:var(--font-mono); color:var(--cyan-2); }
+.streak-note{ font-size:11px; color:var(--ink-faint); }
+
+.subjects-card{ padding:20px 22px; display:flex; flex-direction:column; gap:11px; }
+.subj-row{ display:flex; align-items:center; gap:12px; }
+.subj-row .dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+.subj-row .label{ width:150px; flex:none; font-size:13px; font-weight:700; }
+.subj-row .p-bar-track{ flex:1; }
+.subj-row .pct{ width:70px; text-align:right; font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); flex:none; }
+
+.continue-strip{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 16px; font-size:12.5px; color:var(--ink-faint); flex-wrap:wrap; background:var(--surface); border-radius:14px; border:1px solid var(--glass-border-soft); }
+.continue-strip a{ color:var(--cyan-2); font-weight:700; text-decoration:none; }
+
+.chapters-card{ padding:20px 22px; }
+.subject-picker{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+.chapter-row{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px 14px; border-radius:14px; background: color-mix(in srgb, var(--ink) 3%, transparent); margin-bottom:8px; flex-wrap:wrap; }
+.chapter-row .info b{ display:block; font-size:13.5px; }
+.chapter-row .info span{ font-size:11.5px; color:var(--ink-faint); }
+.chapter-row .actions{ display:flex; gap:8px; flex-wrap:wrap; }
+
+/* Tinted-rounded-row treatment (2026-09-23, visual polish pass) — matches
+   .chapter-row/.ic-sub-row's existing idiom for "a row in a list of like
+   items" instead of a third, flatter divider-only treatment. */
+.improvement-row{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 12px; border-radius:10px; background: color-mix(in srgb, var(--ink) 3%, transparent); font-size:13px; margin-bottom:6px; }
+.improvement-row:last-child{ margin-bottom:0; }
+.improvement-row b.up{ color:var(--success); } .improvement-row b.down{ color:var(--critical); } .improvement-row b.flat{ color:var(--ink-faint); }
+
+/* ============ TEST-TAKING ============ */
+.scr-test{ display:flex; flex-direction:column; min-height:100vh; }
+.test-top{ padding:16px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--glass-border-soft); flex:none; gap:14px; }
+/* min-width:0 down this flex chain (2026-09-23, mobile QA pass) — without
+   it, a flex item's automatic minimum size is based on its content's
+   min-content width, and .mode-badge's white-space:nowrap text ("BOARD
+   SIMULATION · NO FEEDBACK UNTIL SUBMIT") is one unbreakable run. That
+   silently forced .test-top — and the whole page — wider than the
+   viewport on phones instead of letting the badge wrap onto its own
+   line, which is what min-width:0 here now allows to happen normally. */
+.test-top .chapter{ display:flex; align-items:center; gap:10px; min-width:0; }
+.chapter-info{ min-width:0; }
+.test-top .chapter b{ display:block; font-family:var(--font-display); font-weight:700; font-size:14px; }
+.test-top .chapter span{ font-size:11px; color:var(--ink-faint); }
+.mode-badge{ display:inline-block; margin-top:4px; margin-left:8px; font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+.mode-badge.mode-practice{ background: color-mix(in srgb, var(--cyan) 14%, transparent); color:var(--cyan); border:1px solid color-mix(in srgb, var(--cyan) 35%, transparent); }
+.mode-badge.mode-assessment{ background: color-mix(in srgb, var(--warning) 14%, transparent); color:var(--warning); border:1px solid color-mix(in srgb, var(--warning) 35%, transparent); }
+.mini-core{ width:28px; height:28px; border-radius:50%; background:radial-gradient(circle at 32% 26%, var(--core-hi), var(--core-mid) 55%, var(--core-lo)); box-shadow:0 0 0 1px var(--glass-border), 0 6px 14px -6px var(--core-shadow); flex:none; }
+.timer{ font-family:var(--font-mono); font-weight:700; font-size:14.5px; padding:8px 15px; border-radius:999px; background: color-mix(in srgb, var(--cyan) 12%, transparent); color:var(--cyan); border:1px solid color-mix(in srgb, var(--cyan) 35%, transparent); }
+.timer.low{ background: color-mix(in srgb, var(--critical) 15%, transparent); color:var(--critical); border-color: color-mix(in srgb, var(--critical) 40%, transparent); }
+.qcount{ font-size:12px; color:var(--ink-faint); font-family:var(--font-mono); }
+/* min-width:0 (2026-09-23, mobile QA pass) — same flexbox min-content
+   trap as .test-top above: .track is a flex item inside .scr-test's
+   column layout, and with enough questions its dots+segments' combined
+   min-content width exceeded the viewport, so overflow-x:auto never
+   actually got a chance to kick in — the whole page grew wider instead
+   of the strip becoming horizontally scrollable as intended. */
+.track{ display:flex; align-items:center; gap:0; padding:16px 32px; overflow-x:auto; flex:none; min-width:0; border-bottom:1px solid var(--glass-border-soft); }
+.track .seg{ flex:1; min-width:10px; height:2px; background:var(--glass-border); position:relative; }
+.track .seg.done{ background:linear-gradient(90deg,var(--violet),var(--cyan)); }
+/* .tdot is now a real <button> (2026-09-22, accessibility pass). The visual
+   dot stays the same 11px/17px size via ::before; the button box itself is
+   padded out to a larger real hit target (20px/24px) so it's easier to tap
+   accurately without changing how the track looks. Full 24x24 CSS px on
+   every dot (the WCAG 2.5.8 ideal) isn't achievable for a dense 20-question
+   strip without widening the whole track — a layout change out of scope for
+   this pass — so this is a real, meaningful improvement over the previous
+   11px div, not full compliance; see the accessibility report. */
+.tdot{ width:20px; height:20px; padding:0; margin:0; border:none; background:none; flex:none; position:relative; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+.tdot::before{ content:''; width:11px; height:11px; border-radius:50%; background:var(--glass-border); transition: background .15s ease; }
+.tdot.answered::before{ background:var(--violet-2); }
+.tdot.current{ width:24px; height:24px; }
+.tdot.current::before{ width:17px; height:17px; background:var(--cyan); box-shadow:0 0 0 4px color-mix(in srgb, var(--cyan) 22%, transparent); }
+.tdot.flag::after{ content:''; position:absolute; top:1px; right:1px; width:6px; height:6px; border-radius:50%; background:var(--warning); }
+/* Hover feedback (2026-09-23, visual polish pass) — .tdot became a real
+   <button> in the accessibility pass but had no hover state of its own;
+   placed last so it visibly wins over .answered/.current on hover. */
+.tdot:hover::before{ background:var(--cyan); }
+.test-body{ flex:1; overflow-y:auto; padding:28px 32px; display:flex; justify-content:center; }
+.qcard{ max-width:640px; width:100%; padding:26px 28px; height:fit-content; }
+.qcard .qtop{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.qcard .eyebrow{ font-family:var(--font-mono); font-size:11px; color:var(--cyan); font-weight:700; }
+.difficulty{ display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; }
+.difficulty .lv{ display:flex; gap:3px; }
+.difficulty .lv i{ width:5px; height:5px; border-radius:50%; background:var(--glass-border); display:block; }
+.difficulty .lv i.on{ background:var(--violet-2); }
+.qcard h3, .qcard .qcard-heading{ font-family:var(--font-body); font-weight:700; font-size:17.5px; line-height:1.5; margin:0 0 20px; white-space:pre-wrap; }
+
+.ar-block{ margin-bottom:12px; }
+.ar-block:last-child{ margin-bottom:20px; }
+.ar-label{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--violet-2); background: color-mix(in srgb, var(--violet) 12%, transparent); padding:3px 9px; border-radius:999px; margin-bottom:6px; }
+.ar-stmt{ margin:0; font-weight:600; font-size:15px; line-height:1.5; white-space:pre-wrap; }
+.q-diagram-wrap{ position:relative; margin:4px 0 16px; border-radius:14px; overflow:hidden; border:1.5px solid var(--glass-border-soft); background: color-mix(in srgb, var(--ink) 4%, transparent); cursor:zoom-in; }
+.q-diagram-img{ display:block; width:100%; max-height:260px; object-fit:contain; background:#fff; }
+/* q-diagram-svg-host (Workstream 3B, 2026-09-25): the inline-SVG sibling of
+   .q-diagram-img (see app.js's loadDiagram/createDiagramLoader). A native,
+   redrawn Board Ready visual (asset_type='ai_generated') is injected here as
+   real markup rather than loaded via <img src>, specifically so its shapes
+   can use var(--ink)/var(--violet)/etc. directly and track this app's own
+   in-app theme toggle — not just the OS-level prefers-color-scheme an <img>
+   would be limited to. It intentionally gets no opaque background of its
+   own: it sits on .q-diagram-wrap's existing (already theme-aware) tint
+   instead of the hardcoded white .q-diagram-img uses for an actual scanned
+   paper photo (asset_type='source_cropped'). is-vector is still toggled
+   alongside this on both the <img> and its wrap for any other CSS that
+   wants to key off asset kind, even though nothing here currently reads it. */
+.q-diagram-svg-host{ display:block; width:100%; max-height:260px; padding:10px 4px; box-sizing:border-box; }
+.q-diagram-svg-host svg{ display:block; width:100%; height:auto; max-height:240px; }
+.q-diagram-wrap .zoom-hint{ position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.6); color:#fff; font-size:10.5px; font-weight:700; padding:4px 9px; border-radius:999px; letter-spacing:.03em; }
+.diagram-lightbox{ position:fixed; inset:0; background:rgba(8,4,20,.92); z-index:999; display:flex; align-items:center; justify-content:center; padding:24px; }
+.diagram-lightbox img{ max-width:100%; max-height:100%; border-radius:8px; background:#fff; touch-action: pinch-zoom; }
+/* lightbox-svg-host: same reasoning as q-diagram-svg-host above, for the
+   zoomed-in view. Given a visible surface-toned card (rather than sitting
+   directly on the lightbox's near-black scrim) so a light-theme diagram
+   still reads as a distinct card at full zoom, matching how the raster
+   <img> path gets its own white card via the background above.
+   Width (Workstream 3B visual-QA fix, 2026-09-25): an earlier version of
+   this rule capped the card at min(92vw, 640px), which measured out to
+   barely 6% wider than the inline card on a real 1280px-wide screenshot
+   (541px -> 571px) — a real, caught-by-actually-measuring-pixels defect,
+   not a hypothetical one: "tap to zoom" that doesn't meaningfully zoom.
+   .diagram-lightbox img (the raster-crop path just above) never had this
+   problem because max-width:100%/max-height:100% lets a real <img>'s own
+   intrinsic size fill the padded flex container; a plain <div> has no
+   intrinsic size to fill that way, so it needs an explicit width instead.
+   min(94vw, 1200px) is chosen to land close to what the raster path
+   actually achieves at common desktop widths, and touch-action:pinch-zoom
+   is added to match the raster path's fallback for further magnification
+   on small screens, where viewport width itself is the hard ceiling. */
+.lightbox-svg-host{ width:min(94vw, 1200px); max-height:calc(100vh - 48px); border-radius:8px; background:var(--surface); padding:28px 20px; box-sizing:border-box; touch-action: pinch-zoom; }
+.lightbox-svg-host svg{ display:block; width:100%; height:auto; }
+.lightbox-close{ position:absolute; top:calc(16px + env(safe-area-inset-top, 0px)); right:16px; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; border:none; font-size:16px; cursor:pointer; }
+
+/* Immediate answer feedback (2026-09-22, Phase 4) */
+.opt:disabled{ cursor:default; opacity:1; }
+.opt.correct-pick{ border-color:var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
+.opt.correct-pick .letter{ background:var(--success); color:#fff; }
+.opt.correct-pick .checkmark{ margin-left:auto; color:var(--success); }
+.opt.wrong-pick{ border-color:var(--critical); background: color-mix(in srgb, var(--critical) 10%, transparent); }
+.opt.wrong-pick .letter{ background:var(--critical); color:#fff; }
+.opt.wrong-pick .xmark{ margin-left:auto; color:var(--critical); }
+.opt.correct-reveal{ border-color:var(--success); background: color-mix(in srgb, var(--success) 6%, transparent); }
+.opt.correct-reveal .letter{ background: color-mix(in srgb, var(--success) 30%, transparent); }
+.opt.correct-reveal .checkmark{ margin-left:auto; color:var(--success); }
+.q-feedback{ margin-top:4px; padding:14px 16px; border-radius:14px; }
+.q-feedback-correct{ background: color-mix(in srgb, var(--success) 10%, transparent); border:1px solid color-mix(in srgb, var(--success) 30%, transparent); }
+.q-feedback-incorrect{ background: color-mix(in srgb, var(--critical) 8%, transparent); border:1px solid color-mix(in srgb, var(--critical) 25%, transparent); }
+.qf-head{ font-weight:800; font-size:14px; margin-bottom:2px; }
+.q-feedback-correct .qf-head{ color:var(--success); }
+.q-feedback-incorrect .qf-head{ color:var(--critical); }
+.qf-why-label{ font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-top:8px; }
+.qf-why{ margin:4px 0 0; font-size:13px; line-height:1.55; color:var(--ink); white-space:pre-wrap; }
+
+.open-answer-wrap{ margin-bottom:6px; }
+.open-answer-label{ display:block; font-size:11.5px; font-weight:700; color:var(--ink-faint); margin-bottom:8px; }
+.open-answer-input{ width:100%; background: color-mix(in srgb, var(--ink) 4%, transparent); border:1.5px solid var(--glass-border-soft); color:var(--ink); border-radius:12px; padding:12px 14px; font-size:14px; font-family:inherit; resize:vertical; }
+.open-answer-input:focus-visible{ outline:2px solid var(--cyan); outline-offset:1px; }
+
+.opt{ display:flex; align-items:center; gap:12px; width:100%; text-align:left; padding:15px 16px; border-radius:14px; background: color-mix(in srgb, var(--ink) 3%, transparent); border:1.5px solid var(--glass-border-soft); color:var(--ink); font-size:13.5px; margin-bottom:9px; cursor:pointer; font-family:inherit; transition: transform .12s ease, border-color .12s ease, background-color .12s ease; }
+.opt:hover{ transform:translateY(-1px); border-color:var(--violet-2); }
+.opt .letter{ width:25px; height:25px; border-radius:50%; background: color-mix(in srgb, var(--ink) 8%, transparent); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:11.5px; font-weight:700; flex:none; }
+.opt.sel{ border-color:var(--cyan); background: color-mix(in srgb, var(--cyan) 10%, transparent); }
+.opt.sel .letter{ background:var(--cyan); color:#fff; }
+.opt.sel .checkmark{ margin-left:auto; color:var(--cyan); }
+.test-bottom{ padding:15px 32px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--glass-border-soft); flex:none; gap:10px; flex-wrap:wrap; }
+.flag-btn{ background:transparent; border-color:transparent; color:var(--ink-faint); }
+.flag-btn.on{ color:var(--warning); }
+
+/* ============ RESULTS ============ */
+.scr-results{ padding:24px 40px 44px; display:flex; flex-direction:column; gap:18px; max-width:900px; margin:0 auto; }
+.res-top{ display:flex; align-items:center; gap:12px; }
+.res-top .chapter b{ display:block; font-family:var(--font-display); font-weight:700; font-size:14.5px; }
+.res-top .chapter span{ font-size:11px; color:var(--ink-faint); }
+.res-hero{ display:flex; flex-direction:row; align-items:center; gap:26px; flex-wrap:wrap; padding:24px; position:relative; overflow:visible; }
+.pb-badge{ display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+.res-hero .meta p{ margin:0 0 4px; color:var(--ink-soft); font-size:13px; }
+.res-hero .meta p b{ color:var(--ink); }
+.res-hero .delta{ display:flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:12.5px; font-weight:700; color:var(--success); }
+.res-hero .delta.down{ color:var(--critical); }
+.burst{ position:absolute; inset:0; pointer-events:none; }
+.burst i{ position:absolute; top:50%; left:100px; width:6px; height:6px; border-radius:50%; background:var(--cyan); opacity:0; }
+.res-hero.play .burst i{ animation: burstOut 1.1s ease-out forwards; }
+.burst i:nth-child(1){ background:var(--violet-2); --a:-40deg; }
+.burst i:nth-child(2){ --a:-10deg; }
+.burst i:nth-child(3){ background:var(--subject3); --a:20deg; }
+.burst i:nth-child(4){ --a:50deg; }
+.burst i:nth-child(5){ background:var(--violet-2); --a:200deg; }
+.burst i:nth-child(6){ --a:230deg; }
+@keyframes burstOut{ 0%{ opacity:1; transform:translate(0,0) scale(1);} 100%{ opacity:0; transform:translate(calc(cos(var(--a)) * 90px), calc(sin(var(--a)) * 90px)) scale(.4);} }
+
+.core-evolved{ display:flex; align-items:center; gap:10px; padding:4px 4px; font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); }
+.core-evolved b{ color:var(--ink); }
+
+/* Left-stripe + tinted-surface treatment (2026-09-23, visual polish pass)
+   — previously a bespoke full-border + diagonal-gradient wash, a third
+   distinct "action card" visual language alongside .p-glass (hero/summary
+   cards) and .mission-card (left-stripe, the actual next-move CTA). Now
+   shares .mission-card's idiom so the two "here's what to do" cards on
+   Results read as one consistent system instead of three competing ones. */
+.weakspot-hero{ padding:26px; border-left:3px solid var(--violet); background: color-mix(in srgb, var(--violet) 6%, transparent); }
+.weakspot-hero .flag{ display:flex; align-items:center; gap:8px; color:var(--violet-2); font-family:var(--font-mono); font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; margin-bottom:12px; }
+.weakspot-hero h3{ margin:0 0 6px; font-family:var(--font-display); font-size:18px; line-height:1.4; }
+.weakspot-hero .stat-line{ display:flex; gap:18px; margin-bottom:12px; font-family:var(--font-mono); font-size:13px; }
+.weakspot-hero .stat-line b{ color:var(--warning); }
+.weakspot-hero .stat-line .tgt b{ color:var(--success); }
+.weakspot-hero p{ margin:0 0 18px; color:var(--ink-soft); font-size:13px; line-height:1.65; max-width:60ch; }
+.weakspot-foot{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+
+.strengths-card{ padding:18px 22px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.strengths-card .item{ display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; }
+.strengths-card .item svg{ color:var(--success); width:16px; height:16px; flex:none; }
+
+/* Tinted-rounded-row treatment (2026-09-23, visual polish pass) — see
+   .improvement-row above; same consistency fix applied here. */
+.mistake-list .mrow{ display:flex; align-items:baseline; gap:10px; padding:10px 12px; border-radius:10px; background: color-mix(in srgb, var(--ink) 3%, transparent); font-size:13px; margin-bottom:6px; }
+.mistake-list .mrow:last-child{ margin-bottom:0; }
+.mistake-list .mrow b{ font-family:var(--font-mono); color:var(--warning); flex:none; }
+
+.explain-card{ padding:20px 22px; }
+.explain-item{ padding:14px 16px; border-radius:12px; background: color-mix(in srgb, var(--ink) 3%, transparent); margin-bottom:8px; }
+.explain-item:last-child{ margin-bottom:0; }
+.explain-item .eq-text{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 8px; line-height:1.5; }
+.explain-item .eq-answers{ display:flex; flex-wrap:wrap; gap:8px 18px; font-size:12.5px; margin-bottom:8px; }
+.explain-item .eq-answers span{ color:var(--ink-faint); }
+.explain-item .eq-answers b{ font-family:var(--font-mono); }
+.explain-item .eq-answers .wrong{ color:var(--critical); }
+.explain-item .eq-answers .right{ color:var(--success); }
+.explain-item .eq-unanswered{ color:var(--warning); font-family:var(--font-mono); font-size:12px; }
+.explain-item .eq-why{ font-size:12.5px; color:var(--ink-soft); line-height:1.55; background: color-mix(in srgb, var(--violet) 6%, transparent); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
+.explain-item .eq-why.eq-why-missing{ font-style:italic; color:var(--ink-faint); background:transparent; padding:0; }
+.explain-item .eq-practice{ font-size:12px; font-weight:700; color:var(--violet-2); background:none; border:none; padding:0; cursor:pointer; font-family:inherit; }
+.eq-self-tag{ font-family:var(--font-mono); font-size:10.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--cyan); }
+.eq-your-text{ font-size:13px; color:var(--ink); background: color-mix(in srgb, var(--ink) 4%, transparent); border-radius:10px; padding:10px 12px; margin-bottom:8px; white-space:pre-wrap; }
+
+.improve-compare-card{ padding:22px; margin-bottom:16px; }
+.ic-scores{ display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:10px; }
+.ic-score{ text-align:center; }
+.ic-score span{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin-bottom:4px; }
+.ic-score b{ font-family:var(--font-mono); font-size:28px; font-weight:700; }
+.ic-score.now b{ color:var(--success); }
+.ic-arrow{ font-size:20px; color:var(--ink-faint); }
+.ic-bars{ display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+.ic-bar-row{ display:flex; align-items:center; gap:10px; }
+.ic-bar-label{ flex:none; width:38px; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint); }
+.ic-bar-track{ flex:1; height:8px; border-radius:999px; background: color-mix(in srgb, var(--ink) 8%, transparent); overflow:hidden; }
+.ic-bar-fill{ height:100%; border-radius:999px; transition: width .5s ease; }
+.ic-bar-fill.first{ background: var(--ink-faint); }
+.ic-bar-fill.now{ background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+.ic-delta{ text-align:center; font-weight:700; color:var(--success); font-size:14px; margin-bottom:14px; }
+.ic-sub-rows{ display:flex; flex-direction:column; gap:8px; }
+.ic-sub-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px; padding:9px 12px; border-radius:10px; background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.ic-sub-row .badge{ font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+.ic-sub-row .badge.improved{ background: color-mix(in srgb, var(--success) 16%, transparent); color:var(--success); }
+.ic-sub-row .badge.still{ background: color-mix(in srgb, var(--warning) 16%, transparent); color:var(--warning); }
+.ic-sub-row .badge.not_retested{ background: color-mix(in srgb, var(--ink) 10%, transparent); color:var(--ink-faint); }
+
+.bat-strip{ display:grid; grid-template-columns:1fr 1fr 1fr; padding:22px 10px; text-align:center; }
+.bat-strip .col{ padding:0 10px; }
+.bat-strip .col + .col{ border-left:1px solid var(--glass-border-soft); }
+.bat-strip .col span{ display:block; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-faint); margin-bottom:6px; }
+.bat-strip .col b{ font-family:var(--font-mono); font-size:26px; font-weight:700; }
+.bat-strip .col.now b{ color:var(--violet-2); }
+.bat-strip .col.next b{ color:var(--ink-faint); }
+.retest-row{ display:flex; justify-content:center; gap:12px; padding:6px 0 4px; flex-wrap:wrap; }
+
+/* Fade in/out (2026-09-23, visual polish pass) — previously toggled via
+   the `hidden` attribute, which is a hard display:none/block cut with no
+   possible transition. Now toggled via the .show class (see app.js's
+   toast()); the resting state (no .show) stays fully interactive-inert
+   (pointer-events:none) so an invisible, still-`display`-rendered toast
+   never blocks clicks underneath it. */
+.toast{ position:fixed; bottom:20px; left:50%; transform:translate(-50%, 8px); background:var(--surface); color:var(--ink); border:1px solid var(--glass-border); padding:12px 20px; border-radius:12px; box-shadow:0 20px 40px -20px var(--shadow-strong); font-size:13px; z-index:100; max-width:90vw; opacity:0; pointer-events:none; transition: opacity .2s ease, transform .2s ease; }
+.toast.show{ opacity:1; transform:translate(-50%, 0); pointer-events:auto; }
+
+/* ============ MOBILE ============ */
+@media (max-width: 760px){
+  .scr-login{ grid-template-columns:1fr; min-height:auto; }
+  .login-hero{ padding:24px 20px 14px; gap:16px; align-items:center; text-align:center; }
+  .login-hero p.sub{ max-width:none; }
+  .login-panel{ padding:6px 20px 32px; justify-content:center; }
+  .cta-row{ justify-content:center; }
+  .stat-row{ justify-content:center; }
+
+  .scr-dash{ padding:16px 16px 30px; gap:14px; }
+  .readiness-card{ padding:18px; gap:14px; }
+  .row2{ grid-template-columns:1fr; }
+  .mission-card{ padding:16px; }
+  .challenge-strip{ padding:14px; }
+
+  /* Force a consistent stacked layout for every chapter row under this
+     breakpoint (2026-09-23, mobile QA pass) — without this, whether the
+     "Practice (10 Q)" button sat next to the title or wrapped below it
+     depended on that individual chapter's title length versus the exact
+     viewport width, so the list looked jumpy/inconsistent specifically
+     around ~400-430px (some rows inline, some stacked, for no reason a
+     student would understand). Below 760px every row now stacks the
+     same way, matching the behavior narrower phones already fell into
+     by accident. */
+  .chapter-row{ flex-direction:column; align-items:stretch; }
+  .chapter-row .actions{ width:100%; }
+
+  /* flex-wrap (2026-09-23, mobile QA pass) — even with the min-width:0
+     fixes above, the longer mode-badge copy ("Board Simulation · No
+     feedback until submit", nowrap by design so it never breaks
+     mid-word) is simply wider than what's left on one row once the
+     question counter and timer are also mandatory same-line siblings
+     at phone widths. Letting the row wrap moves the counter/timer to
+     their own second line instead of forcing the whole page wider. */
+  .test-top{ padding:12px 16px; flex-wrap:wrap; row-gap:6px; }
+  /* The longer badge copy ("Board Simulation · No feedback until
+     submit", ~355px at this font-size) is wider than a 360px phone
+     screen on its own — no amount of flex-shrink fixes that, since
+     white-space:nowrap makes it one unbreakable run. Below 760px the
+     badge becomes a normal wrapping block instead of a single-line
+     pill, so the same real copy just flows onto two lines like any
+     other text instead of forcing the page wider. */
+  .mode-badge{ display:block; white-space:normal; margin-left:0; max-width:100%; }
+  .track{ padding:12px 16px; } .test-body{ padding:16px; } .qcard{ padding:16px; } .test-bottom{ padding:12px 16px; }
+
+  .scr-results{ padding:18px 16px 30px; }
+  .res-hero{ padding:18px; }
+  .weakspot-hero{ padding:18px; }
+  .strengths-card{ padding:14px 16px; }
+  .bat-strip{ grid-template-columns:1fr; gap:14px; padding:16px 10px; }
+  .bat-strip .col + .col{ border-left:none; border-top:1px solid var(--glass-border-soft); padding-top:14px; }
+}

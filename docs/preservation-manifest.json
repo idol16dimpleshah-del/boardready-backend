@@ -1,0 +1,739 @@
+{
+  "phase": "Phase 2 \u2014 Preservation & Backup Verification",
+  "timestamp_utc": "2026-09-23T09:45:12.509Z",
+  "generated_from_git_commit": "967e93c6827008a19c35b767310eeb298f7f8ac9",
+  "generated_from_git_branch": "master",
+  "database": {
+    "live_path": "boardready.db",
+    "live_sha256": "bc7c8384e32287bd7e6bf5caf42b7ec00f4f4779bc9d3d237c7c91121d9f6ed2",
+    "live_size_bytes": 5390336,
+    "preservation_backup_file": "boardready-preservation-20260923-063728.db",
+    "preservation_backup_method": "node:sqlite online backup() API (SQLite Online Backup API), not a raw file copy",
+    "preservation_backup_sha256": "27514330a026a50d523f2d8179464a1cb43f39ebdc1acb93d21a320a5282d095",
+    "preservation_backup_size_bytes": 5390336,
+    "note_on_hash_difference": "Backup file hash differs from live file hash by design \u2014 the SQLite backup API can produce a different on-disk byte layout (page ordering/freelist state) than the live file while being logically identical. Verified logically identical via PRAGMA integrity_check, foreign_key_check, full row counts per table, and full per-table content digests (see phase-2-preservation-report.md).",
+    "row_counts": {
+      "attempts": 309,
+      "audit_log": 237,
+      "chapters": 79,
+      "duplicate_flags": 409,
+      "questions": 4946,
+      "source_document_files": 289,
+      "source_documents": 152,
+      "source_files": 124,
+      "subjects": 5,
+      "subscriptions": 3,
+      "test_questions": 3128,
+      "tests": 317,
+      "users": 346,
+      "visual_assets": 161
+    },
+    "schema_tables": [
+      "attempts",
+      "audit_log",
+      "chapters",
+      "duplicate_flags",
+      "questions",
+      "source_document_files",
+      "source_documents",
+      "source_files",
+      "subjects",
+      "subscriptions",
+      "test_questions",
+      "tests",
+      "users",
+      "visual_assets"
+    ]
+  },
+  "source_library": {
+    "root": "source_library/",
+    "file_count": 124,
+    "total_size_bytes": 736395710,
+    "files": [
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.19.jpg",
+        "file_size": 2234864,
+        "sha256": "3e8bbc8f9468999c1bd0e7238adcff1af5854b5a39000534358e9d54b6d9059a"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.20.jpg",
+        "file_size": 2219686,
+        "sha256": "93b792890331326a1bacef78693cd2b276d0a2d89187f8479c4b0660bed0d88a"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.21.jpg",
+        "file_size": 2150321,
+        "sha256": "82ece0002531858b583b91934662d662afb51d9cb7fe4289867bf208db0af054"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.22.jpg",
+        "file_size": 2277275,
+        "sha256": "77926a781675e27694f793f70d304babef5e57ebc28fd3ac8b622690779c6d18"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.23.jpg",
+        "file_size": 2279179,
+        "sha256": "34e9ff39aa971b16d67961438b00f8fc704d11da2f2759a089dad0a06560869b"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Probability/page_15.24.jpg",
+        "file_size": 2348356,
+        "sha256": "1154222e10d71e1c97f0ce143623c1cbf305f5d20fe1b31e358811d3325931fd"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.15.jpg",
+        "file_size": 2198102,
+        "sha256": "4f4c22d51f2e6437feed00988f854094f36fd84875a58dbb60ed371d8fe5b016"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.17.jpg",
+        "file_size": 2168378,
+        "sha256": "2f68be1366fb8b809fcceb5037de548e8dcb2d9cbe74b7b9cc673d4290d5a2ca"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.18.jpg",
+        "file_size": 2370092,
+        "sha256": "4424774b111b583fa20633a99eb4afe574d7d7c4dff26dae8c267d74aa00ab9a"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.19.jpg",
+        "file_size": 2267702,
+        "sha256": "47654bfd3f704aa6aec0408be78b0525aa226852185cfc26b6d3bc217945c105"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.20.jpg",
+        "file_size": 2308566,
+        "sha256": "05657f06dc47fd63f758378701e278bc56299154b4192d4dbf2246ae43fa1d87"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.21.jpg",
+        "file_size": 2176056,
+        "sha256": "0d99747d2627ae374c82fbdea42fe7093d3c18a747ec81b098920fb9c72038e9"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.22.jpg",
+        "file_size": 2164586,
+        "sha256": "42f25b430c20d1c386ebd7fdaba1ec49d2676364ccddfe4841d6aed257b5552d"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Statistics/page_14.22b.jpg",
+        "file_size": 2431058,
+        "sha256": "3bbf6afcedba642b0ad083746e3a058c534a0ad4eb636b5ac86e59b0963adcf6"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.15.jpg",
+        "file_size": 2669817,
+        "sha256": "44ed183edd5afbc15bfcfb335affd5a982644596b77026a63a0346dd7fec9709"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.16.jpg",
+        "file_size": 2594924,
+        "sha256": "f4d4ed956c403fe85da523618b22b96042af717945065504bd9f0b5722460578"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.17.jpg",
+        "file_size": 2524928,
+        "sha256": "d671b27199face2bcf1dfae2713d73930b3708429394b7e6711456c8dcfefa01"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.18.jpg",
+        "file_size": 2548857,
+        "sha256": "95f92f26b4628006c7968800f88dac20d1047d101844dc7b3a06268b93ec876f"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.19.jpg",
+        "file_size": 2444233,
+        "sha256": "d2687b84799c7475df584d1772d258cf3155bf5dbfe26eb3c4b32792e0031c39"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.20.jpg",
+        "file_size": 2431964,
+        "sha256": "715f1cba01cde8a485b5e52e5e913f0656859929879e655b07c3452d4ceb73b6"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.21.jpg",
+        "file_size": 2384574,
+        "sha256": "95bcbc74e08c74778569e2aa6242d8e61b949d691b9322b3664f9d4a52a0dc09"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/SurfaceAreasAndVolumes/page_13.22.jpg",
+        "file_size": 1899465,
+        "sha256": "6d0680242ba7691327bb52014c05c29735ee6c1c71dec619811497d2244d62d7"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Triangles/page_7.16.jpg",
+        "file_size": 2273819,
+        "sha256": "6fe6f0e49c450486e4af78d7a9f21a5cdb31e70076fcdb8fc154cfc7cc757651"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Triangles/page_7.17.jpg",
+        "file_size": 2340455,
+        "sha256": "cf602b68fa1dc6b70506bbdd3b073715bdd6a95b3ba811c5347c2b784c649b51"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Triangles/page_7.18.jpg",
+        "file_size": 2271306,
+        "sha256": "7d56ed93453c847d754c4b0b866b0863e73becd4bfee2598bb6d56dffacd3716"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Triangles/page_7.19.jpg",
+        "file_size": 2417746,
+        "sha256": "2f0bfb78bae7b0e0ca785f9046a3fa8b90c3bb8d8b374b8d666163388a46ab2b"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/Triangles/page_7.20.jpg",
+        "file_size": 1648986,
+        "sha256": "87f2d2ad3846012473993806b8892039b36b84d632a591afb883e513efd4f747"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch1-2.pdf",
+        "file_size": 11005752,
+        "sha256": "55be5518fc1bb4a0f3e4324b620f3f645a3364a9fc5240438bdf4446f668f236"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch12-13.pdf",
+        "file_size": 12694362,
+        "sha256": "84b2cbea8ea61075c615bbe5d5f21942df776a672f30c461da5283e46cc51ae7"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch14-15.pdf",
+        "file_size": 10229289,
+        "sha256": "a6308ea9d3fb8b0ea0fca4ed724b10ae7f6acc409baaab81fa76833da78016cb"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch3-4.pdf",
+        "file_size": 9659220,
+        "sha256": "a3503c2c8b9db929f70e11f5edda0e71e63575eb3da1fdc0f9e5a86820e10c68"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch5-6.pdf",
+        "file_size": 14991305,
+        "sha256": "5227561e11950d5fc53a80babad23967180be0e7638111cceb6567b079ae1220"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch7-8.pdf",
+        "file_size": 15352638,
+        "sha256": "bd54033dccdafb79f0a188b6c4d2a63657f3fc013ff14dde24bdec91186e437e"
+      },
+      {
+        "relative_path": "source_library/CBSE/Mathematics/ch9-11.pdf",
+        "file_size": 13201011,
+        "sha256": "f42ed94f563b34fc7b2d1efac6baade3233d34603690133a1eaf780a4b3e10ad"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/05d9435b.jpg",
+        "file_size": 2142876,
+        "sha256": "f2a8f232d8909c57e7732f742c8c78703c00dda6fe3e0e2e6ef80716741a819d"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/06cfacd8.jpg",
+        "file_size": 2250138,
+        "sha256": "a1aae273790e7bbf2f6d3cd9f06019e401da78eeeacfff72835d550da24228b3"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/095a66c1.jpg",
+        "file_size": 2279936,
+        "sha256": "9aa2dededc12b2546099bbf36f7e4f3257862181c97334151f1b3caee0edc320"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/0c91ac62.jpg",
+        "file_size": 2460865,
+        "sha256": "4eb28975f4480c1e8d13876d4dad64c6d78b2d4dd77cd6bfc83cae47eb4a618f"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/1776004a.jpg",
+        "file_size": 2634211,
+        "sha256": "4d662da1ac8278291a3a517943e27b491e66dec4ab766b63346bb55d82770779"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/177f87ca.jpg",
+        "file_size": 1699001,
+        "sha256": "ff5575e0c8c6b9a5e9ab69ed28ffa5f6ea0140dc3de80de4227b287e9b75d404"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/22d04f1c.jpg",
+        "file_size": 2168883,
+        "sha256": "c3807de7dfa8a708dceca46adcb08bb54ab7512141e8e9bd6e5286ad0a724ae8"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/3131b53a.jpg",
+        "file_size": 2190237,
+        "sha256": "5d44bf400efe5c7f921104185696782b096f020c7598d75900df0ddecd631cef"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/451b9161.jpg",
+        "file_size": 2690304,
+        "sha256": "2b1a6470146a4b4140d3fd37c1ed92cc9ba09d96fdfac833e3a3f2c2de1dc028"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/45b6bede.jpg",
+        "file_size": 2285158,
+        "sha256": "b8c6601a4bdd3b0ba4872022cb574cf88044e83f29164536e57135740827cf3a"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/48009c8a.jpg",
+        "file_size": 2327473,
+        "sha256": "6e3ca867cd755f420e8a246c7ece78596829c4e36101ed22525f4eaab148564f"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/538b8c3a.jpg",
+        "file_size": 2099316,
+        "sha256": "76fd6e46d3e9ffe608020c0ecc282339cac32f8be56efd18e2cd8e3d5bce22f3"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/6eeb1507.jpg",
+        "file_size": 2638497,
+        "sha256": "85b71ef049a78d18941f51ae4ac03ebd86d14eed958b9ce506d1bcea3caa7ab2"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/7298749e.jpg",
+        "file_size": 2106272,
+        "sha256": "740d065cd73d4b46af7d89b2e34b95bccb5023328c843c49e1eedfdc33a92314"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/7bdb87fd.jpg",
+        "file_size": 2187408,
+        "sha256": "2ff1324f4dec3e3a044b4a30a16b0217912975c0a1aff2393cce920e2faf3926"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/8bdeef95.jpg",
+        "file_size": 2062253,
+        "sha256": "e80fcca95ecf38cf3078e0f4536a4e4861a9be5d2d3cef96b5c65dfbd929f842"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/a5e6c91f.jpg",
+        "file_size": 2431350,
+        "sha256": "b6c6b32206e9fd9f9ee1bf1e495c0ee62a67b2430e3f9eb377649978d4473ed3"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/aa8d9678.jpg",
+        "file_size": 2231921,
+        "sha256": "fb747b03d57896d63bb1a11061f60df596c20e5aff7cee6b5728c251b1c380ab"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/aee9a5cf.jpg",
+        "file_size": 2271356,
+        "sha256": "9d8aa8f68d72b20aa37d0abe67ee3cbc1700e1bfc9b926a040ac9bc0d8bb9b22"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/b1f2a1c9.jpg",
+        "file_size": 2206264,
+        "sha256": "c39465fe9fa971707a1456919a2f3d32125c7934216e03150f0dedf53423023a"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/baeaf340.jpg",
+        "file_size": 2326515,
+        "sha256": "7d75dd5b7c6fb461b341791c3b9d08b8fb07ebc02810e8c0e8885451471df785"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/cc49eea7.jpg",
+        "file_size": 2304619,
+        "sha256": "ad4a347666c7efac2f9b8c56d442402cf425ef594a56d114d9215e8608fe8eeb"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/d3dd4557.jpg",
+        "file_size": 2456257,
+        "sha256": "4c8dc8f4fdea5b62784f3a9bb600b4788278033bfddb5a1dcad5510de838d14a"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/e77ab69d.jpg",
+        "file_size": 1978762,
+        "sha256": "7b078b72cc8be3a40b323d38af82c5dd72bf87f1a7bddc2b2e1e64dc59e45f19"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/eb2d22e4.jpg",
+        "file_size": 2413094,
+        "sha256": "9d86e677dffc95eaad334b05a1fcc030f3864cf68a53c4e0a62c8619d74c12fc"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/fd8c7297.jpg",
+        "file_size": 2191940,
+        "sha256": "70bbd60226c02ca4f718495f017e1c5489f32887e8d653562756de96dcb92c02"
+      },
+      {
+        "relative_path": "source_library/CBSE/_pending_classification_2026-09-17/fdbbdd2b.jpg",
+        "file_size": 2241546,
+        "sha256": "5b373b7c4562c2aff6af2a3f3285a978d85d20f09d399d20d93496f049c63b2c"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_1.pdf",
+        "file_size": 5478094,
+        "sha256": "e129a93134c5635c22ea7ebad3ab7bc06845e95dde22fb33209e5d1b7d8c2a3e"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_2.pdf",
+        "file_size": 5276130,
+        "sha256": "5f56c282f9e3fb980e505fe2a361839d101187acf087ae85e3ccc6b4d7ee85ee"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_3A.pdf",
+        "file_size": 6443520,
+        "sha256": "3201c8fb4dc2ac7d188ff82d42635ab6de9fde1b320649c1ec1de0c087369f34"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_3B.pdf",
+        "file_size": 1788730,
+        "sha256": "f9e9992da615c0c80638de450a19cf91c0bf35f478aa7ac51578bfa51eba44e0"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_4A.pdf",
+        "file_size": 2563142,
+        "sha256": "dc0b259541624d3e57cb17b0dfadf16588c80bf5787edd74094fff085ed36574"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_4B.pdf",
+        "file_size": 1755332,
+        "sha256": "2af3d6b71d7e1d4a215a92d3bd23bd5e265df1dd8b41debe88f34f82126a98c1"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_5.pdf",
+        "file_size": 6516371,
+        "sha256": "6d77c312028981703abbd11e2073c4712417bbda6f3982656ca5158d139d74a8"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_6.pdf",
+        "file_size": 6363847,
+        "sha256": "09a417aa1b5ceb797038e86401cc457382e5e9ac16d137921ca189f5c64dee02"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_7A.pdf",
+        "file_size": 3316944,
+        "sha256": "6733303b56e769a0af0e9288ed8d2831d2b230b90cc90de61c05d0cf746a6819"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_7B.pdf",
+        "file_size": 5417538,
+        "sha256": "c14700bb6739169d1c550fadec459a8b71beebe2fa4c15ca510a22010b91c79d"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_7C.pdf",
+        "file_size": 4600937,
+        "sha256": "257025f18358cb4e24b1e0df289a712731dcf8860453c809b5b0a979467718bb"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_7D.pdf",
+        "file_size": 4169830,
+        "sha256": "5ac990ff023a675b48f9be7ef8ef607b301418a74382335b040884e37fa42146"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_8.pdf",
+        "file_size": 12061826,
+        "sha256": "ba25323bba38589f8e2f3c81a45f697466dfdae879f2dcabb6bc910271a962f0"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chap_9.pdf",
+        "file_size": 2059442,
+        "sha256": "6c3c32b611e8d596d5b90cc8311d8e6f87104f3e56f4d86acb02c144c859c20a"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_1_additional_chapter_wise.pdf",
+        "file_size": 11057181,
+        "sha256": "1f64f80a76df5ae81b64917a46cb8495948f91aa083852d4243dd5f4f8270008"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_1_answer.pdf",
+        "file_size": 14020345,
+        "sha256": "be50a4afddbb823491c712a52963c0d5918293abb8b2005bcd0316794d40fb69"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_234_answer.pdf",
+        "file_size": 2380982,
+        "sha256": "52d9500157aaf0a4f7d676d53014a20fa9f1c6e7f43693bab250fa8c2a658057"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_2_equation.pdf",
+        "file_size": 8778751,
+        "sha256": "d732450d6e869123c28bddd1b86cc3308226d37a15386d906ccd12f6605466df"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_3_critical.pdf",
+        "file_size": 5253995,
+        "sha256": "bb43e9f4ce05be4853aa7655367844b8050c0681ec4eb5b25041358490ad5990"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/chart_4.pdf",
+        "file_size": 5320415,
+        "sha256": "e83c8db3af6ebc5dd58a73189013fc9aadde6a07f670a5fdb58e7bcc332d9c22"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/competency.pdf",
+        "file_size": 19330845,
+        "sha256": "e595a5875e64ecbbbf35edb8a2549f5ab4ab6836725b1fb45608c38be9708d6e"
+      },
+      {
+        "relative_path": "source_library/ICSE/Chemistry/competency_answer.pdf",
+        "file_size": 1738564,
+        "sha256": "7a160224189181d19758f1cdacb7b00a3166430c170b711352c6c481596c1859"
+      },
+      {
+        "relative_path": "source_library/ICSE/Geography/ch10-13-industries-transport-waste.pdf",
+        "file_size": 25871449,
+        "sha256": "78572213309582f01d4934dedefa933bf94f2d49e1866580d142e3db021203c6"
+      },
+      {
+        "relative_path": "source_library/ICSE/Geography/ch4-7-climate-soil-vegetation-water.pdf",
+        "file_size": 19984904,
+        "sha256": "9e08667d0e75a299b4db4266843ff2996d0c2be49ad389c1ec193af23484c7fa"
+      },
+      {
+        "relative_path": "source_library/ICSE/Geography/ch8-9-mineral-energy-agriculture.pdf",
+        "file_size": 14263960,
+        "sha256": "ec025b6fa71b8b35bfc9cce933aa1b6aa065b607880bceea1804e23c4795baa9"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch01-the-union-parliament.pdf",
+        "file_size": 6687883,
+        "sha256": "483014f0235c89c234e030a442b577e89b659bca45a15322c204be73598c50ae"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch02-the-executives-president-and-vice-president.pdf",
+        "file_size": 7466762,
+        "sha256": "9ec0f75f7e7be3e4c43c91e3d71c031078440b89cc971726f30be7cd07be8fb0"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch03-the-prime-minister-and-the-council-of-ministers.pdf",
+        "file_size": 5933188,
+        "sha256": "cde0a6404efbaeee5c463387173ab4758761e31a451e49c937a1360e1e33b9be"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch04-the-union-judiciary-the-supreme-court.pdf",
+        "file_size": 6424001,
+        "sha256": "261a234295f7e0c22e81842bf518af79e29f5564dab0f9e18b71a94f31765536"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch05-the-state-judiciary-the-high-courts.pdf",
+        "file_size": 6193980,
+        "sha256": "32add9c282ed21ee1b9a3cdaca2b1b6212e3aaeb978c4c56ee225e55d1de209a"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch06-the-state-judiciary-the-subordinate-courts.pdf",
+        "file_size": 6387050,
+        "sha256": "d3e9490d4c7f59f6ff9d6c760e05b002f5dd098c9ed64c44de104553fb70b892"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch07-first-war-of-independence-1857.pdf",
+        "file_size": 5524250,
+        "sha256": "9e3f5fc28603322cc10be8775bbe5fdb9be79baa16a0aac1417ff5814ddc992b"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch08-rise-of-nationalism-and-establishment-of-inc.pdf",
+        "file_size": 5543056,
+        "sha256": "b0274d353d81f75d1a599cbd57a1ff725b02e602448707f87068111024e8d6c8"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch09-first-phase-of-the-indian-national-movement.pdf",
+        "file_size": 4513363,
+        "sha256": "fa7d22198925c86df224093a57224ed2abb9d32f4547feaef41189cc7f6e9380"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch10-second-phase-of-the-indian-national-movement.pdf",
+        "file_size": 5341523,
+        "sha256": "dc42af7806e75ccf1d19db3cbcfafb11968a5cf0ddd612af907e5a82b1231327"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch11-13-partition-bengal-muslim-league-gandhi-popular-movement.pdf",
+        "file_size": 17664661,
+        "sha256": "2cdc3343ff592248f2db403c5794c5d9feb9fc5c9546994e1399d3f742cfe417"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch14-17-quit-india-ina-partition-wwi-versailles.pdf",
+        "file_size": 18695331,
+        "sha256": "5d43b1996b45f47519d43a806bfe970512596f4c3a515fd80f4522d2af448d50"
+      },
+      {
+        "relative_path": "source_library/ICSE/History and Civics/ch18-22-dictatorships-wwii-un-nam-final.pdf",
+        "file_size": 24256488,
+        "sha256": "4e5f5835c3b4e462ca7704cd8f8c07c18f6b353ab0a6501a9955d96fe97af00e"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/answer.pdf",
+        "file_size": 11671614,
+        "sha256": "3f586f9fd5f865dc018e3a820945cb62529966370a4327c48c7f5cc0afc74fbd"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch01-gst.pdf",
+        "file_size": 8297374,
+        "sha256": "e8f5f4e7abe35fa3d553f435162e297ffe4eb64ff26eed27ac097f8bbf0a9700"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch02-banking.pdf",
+        "file_size": 6039393,
+        "sha256": "724aff3e12c5f3b528ba3215bb38161404d24f3eeb0643878dc18d4fa47d1b91"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch03-shares-and-dividend.pdf",
+        "file_size": 5746458,
+        "sha256": "13156604b7494a1d8f12fabd3dd6465c74531efad4202065e821d4a37c63d260"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch04-linear-inequation.pdf",
+        "file_size": 9326913,
+        "sha256": "1ad7050b4bb3a1e0809f2f8d1292aaf77754b9fb88aac6f09e0be2cf4ee3f5fb"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch05-quadratic-equation.pdf",
+        "file_size": 11502459,
+        "sha256": "f0de439460188e0f3203642689ade5ab8824a54f7194a8f63e08f0fa48073887"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/ch06-problems-on-quadratic-equations.pdf",
+        "file_size": 9745531,
+        "sha256": "e1e2d6bba4cf6c591e18241036f642d747bcf76b3012c362e1f6acd9aa1bea96"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_10.pdf",
+        "file_size": 9683577,
+        "sha256": "fff6a31eaaa9bc4df7fc73963d83b100ec549b02bf73bb5f0ebae8e7e42e0126"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_11.pdf",
+        "file_size": 5764975,
+        "sha256": "338b88401a8ca74b295a42368a2e53e37c97233a5d223db6ba604ec92eda3a4a"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_12.pdf",
+        "file_size": 5348717,
+        "sha256": "665ac86a0d8e7f136c53ed1991d0b165416c793dbac1e0bd043a0a48d3680185"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_13.pdf",
+        "file_size": 6804390,
+        "sha256": "966db36a16290f2b827b2fd3da23e1b0b9f2b9d4e8f90e4bc3e3de8fcf34c82a"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_14.pdf",
+        "file_size": 7286837,
+        "sha256": "4038b4f965a1e1e109bb180bb5bc1aba5822a4f59414fb3a15b743230f578dbd"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_15.pdf",
+        "file_size": 2195165,
+        "sha256": "ef541c0002ef4aaccfc9ec6429c5591cd1f53d4c138ca9b86c1123d343d5b562"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_16.pdf",
+        "file_size": 14314011,
+        "sha256": "75ff1ece7982685d9e2ab71f8b5f98bae4746a611cd692c67ac823519df69d88"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_17.pdf",
+        "file_size": 9945665,
+        "sha256": "9ab52736f86065d21a237fa0f253835c85d2f773b439cbc8799e64fbb7363855"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_18.pdf",
+        "file_size": 8982166,
+        "sha256": "eeeab90795f199646f05802b499c89b39f054b9c099f7e18bb09a4043a6d82ae"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_19.pdf",
+        "file_size": 3881746,
+        "sha256": "6dc719d496b7058dd546e83e8beb6468c27192c29319ea4e8d2e5eec70a27830"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_20.pdf",
+        "file_size": 10585714,
+        "sha256": "9d27e6bbb4bc6fda2c9ee3e06dba7822d747320271075aeebebf62a78fafcf48"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_21.pdf",
+        "file_size": 6748592,
+        "sha256": "bd9a6d1f35fac582c7cb1600009587a1c87620e1119f64734e74a208a76213dc"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_22.pdf",
+        "file_size": 8752932,
+        "sha256": "7883d33b52f42f65edb128a8699c911eb7411769171931a125c0ba28165d6b0e"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_23.pdf",
+        "file_size": 14356197,
+        "sha256": "84a29d187bd85d66fe8e07ca4ee3b0de44cf2356bc4498871216e2c55e0b712f"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_24.pdf",
+        "file_size": 10485496,
+        "sha256": "716cf6124d927ff8ce42cee064fd11f340c1dc441d54173795e83cadc3740a05"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_7.pdf",
+        "file_size": 6815470,
+        "sha256": "a260c270bed7c3d5fe7684bb64bf146d46214775cac83f4f176221b35c68f6c8"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_8.pdf",
+        "file_size": 7296568,
+        "sha256": "493df686ee44b6393e2b436f2b4ad1cea7be221b4248050619bcfbe1831cd956"
+      },
+      {
+        "relative_path": "source_library/ICSE/Mathematics/chap_9.pdf",
+        "file_size": 7917816,
+        "sha256": "24e5194c7156b91705d9ba4a83b9dbcc172c5e2a7b47b3480f4724a3f00401a2"
+      }
+    ],
+    "archive_file": "source_library-preservation-20260923-063728.tar.gz",
+    "archive_sha256": "953a25b8db675c29fb7c140105465b15deafa492cbd3e5860d6700c02aa90fbd",
+    "archive_size_bytes": 713061573,
+    "archive_verification": "Extracted to a temp directory and every one of the 124 files re-hashed; all 124 hashes and sizes matched the live source files exactly (byte-identical).",
+    "cross_check_vs_db": "All 124 source_files DB rows matched an on-disk file by sha256+size, with zero mismatches and zero missing files in either direction."
+  },
+  "visual_assets": {
+    "db_row_count": 161,
+    "distinct_asset_paths": 41,
+    "asset_type_breakdown": {
+      "source_page_full": 161
+    },
+    "storage_note": "All visual_assets rows are asset_type=source_page_full, pointing at full source-library page images already covered by the source_library archive above. No separate visual-asset file store exists yet \u2014 verified all distinct asset_path values resolve to real files with zero missing.",
+    "extracted_diagrams_dir": {
+      "file_count": 2,
+      "files": [
+        "extracted-diagrams/README.md",
+        "extracted-diagrams/demo-fig-9-21.png"
+      ],
+      "note": "A demo/test fixture only, per its own README \u2014 not associated with any live question. Archived anyway for completeness.",
+      "archive_file": "extracted-diagrams-preservation-20260923-063728.tar.gz",
+      "archive_sha256": "99796e2e24906e8d726841708c2695fcc478f1f7f91db9d335af6131e76d4680"
+    }
+  },
+  "existing_backups_inventory": [
+    {
+      "file": "backups/boardready-pre-publication-audit-20260918-053914.db",
+      "size": 5066752,
+      "sha256": "28c07aea0ab530389ef81a4c2e4348b3aaa72fbf1296db96355c3bedaaf442b5",
+      "created": "2026-09-18T05:39:14Z",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0,
+      "question_count": 4946,
+      "same_disk_as_live": true
+    },
+    {
+      "file": "backups/boardready.db.bak-before-phase2-20260922054849",
+      "size": 5070848,
+      "sha256": "4110fb193f97f822b2a93bb016dccffa08c1824dbe6042a26387b53dc1e94ada",
+      "created": "2026-09-22T05:48:49Z",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0,
+      "question_count": 4946,
+      "same_disk_as_live": true
+    },
+    {
+      "file": "boardready.db.bak-preopenkind",
+      "size": 544768,
+      "sha256": "755126e16566cddd8fc4b9182327a9617f46ed21fa090d59e8a829e21e1e6bcb",
+      "created": "2026-09-16T18:28:00Z",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0,
+      "question_count": 648,
+      "same_disk_as_live": true
+    }
+  ],
+  "off_container_transfer": {
+    "method": "Claude desktop app device bridge \u2014 files delivered via SendUserFile then written to the user's own computer with device_commit_files",
+    "destination": "F:\\dimple\\eduzenith (user's own machine, drive F:, folder created by the user for this purpose)",
+    "database_backup": "transferred as a single file, confirmed written",
+    "extracted_diagrams_archive": "transferred as a single file, confirmed written",
+    "source_library_archive": "transferred as 38 chunks (source_library_part_000..037, ~18MB each) due to a 20MB device-write limit; all 38 confirmed written with correct sizes (total 713,061,573 bytes, matching the original archive exactly)",
+    "reassembly": "REASSEMBLE.ps1 and CHECKSUMS.sha256 were also transferred; running the script on the user's machine concatenates the 38 parts and verifies the result's SHA-256 against 953a25b8db675c29fb7c140105465b15deafa492cbd3e5860d6700c02aa90fbd",
+    "status": "COMPLETED \u2014 bytes transferred to F:\\\\dimple\\\\eduzenith on the user's own machine, reassembled via REASSEMBLE.ps1, and independently hash-verified (953a25b8db675c29fb7c140105465b15deafa492cbd3e5860d6700c02aa90fbd, matching exactly) by pulling HASH_CHECK.txt back into this session rather than trusting the script's own on-screen output."
+  }
+}

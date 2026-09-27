@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 620" role="img" aria-labelledby="cyTitle cyDesc">
+  <title id="cyTitle">Courtyard coordinate grid for Question 4833</title>
+  <desc id="cyDesc">A 10 by 10 coordinate grid (column 0-10 on the X axis, row 0-10 on the Y axis) with four points marked: A at (3,4), B at (6,7), C at (9,4), and D at (7,2).</desc>
+  <!--
+    Board Ready generated visual (Batch 15, Task 10, PROPOSED, NOT associated
+    with the live question). asset_type (if approved): ai_generated -- a
+    clean, native redraw of the ORIGINAL SOURCE figure below, not the source
+    figure itself. Colors read from this host page's ink CSS custom property
+    via var(), no prefers-color-scheme fallback -- matches every other
+    generated visual in this pipeline.
+
+    ============================================================
+    IMPORTANT -- READ BEFORE ASSOCIATING OR PROMOTING THIS QUESTION
+    ============================================================
+    While building this visual (Task 10), a rigorous re-verification of the
+    source figure's plotted-point coordinates turned up THREE independent,
+    confirmed content defects in question 4833's stored parts_json and in
+    the source book's own printed answer key. These are documented in full
+    in docs/workstream-4j-4833-answer-key-defects.md (which also amends and
+    partially retracts docs/workstream-4f-4833-investigation.md's prior
+    conclusion that "the database is correct in full for this question" --
+    that conclusion does not survive this session's more rigorous check).
+    This SVG faithfully reproduces the DIAGRAM as printed; it does not
+    change, and is not a substitute for review of, the question's text,
+    options, or stored `correct` values, which remain uncorrected pending
+    their own individually-approved review (no live write is proposed here).
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/CBSE/Mathematics/ch5-6.pdf, file page index 18 (prints as
+    page 6.23), Fig. 6.19, immediately below item (73)'s stem. Source PDF
+    sha256: 5227561e11950d5fc53a80babad23967180be0e7638111cceb6567b079ae1220.
+    A clean crop of the source figure (including its axis labels and the
+    "Fig. 6.19" caption) is saved as the immutable source_cropped reference:
+    extracted-diagrams/cbse-mathematics-co-ordinate-geometry-845687ea-item73-courtyardgrid-CANDIDATE.png,
+    sha256 ab1af38854f2c37fd7a8205059c65bc425fc60a77018181f21e6614df0d2a160.
+
+    COORDINATE VERIFICATION METHOD (this is how (3,4)/(6,7)/(9,4)/(7,2) were
+    established, not assumed from the key or from a rough visual estimate):
+    1. The source page was rendered at high zoom and the pixel positions of
+       all 11 vertical and 11 horizontal gridlines were detected
+       programmatically (numpy column/row dark-pixel-density peak-finding),
+       giving an exact pixel position for every integer column 0-10 and row
+       0-10.
+    2. The four small filled-circle point markers (distinct from the
+       decorative face icons and from the thin gridlines themselves) were
+       isolated programmatically via morphological erosion (which removes
+       thin gridlines but preserves the thicker solid dot markers) and their
+       centroids computed.
+    3. Each dot centroid was matched against the gridline pixel grid from
+       step 1. All four matched a gridline intersection to within 0.5-3
+       pixels (out of a ~161px grid spacing) -- i.e. essentially exactly,
+       not an approximate or rounded reading:
+         A -> column 3, row 4   => (3, 4)
+         B -> column 6, row 7   => (6, 7)
+         C -> column 9, row 4   => (9, 4)
+         D -> column 7, row 2   => (7, 2)
+    4. This was independently corroborated (not merely re-observed) by two
+       further checks documented in workstream-4j:
+         - Part (iv)'s stored answer ("Area of triangle ABC = 9 sq. units")
+           is reproduced exactly by these coordinates via the shoelace
+           formula.
+         - Part (ii)'s stored answer ("the figure ABCD is NOT a
+           parallelogram") is ONLY a well-posed, internally consistent
+           answer when A=(3,4): that reading makes AB parallel to CD
+           (both slope 1) while BC and DA are not parallel to each other,
+           i.e. a genuine trapezium with a single well-defined "odd one
+           out" among rhombus/square/parallelogram/trapezium. Substituting
+           the key's claimed A=(4,3) instead produces a quadrilateral with
+           NO pair of parallel sides at all, which cannot yield a uniquely
+           correct answer to "which of these four shapes is it NOT" -- every
+           option would be a correct "not". This is independent, purely
+           mathematical evidence (not a second pixel reading) that (3,4) is
+           the figure's true intended point, not (4,3).
+       See workstream-4j for the fuller writeup, including that part (iii)'s
+       stored/keyed answer ("0") is separately, unconditionally impossible:
+       a distance of 0 between the diagonals' midpoints would itself imply
+       ABCD IS a parallelogram, directly contradicting part (ii)'s own
+       stored answer that it is NOT one -- a defect in the source's key that
+       holds regardless of which reading of A is used.
+
+    DESIGN DECISIONS (disclosed departures from the source page, none of
+    which change any mathematical content):
+      - The source's alternating light/dark checkerboard cell shading and
+        the decorative face-icon avatars at each point are page styling,
+        not mathematical content (they illustrate "four people sitting" for
+        a young-reader case-study framing) -- this redraw omits them and
+        keeps a plain white grid with the four points marked as simple
+        labeled dots, exactly as every other clean geometric redraw in this
+        pipeline (1508, 1231, 1594, 1230) omits source decoration while
+        preserving all drawn mathematical elements exactly.
+      - The source repeats small tick-mark arrowheads along both axes
+        (suggesting the axes continue indefinitely); this redraw keeps that
+        same meaning with a single arrowhead terminating each axis, rather
+        than reproducing every repeated decorative tick arrow individually.
+      - The source draws NO line segments connecting A, B, C, D -- the
+        quadrilateral ABCD is only implied by the question text ("by
+        joining A to B, B to C, C to D and D to A..."), never drawn in the
+        figure itself. This redraw preserves that exactly: no connecting
+        lines are drawn. Adding them would be adding information the source
+        figure does not contain.
+      - Axis labels (X, Y, O, "Column", "Rows") and the integer gridline
+        labels 0-10 on both axes are reproduced exactly as printed, in the
+        same positions relative to the grid.
+  -->
+  <style>
+    .cy-grid { fill: none; stroke: var(--ink); stroke-width: 1; opacity: 0.35; }
+    .cy-axis { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .cy-point { fill: var(--ink); }
+    .cy-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 22px; }
+    .cy-axislabel { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 24px; font-weight: 700; }
+    .cy-ticklabel { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 18px; text-anchor: middle; }
+    .cy-pointlabel { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 24px; font-weight: 700; }
+  </style>
+
+  <!-- Grid lines: columns 0-10 and rows 0-10 (light, non-decorative reference grid) -->
+  <g class="cy-grid">
+    <line x1="80" y1="40" x2="80" y2="540" />
+    <line x1="130" y1="40" x2="130" y2="540" />
+    <line x1="180" y1="40" x2="180" y2="540" />
+    <line x1="230" y1="40" x2="230" y2="540" />
+    <line x1="280" y1="40" x2="280" y2="540" />
+    <line x1="330" y1="40" x2="330" y2="540" />
+    <line x1="380" y1="40" x2="380" y2="540" />
+    <line x1="430" y1="40" x2="430" y2="540" />
+    <line x1="480" y1="40" x2="480" y2="540" />
+    <line x1="530" y1="40" x2="530" y2="540" />
+    <line x1="580" y1="40" x2="580" y2="540" />
+    <line x1="80" y1="540" x2="580" y2="540" />
+    <line x1="80" y1="490" x2="580" y2="490" />
+    <line x1="80" y1="440" x2="580" y2="440" />
+    <line x1="80" y1="390" x2="580" y2="390" />
+    <line x1="80" y1="340" x2="580" y2="340" />
+    <line x1="80" y1="290" x2="580" y2="290" />
+    <line x1="80" y1="240" x2="580" y2="240" />
+    <line x1="80" y1="190" x2="580" y2="190" />
+    <line x1="80" y1="140" x2="580" y2="140" />
+    <line x1="80" y1="90" x2="580" y2="90" />
+    <line x1="80" y1="40" x2="580" y2="40" />
+  </g>
+
+  <!-- Axes with single terminating arrowheads -->
+  <line class="cy-axis" x1="80" y1="540" x2="612" y2="540" />
+  <path class="cy-axis" d="M 598 528 L 612 540 L 598 552" />
+  <line class="cy-axis" x1="80" y1="540" x2="80" y2="18" />
+  <path class="cy-axis" d="M 68 32 L 80 18 L 92 32" />
+
+  <!-- Axis tick labels: columns 1-10 -->
+  <text class="cy-ticklabel" x="130" y="565">1</text>
+  <text class="cy-ticklabel" x="180" y="565">2</text>
+  <text class="cy-ticklabel" x="230" y="565">3</text>
+  <text class="cy-ticklabel" x="280" y="565">4</text>
+  <text class="cy-ticklabel" x="330" y="565">5</text>
+  <text class="cy-ticklabel" x="380" y="565">6</text>
+  <text class="cy-ticklabel" x="430" y="565">7</text>
+  <text class="cy-ticklabel" x="480" y="565">8</text>
+  <text class="cy-ticklabel" x="530" y="565">9</text>
+  <text class="cy-ticklabel" x="580" y="565">10</text>
+
+  <!-- Axis tick labels: rows 1-10 -->
+  <text class="cy-ticklabel" x="62" y="547">1</text>
+  <text class="cy-ticklabel" x="62" y="497">2</text>
+  <text class="cy-ticklabel" x="62" y="447">3</text>
+  <text class="cy-ticklabel" x="62" y="397">4</text>
+  <text class="cy-ticklabel" x="62" y="347">5</text>
+  <text class="cy-ticklabel" x="62" y="297">6</text>
+  <text class="cy-ticklabel" x="62" y="247">7</text>
+  <text class="cy-ticklabel" x="62" y="197">8</text>
+  <text class="cy-ticklabel" x="62" y="147">9</text>
+  <text class="cy-ticklabel" x="62" y="97">10</text>
+
+  <!-- Origin and axis names -->
+  <text class="cy-label" x="58" y="565">O</text>
+  <text class="cy-axislabel" x="618" y="548">X</text>
+  <text class="cy-axislabel" x="66" y="18">Y</text>
+  <text class="cy-axislabel" x="330" y="596" text-anchor="middle">Column</text>
+  <text class="cy-axislabel" x="28" y="290" text-anchor="middle" transform="rotate(-90 28 290)">Rows</text>
+
+  <!-- Points A(3,4) B(6,7) C(9,4) D(7,2) -->
+  <circle class="cy-point" cx="230" cy="340" r="6" />
+  <circle class="cy-point" cx="380" cy="190" r="6" />
+  <circle class="cy-point" cx="530" cy="340" r="6" />
+  <circle class="cy-point" cx="430" cy="440" r="6" />
+
+  <text class="cy-pointlabel" x="205" y="325">A</text>
+  <text class="cy-pointlabel" x="345" y="182">B</text>
+  <text class="cy-pointlabel" x="495" y="325">C</text>
+  <text class="cy-pointlabel" x="395" y="432">D</text>
+</svg>

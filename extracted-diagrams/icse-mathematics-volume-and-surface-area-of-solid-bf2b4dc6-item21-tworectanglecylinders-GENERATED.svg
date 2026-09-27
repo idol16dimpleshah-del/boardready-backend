@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 270" role="img" aria-labelledby="rcyTitle rcyDesc">
+  <title id="rcyTitle">Rectangle rolled into two cylinders, Question 1727</title>
+  <desc id="rcyDesc">An 11 cm by 7 cm rectangle, an arrow to a vertical cylinder of height 7 cm formed by rotating about the 7 cm side, and a second arrow to a horizontal cylinder of length 11 cm formed by rotating about the 11 cm side.</desc>
+  <!--
+    Board Ready generated visual (Batch 15, Task 12, PROPOSED, NOT
+    associated with the live question -- content gate for 1727 has not been
+    independently cleared). asset_type (if approved): ai_generated -- a
+    clean, native redraw of the ORIGINAL SOURCE figure below, not the source
+    figure itself. Colors read from this host page's ink CSS custom
+    property via var(), no prefers-color-scheme fallback -- matches every
+    other generated visual in this pipeline.
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/ICSE/Mathematics/chap_20.pdf, file page index 2 (prints
+    as page 20.5), item (21), sha256
+    9d27e6bbb4bc6fda2c9ee3e06dba7822d747320271075aeebebf62a78fafcf48. A clean
+    crop of just this figure is saved as the immutable source_cropped
+    reference:
+    extracted-diagrams/icse-mathematics-volume-and-surface-area-of-solid-bf2b4dc6-item21-tworectanglecylinders-CANDIDATE.png.
+
+    Semantic content reproduced exactly, not invented (read directly off the
+    source scan at 10x zoom this session): three figures left to right,
+    connected by two rightward arrows --
+      1. A plain rectangle labelled "7 cm" along its left (vertical) side
+         and "11 cm" along its bottom (horizontal) side -- the original
+         sheet of paper.
+      2. A vertical, upright cylinder (open top and bottom drawn as full
+         ellipses, connected by two vertical side lines) labelled "7 cm"
+         along its left side -- this is the cylinder formed by rotating the
+         rectangle about its 7 cm side (so 7 cm becomes the height/axis and
+         11 cm becomes the circumference).
+      3. A horizontal cylinder lying on its side (drawn as two end ellipses
+         connected by two horizontal side lines, with the left end drawn as
+         a double ellipse to suggest the rolled paper's visible edge/
+         thickness, matching the source exactly) labelled "11 cm" along its
+         length -- this is the cylinder formed by rotating the rectangle
+         about its 11 cm side (so 11 cm becomes the height/axis and 7 cm
+         becomes the circumference).
+    The source presents the two cylinders in this same left-to-right order
+    (7cm-axis cylinder, then 11cm-axis cylinder) even though the question's
+    own text describes the 11 cm rotation first -- this redraw preserves the
+    source figure's actual order exactly rather than reordering it to match
+    the text, since this is a visual, not a text, provenance question. No
+    numeric value, arrow, or label appears in the source beyond what is
+    listed above; none are added here either.
+
+    Content check (informational only -- this task does not promote the
+    question): CSA = circumference x height in each case, so cylinder 2's
+    CSA = 11 x 7 = 77 and cylinder 3's CSA = 7 x 11 = 77 -- equal regardless
+    of which side is the rotation axis. This matches the stored/only
+    internally-consistent answer, option (a) "1 : 1" (`correct: 0`),
+    confirmed independently this session by direct calculation, not merely
+    assumed from the stored value.
+
+    DESIGN DECISION, disclosed: the source draws both cylinders as
+    schematic, NOT-to-scale sketches (the vertical cylinder's drawn
+    diameter is visibly larger, relative to its height, than the true
+    7-height/11-circumference proportions would produce, i.e. true diameter
+    approx. 3.5 cm against a height of 7 cm). This is a qualitative
+    before/after illustration, not a figure the student must read exact
+    measurements from -- unlike the earlon (1508, 1231) redraws in this
+    batch, where an exact stated ratio was used to place points precisely,
+    here there is no comparable "exact construction" fact to enforce, so
+    this redraw preserves the source's own schematic (not-to-scale)
+    proportions rather than inventing a different, more "correct" scale.
+  -->
+  <style>
+    .rcy-shape { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .rcy-shape-thin { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .rcy-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 24px; }
+    .rcy-arrow { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <!-- Rectangle: 11cm (width) x 7cm (height) -->
+  <rect class="rcy-shape" x="60" y="60" width="200" height="160" />
+  <text class="rcy-label" x="30" y="145" text-anchor="middle" transform="rotate(-90 30 145)">7 cm</text>
+  <text class="rcy-label" x="160" y="248" text-anchor="middle">11 cm</text>
+
+  <!-- Arrow from rectangle to vertical cylinder -->
+  <path class="rcy-arrow" d="M 280 45 L 335 45" />
+  <path class="rcy-arrow" d="M 322 35 L 335 45 L 322 55" />
+
+  <!-- Vertical cylinder: rotated about the 7cm side (height 7cm, circumference 11cm) -->
+  <ellipse class="rcy-shape" cx="475" cy="60" rx="85" ry="24" />
+  <line class="rcy-shape" x1="390" y1="60" x2="390" y2="220" />
+  <line class="rcy-shape" x1="560" y1="60" x2="560" y2="220" />
+  <ellipse class="rcy-shape" cx="475" cy="220" rx="85" ry="24" />
+  <text class="rcy-label" x="362" y="145" text-anchor="middle" transform="rotate(-90 362 145)">7 cm</text>
+
+  <!-- Arrow from vertical cylinder to horizontal cylinder -->
+  <path class="rcy-arrow" d="M 585 45 L 630 45" />
+  <path class="rcy-arrow" d="M 617 35 L 630 45 L 617 55" />
+
+  <!-- Horizontal cylinder: rotated about the 11cm side (height 11cm, circumference 7cm) -->
+  <ellipse class="rcy-shape" cx="660" cy="140" rx="18" ry="58" />
+  <ellipse class="rcy-shape-thin" cx="654" cy="140" rx="12" ry="50" />
+  <line class="rcy-shape" x1="660" y1="82" x2="850" y2="82" />
+  <line class="rcy-shape" x1="660" y1="198" x2="850" y2="198" />
+  <ellipse class="rcy-shape" cx="850" cy="140" rx="18" ry="58" />
+  <text class="rcy-label" x="755" y="240" text-anchor="middle">11 cm</text>
+</svg>

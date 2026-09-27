@@ -1,0 +1,1055 @@
+{
+  "tables": {
+    "users": {
+      "sourceRows": 346,
+      "insertedRows": 346,
+      "skippedRows": 0
+    },
+    "subjects": {
+      "sourceRows": 5,
+      "insertedRows": 5,
+      "skippedRows": 0
+    },
+    "chapters": {
+      "sourceRows": 79,
+      "insertedRows": 79,
+      "skippedRows": 0
+    },
+    "source_files": {
+      "sourceRows": 124,
+      "insertedRows": 124,
+      "skippedRows": 0
+    },
+    "source_documents": {
+      "sourceRows": 152,
+      "insertedRows": 152,
+      "skippedRows": 0
+    },
+    "source_document_files": {
+      "sourceRows": 289,
+      "insertedRows": 289,
+      "skippedRows": 0
+    },
+    "questions": {
+      "sourceRows": 4946,
+      "insertedRows": 4824,
+      "skippedRows": 122
+    },
+    "visual_assets": {
+      "sourceRows": 161,
+      "insertedRows": 161,
+      "skippedRows": 0
+    },
+    "duplicate_flags": {
+      "sourceRows": 409,
+      "insertedRows": 409,
+      "skippedRows": 0
+    },
+    "tests": {
+      "sourceRows": 317,
+      "insertedRows": 317,
+      "skippedRows": 0
+    },
+    "test_questions": {
+      "sourceRows": 3128,
+      "insertedRows": 3128,
+      "skippedRows": 0
+    },
+    "attempts": {
+      "sourceRows": 309,
+      "insertedRows": 309,
+      "skippedRows": 0
+    },
+    "subscriptions": {
+      "sourceRows": 3,
+      "insertedRows": 3,
+      "skippedRows": 0
+    },
+    "audit_log": {
+      "sourceRows": 237,
+      "insertedRows": 237,
+      "skippedRows": 0
+    }
+  },
+  "discrepancies": [
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1966,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1967,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1968,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1969,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1970,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1971,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1972,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1973,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1974,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1975,
+      "value": "decreases / nuclear charge",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1976,
+      "value": "oxidising",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1977,
+      "value": "non-metals / high",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1985,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1986,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1987,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1988,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1989,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1990,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1991,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1992,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1993,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 1994,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2005,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2006,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2007,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2008,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2009,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2010,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2011,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2012,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2013,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2014,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2030,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2031,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2032,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2033,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2034,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2035,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2043,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2044,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2045,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2046,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2047,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2048,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2049,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2059,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2060,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2061,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2062,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2063,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2064,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2065,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2066,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2067,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2068,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2079,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2080,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2081,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2082,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2083,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2084,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2085,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2086,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2087,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2088,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2099,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2100,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2101,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2102,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2103,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2104,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2105,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2106,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2107,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2108,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2123,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2124,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2125,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2126,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2127,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2128,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2129,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2130,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2131,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2132,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2143,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2144,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2145,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2146,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2147,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2148,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2149,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2150,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2151,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2152,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2166,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2167,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2168,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2169,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2170,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2171,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2172,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2173,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2174,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2175,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2193,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2194,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2195,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2196,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2197,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2198,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2199,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2200,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2201,
+      "value": "(a)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2202,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2213,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2214,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2215,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2216,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2217,
+      "value": "(b)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2218,
+      "value": "(d)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    },
+    {
+      "table": "questions",
+      "column": "correct",
+      "id": 2219,
+      "value": "(c)",
+      "sqliteType": "string",
+      "reason": "Column is INTEGER in the mapped PostgreSQL schema but this row's stored value cannot be losslessly represented as an integer (SQLite's dynamic typing allowed it to be written anyway)."
+    }
+  ],
+  "startedAt": "2026-09-24T03:53:43.826Z",
+  "status": "COMMITTED_WITH_DISCREPANCIES",
+  "finishedAt": "2026-09-24T03:53:45.648Z"
+}

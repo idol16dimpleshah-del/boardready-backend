@@ -1,0 +1,834 @@
+id,uid,chapter,kind,answerStatus,visualClass,bucket,issues
+4380,cbse-mathematics-heights-and-distances-5a905674,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4381,cbse-mathematics-heights-and-distances-fe33f75d,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4382,cbse-mathematics-heights-and-distances-f7147bec,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4383,cbse-mathematics-heights-and-distances-4bc87aa2,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4385,cbse-mathematics-heights-and-distances-9eba3e31,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4386,cbse-mathematics-heights-and-distances-a8f9735a,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4387,cbse-mathematics-heights-and-distances-9f686d9a,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4388,cbse-mathematics-heights-and-distances-8c97dd91,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4389,cbse-mathematics-heights-and-distances-07f53e64,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4390,cbse-mathematics-heights-and-distances-6ccb2392,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4391,cbse-mathematics-heights-and-distances-7145ccbf,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4392,cbse-mathematics-heights-and-distances-a5b29f35,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4393,cbse-mathematics-heights-and-distances-44f0b5af,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4394,cbse-mathematics-heights-and-distances-11accf45,Application of Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4395,cbse-mathematics-heights-and-distances-841e595d,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4396,cbse-mathematics-heights-and-distances-63506b09,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4397,cbse-mathematics-heights-and-distances-388a0b53,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4398,cbse-mathematics-heights-and-distances-abf803fa,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4399,cbse-mathematics-heights-and-distances-279ac0e6,Application of Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4400,cbse-mathematics-heights-and-distances-5b5a4abb,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4401,cbse-mathematics-heights-and-distances-c8ee4aee,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4402,cbse-mathematics-heights-and-distances-28ac45f0,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4403,cbse-mathematics-heights-and-distances-614e83f7,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4404,cbse-mathematics-heights-and-distances-e87adc81,Application of Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4405,cbse-mathematics-heights-and-distances-c49e5552,Application of Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4406,cbse-mathematics-heights-and-distances-c237a82f,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4407,cbse-mathematics-heights-and-distances-a008ad84,Application of Trigonometry,mcq,verified,not_needed,ready_now,
+4408,cbse-mathematics-heights-and-distances-6c47c150,Application of Trigonometry,case,verified,complete_extracted_image,ready_now,
+4410,cbse-mathematics-heights-and-distances-7ba3cb78,Application of Trigonometry,open,verified,complete_extracted_image,ready_but_flagged,kind_open_not_autogradable
+4424,cbse-mathematics-areas-related-to-circles-052e5138,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4425,cbse-mathematics-areas-related-to-circles-457bb98a,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4426,cbse-mathematics-areas-related-to-circles-2b1e0ea1,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4427,cbse-mathematics-areas-related-to-circles-e48d6502,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4428,cbse-mathematics-areas-related-to-circles-b1789f5f,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4429,cbse-mathematics-areas-related-to-circles-68d2e1ce,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4430,cbse-mathematics-areas-related-to-circles-9412e437,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4431,cbse-mathematics-areas-related-to-circles-92233063,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4432,cbse-mathematics-areas-related-to-circles-b88b7907,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4433,cbse-mathematics-areas-related-to-circles-883be829,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4434,cbse-mathematics-areas-related-to-circles-9c96ed21,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4435,cbse-mathematics-areas-related-to-circles-58c44466,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4436,cbse-mathematics-areas-related-to-circles-e71442a9,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4437,cbse-mathematics-areas-related-to-circles-a74da141,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4438,cbse-mathematics-areas-related-to-circles-fad183c4,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4439,cbse-mathematics-areas-related-to-circles-89e29ccb,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4440,cbse-mathematics-areas-related-to-circles-a00233d6,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4441,cbse-mathematics-areas-related-to-circles-b9076e54,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4442,cbse-mathematics-areas-related-to-circles-50531ebf,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4443,cbse-mathematics-areas-related-to-circles-a3c9226e,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4444,cbse-mathematics-areas-related-to-circles-36cea95c,Areas Related to Circles,mcq,verified,complete_extracted_image,ready_now,
+4445,cbse-mathematics-areas-related-to-circles-4904d613,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4446,cbse-mathematics-areas-related-to-circles-85fc0160,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4447,cbse-mathematics-areas-related-to-circles-92b70ec3,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4448,cbse-mathematics-areas-related-to-circles-f0d78630,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4449,cbse-mathematics-areas-related-to-circles-98adaf2d,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4450,cbse-mathematics-areas-related-to-circles-288bb703,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4451,cbse-mathematics-areas-related-to-circles-1c1dcf17,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4452,cbse-mathematics-areas-related-to-circles-6c619227,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4453,cbse-mathematics-areas-related-to-circles-228d3f2d,Areas Related to Circles,mcq,verified,complete_extracted_image,ready_now,
+4454,cbse-mathematics-areas-related-to-circles-434b76f4,Areas Related to Circles,mcq,verified,complete_extracted_image,ready_now,
+4455,cbse-mathematics-areas-related-to-circles-8fb70032,Areas Related to Circles,mcq,verified,complete_extracted_image,ready_now,
+4456,cbse-mathematics-areas-related-to-circles-e663bdb6,Areas Related to Circles,mcq,verified,complete_extracted_image,ready_now,
+4457,cbse-mathematics-areas-related-to-circles-5b8b9e25,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4458,cbse-mathematics-areas-related-to-circles-f1e75548,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4459,cbse-mathematics-areas-related-to-circles-e0939c7e,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4460,cbse-mathematics-areas-related-to-circles-2f9e94c3,Areas Related to Circles,mcq,verified,missing_no_asset_row,blocked_missing_visual,visual_needed_but_no_asset_row
+4915,cbse-mathematics-areas-related-to-circles-d0994434,Areas Related to Circles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4916,cbse-mathematics-areas-related-to-circles-6fbd5894,Areas Related to Circles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4917,cbse-mathematics-areas-related-to-circles-7bd4e96e,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4918,cbse-mathematics-areas-related-to-circles-d4379bc9,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4920,cbse-mathematics-areas-related-to-circles-4b20cfb5,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4921,cbse-mathematics-areas-related-to-circles-5ca93560,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4922,cbse-mathematics-areas-related-to-circles-0ad451aa,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4923,cbse-mathematics-areas-related-to-circles-10f20926,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4924,cbse-mathematics-areas-related-to-circles-9666c59c,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4925,cbse-mathematics-areas-related-to-circles-831b77c6,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4926,cbse-mathematics-areas-related-to-circles-de6ccf9c,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4927,cbse-mathematics-areas-related-to-circles-d7cfed9c,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4928,cbse-mathematics-areas-related-to-circles-07afa9f0,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4929,cbse-mathematics-areas-related-to-circles-3844f3de,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4930,cbse-mathematics-areas-related-to-circles-b8bd4df6,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4931,cbse-mathematics-areas-related-to-circles-c63395c9,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4932,cbse-mathematics-areas-related-to-circles-e9d27328,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4933,cbse-mathematics-areas-related-to-circles-15d7c982,Areas Related to Circles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4934,cbse-mathematics-areas-related-to-circles-11439538,Areas Related to Circles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4935,cbse-mathematics-areas-related-to-circles-247dc1a6,Areas Related to Circles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4936,cbse-mathematics-areas-related-to-circles-b56222e0,Areas Related to Circles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4937,cbse-mathematics-areas-related-to-circles-ac0e37dc,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4938,cbse-mathematics-areas-related-to-circles-5eda3573,Areas Related to Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4939,cbse-mathematics-areas-related-to-circles-16b6d6d1,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4940,cbse-mathematics-areas-related-to-circles-833c4a12,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4941,cbse-mathematics-areas-related-to-circles-2187b360,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4942,cbse-mathematics-areas-related-to-circles-f728052e,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4943,cbse-mathematics-areas-related-to-circles-7027b1f0,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4944,cbse-mathematics-areas-related-to-circles-47441e84,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4945,cbse-mathematics-areas-related-to-circles-358e0e77,Areas Related to Circles,mcq,verified,not_needed,ready_now,
+4693,cbse-mathematics-arithmetic-progressions-ece32f7e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4694,cbse-mathematics-arithmetic-progressions-8ed6e9a5,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4695,cbse-mathematics-arithmetic-progressions-93e3822c,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4696,cbse-mathematics-arithmetic-progressions-66eea70c,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4697,cbse-mathematics-arithmetic-progressions-80862512,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4698,cbse-mathematics-arithmetic-progressions-c512db3e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4699,cbse-mathematics-arithmetic-progressions-53be2109,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4700,cbse-mathematics-arithmetic-progressions-b6061f33,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4701,cbse-mathematics-arithmetic-progressions-36328f2a,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4702,cbse-mathematics-arithmetic-progressions-4f3f3a1d,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4703,cbse-mathematics-arithmetic-progressions-26fcae38,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4704,cbse-mathematics-arithmetic-progressions-c78a53cd,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4705,cbse-mathematics-arithmetic-progressions-afa72776,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4706,cbse-mathematics-arithmetic-progressions-c2dbf69d,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4707,cbse-mathematics-arithmetic-progressions-2b7b868a,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4708,cbse-mathematics-arithmetic-progressions-1f5d346b,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4709,cbse-mathematics-arithmetic-progressions-7fde936d,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4710,cbse-mathematics-arithmetic-progressions-6b35d8f6,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4711,cbse-mathematics-arithmetic-progressions-28c2e3bb,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4712,cbse-mathematics-arithmetic-progressions-15db7d55,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4713,cbse-mathematics-arithmetic-progressions-6fa15c8c,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4714,cbse-mathematics-arithmetic-progressions-2277616e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4715,cbse-mathematics-arithmetic-progressions-65185b7d,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4716,cbse-mathematics-arithmetic-progressions-b01f271a,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4717,cbse-mathematics-arithmetic-progressions-fc8238c6,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4718,cbse-mathematics-arithmetic-progressions-27218d33,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4719,cbse-mathematics-arithmetic-progressions-102dfae1,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4720,cbse-mathematics-arithmetic-progressions-6bad47cf,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4721,cbse-mathematics-arithmetic-progressions-880e5eb2,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4722,cbse-mathematics-arithmetic-progressions-dbe28cb5,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4723,cbse-mathematics-arithmetic-progressions-a5df9538,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4724,cbse-mathematics-arithmetic-progressions-885bf513,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4725,cbse-mathematics-arithmetic-progressions-8b7d18cf,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4726,cbse-mathematics-arithmetic-progressions-99beb252,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4727,cbse-mathematics-arithmetic-progressions-49bc93c4,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4728,cbse-mathematics-arithmetic-progressions-df52749e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4729,cbse-mathematics-arithmetic-progressions-a05f3e3e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4730,cbse-mathematics-arithmetic-progressions-1ec59ab8,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4731,cbse-mathematics-arithmetic-progressions-710b6e93,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4732,cbse-mathematics-arithmetic-progressions-967c67fe,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4733,cbse-mathematics-arithmetic-progressions-600df7e9,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4734,cbse-mathematics-arithmetic-progressions-eacb4b1b,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4735,cbse-mathematics-arithmetic-progressions-ccd6e7c9,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4736,cbse-mathematics-arithmetic-progressions-23415cee,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4737,cbse-mathematics-arithmetic-progressions-086df6ce,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4738,cbse-mathematics-arithmetic-progressions-c60e1c88,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4739,cbse-mathematics-arithmetic-progressions-6a05db0e,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4740,cbse-mathematics-arithmetic-progressions-a0065ff1,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4741,cbse-mathematics-arithmetic-progressions-b0e0cc76,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4743,cbse-mathematics-arithmetic-progressions-2ebe353d,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4744,cbse-mathematics-arithmetic-progressions-fadb6dbe,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4745,cbse-mathematics-arithmetic-progressions-6f49fc69,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4746,cbse-mathematics-arithmetic-progressions-0a942b23,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4748,cbse-mathematics-arithmetic-progressions-81d7ea12,Arithmetic Progressions,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4749,cbse-mathematics-arithmetic-progressions-8af76948,Arithmetic Progressions,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4750,cbse-mathematics-arithmetic-progressions-69c7ffab,Arithmetic Progressions,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4751,cbse-mathematics-arithmetic-progressions-f79c8384,Arithmetic Progressions,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4752,cbse-mathematics-arithmetic-progressions-544a966e,Arithmetic Progressions,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4753,cbse-mathematics-arithmetic-progressions-e3968e5f,Arithmetic Progressions,open,verified,incomplete_references_source_pdf_only,blocked_missing_visual,kind_open_not_autogradable;visual_not_yet_extracted_into_servable_image
+4754,cbse-mathematics-arithmetic-progressions-94eea4fd,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4755,cbse-mathematics-arithmetic-progressions-8480a422,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4756,cbse-mathematics-arithmetic-progressions-0eb03209,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4757,cbse-mathematics-arithmetic-progressions-587f5dbb,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4758,cbse-mathematics-arithmetic-progressions-65f536c4,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4759,cbse-mathematics-arithmetic-progressions-e54ec915,Arithmetic Progressions,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4760,cbse-mathematics-arithmetic-progressions-59ea53fc,Arithmetic Progressions,mcq,verified,not_needed,ready_now,
+4264,cbse-mathematics-circles-4d22fd74,Circles,mcq,verified,not_needed,ready_now,
+4265,cbse-mathematics-circles-b0cbe1e2,Circles,mcq,verified,not_needed,ready_now,
+4266,cbse-mathematics-circles-3140cf7f,Circles,mcq,verified,not_needed,ready_now,
+4267,cbse-mathematics-circles-754798ed,Circles,mcq,verified,not_needed,ready_now,
+4268,cbse-mathematics-circles-d1c1d151,Circles,mcq,verified,not_needed,ready_now,
+4269,cbse-mathematics-circles-d2ce112c,Circles,mcq,verified,not_needed,ready_now,
+4270,cbse-mathematics-circles-cd8b800c,Circles,mcq,verified,not_needed,ready_now,
+4271,cbse-mathematics-circles-d3e46ccf,Circles,mcq,verified,not_needed,ready_now,
+4272,cbse-mathematics-circles-333bb605,Circles,mcq,verified,not_needed,ready_now,
+4273,cbse-mathematics-circles-591bf494,Circles,mcq,verified,not_needed,ready_now,
+4274,cbse-mathematics-circles-8a498cdd,Circles,mcq,verified,not_needed,ready_now,
+4275,cbse-mathematics-circles-0db7f925,Circles,mcq,verified,not_needed,ready_now,
+4276,cbse-mathematics-circles-204b1b78,Circles,mcq,verified,not_needed,ready_now,
+4277,cbse-mathematics-circles-2cd3337f,Circles,mcq,verified,not_needed,ready_now,
+4278,cbse-mathematics-circles-d5d82a76,Circles,mcq,verified,not_needed,ready_now,
+4279,cbse-mathematics-circles-af706742,Circles,mcq,verified,complete_extracted_image,ready_now,
+4280,cbse-mathematics-circles-fd6cc189,Circles,mcq,verified,complete_extracted_image,ready_now,
+4281,cbse-mathematics-circles-5eb87290,Circles,mcq,verified,not_needed,ready_now,
+4282,cbse-mathematics-circles-3bab9727,Circles,mcq,verified,complete_extracted_image,ready_now,
+4283,cbse-mathematics-circles-baae6aeb,Circles,mcq,verified,complete_extracted_image,ready_now,
+4284,cbse-mathematics-circles-baa936c5,Circles,mcq,verified,complete_extracted_image,ready_now,
+4285,cbse-mathematics-circles-218aeced,Circles,mcq,verified,complete_extracted_image,ready_now,
+4286,cbse-mathematics-circles-68624ada,Circles,mcq,verified,complete_extracted_image,ready_now,
+4287,cbse-mathematics-circles-45955ad1,Circles,mcq,verified,complete_extracted_image,ready_now,
+4288,cbse-mathematics-circles-57db021c,Circles,mcq,verified,complete_extracted_image,ready_now,
+4289,cbse-mathematics-circles-d7f66fcf,Circles,mcq,verified,complete_extracted_image,ready_now,
+4290,cbse-mathematics-circles-0842b40f,Circles,mcq,verified,complete_extracted_image,ready_now,
+4291,cbse-mathematics-circles-717cfce0,Circles,mcq,verified,complete_extracted_image,ready_now,
+4292,cbse-mathematics-circles-5e534b09,Circles,mcq,verified,complete_extracted_image,ready_now,
+4293,cbse-mathematics-circles-f7886da9,Circles,mcq,verified,complete_extracted_image,ready_now,
+4294,cbse-mathematics-circles-9514e5e6,Circles,mcq,verified,complete_extracted_image,ready_now,
+4295,cbse-mathematics-circles-c30c0818,Circles,mcq,verified,complete_extracted_image,ready_now,
+4296,cbse-mathematics-circles-66eef742,Circles,mcq,verified,complete_extracted_image,ready_now,
+4297,cbse-mathematics-circles-d172b321,Circles,mcq,verified,complete_extracted_image,ready_now,
+4298,cbse-mathematics-circles-dfee6828,Circles,mcq,verified,complete_extracted_image,ready_now,
+4299,cbse-mathematics-circles-ced86427,Circles,mcq,verified,complete_extracted_image,ready_now,
+4300,cbse-mathematics-circles-5cb47f99,Circles,mcq,verified,complete_extracted_image,ready_now,
+4301,cbse-mathematics-circles-17c65da6,Circles,mcq,verified,complete_extracted_image,ready_now,
+4302,cbse-mathematics-circles-5b7847bd,Circles,mcq,verified,not_needed,ready_now,
+4303,cbse-mathematics-circles-2c002cbc,Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4304,cbse-mathematics-circles-71250eaf,Circles,mcq,verified,complete_extracted_image,ready_now,
+4305,cbse-mathematics-circles-86348c64,Circles,mcq,verified,complete_extracted_image,ready_now,
+4306,cbse-mathematics-circles-4a5a8a27,Circles,mcq,verified,complete_extracted_image,ready_now,
+4307,cbse-mathematics-circles-add4cda5,Circles,mcq,verified,complete_extracted_image,ready_now,
+4308,cbse-mathematics-circles-461d057e,Circles,mcq,verified,complete_extracted_image,ready_now,
+4309,cbse-mathematics-circles-c2705f85,Circles,mcq,verified,complete_extracted_image,ready_now,
+4310,cbse-mathematics-circles-225d670c,Circles,mcq,verified,complete_extracted_image,ready_now,
+4311,cbse-mathematics-circles-e376d5c8,Circles,mcq,verified,not_needed,ready_now,
+4312,cbse-mathematics-circles-0435087f,Circles,mcq,verified,not_needed,ready_now,
+4313,cbse-mathematics-circles-eed44fc6,Circles,mcq,verified,not_needed,ready_now,
+4314,cbse-mathematics-circles-cb1a48dc,Circles,mcq,verified,complete_extracted_image,ready_now,
+4315,cbse-mathematics-circles-172653d4,Circles,mcq,verified,complete_extracted_image,ready_now,
+4316,cbse-mathematics-circles-128264c4,Circles,mcq,verified,complete_extracted_image,ready_now,
+4317,cbse-mathematics-circles-3eede872,Circles,mcq,verified,complete_extracted_image,ready_now,
+4318,cbse-mathematics-circles-9134ee56,Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4319,cbse-mathematics-circles-528683d7,Circles,mcq,verified,complete_extracted_image,ready_now,
+4320,cbse-mathematics-circles-b36a6043,Circles,mcq,verified,complete_extracted_image,ready_now,
+4321,cbse-mathematics-circles-7c526f00,Circles,mcq,verified,complete_extracted_image,ready_now,
+4322,cbse-mathematics-circles-13ddfef0,Circles,mcq,verified,complete_extracted_image,ready_now,
+4323,cbse-mathematics-circles-2571db3f,Circles,mcq,verified,complete_extracted_image,ready_now,
+4324,cbse-mathematics-circles-55615aad,Circles,mcq,verified,not_needed,ready_now,
+4325,cbse-mathematics-circles-ca41f015,Circles,mcq,verified,not_needed,ready_now,
+4326,cbse-mathematics-circles-15e785f5,Circles,case,verified,complete_extracted_image,ready_now,
+4327,cbse-mathematics-circles-1d9f46ca,Circles,case,verified,complete_extracted_image,ready_now,
+4328,cbse-mathematics-circles-20e545b0,Circles,mcq,verified,not_needed,ready_now,
+4329,cbse-mathematics-circles-2494f5d6,Circles,mcq,verified,not_needed,ready_now,
+4330,cbse-mathematics-circles-6e830aef,Circles,mcq,verified,complete_extracted_image,ready_but_flagged,has_pending_duplicate_flag
+4331,cbse-mathematics-circles-fa18281c,Circles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4332,cbse-mathematics-circles-c28dddac,Circles,mcq,verified,complete_extracted_image,ready_now,
+4333,cbse-mathematics-circles-197107ba,Circles,mcq,verified,not_needed,ready_now,
+4761,cbse-mathematics-co-ordinate-geometry-f4273d57,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4762,cbse-mathematics-co-ordinate-geometry-27efeb6d,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4763,cbse-mathematics-co-ordinate-geometry-3aba9864,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4764,cbse-mathematics-co-ordinate-geometry-958b06cd,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4765,cbse-mathematics-co-ordinate-geometry-cf62dd66,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4766,cbse-mathematics-co-ordinate-geometry-69efdd38,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4767,cbse-mathematics-co-ordinate-geometry-b5f30480,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4768,cbse-mathematics-co-ordinate-geometry-4c76e4bc,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4769,cbse-mathematics-co-ordinate-geometry-3a358bd8,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4770,cbse-mathematics-co-ordinate-geometry-d2503caa,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4771,cbse-mathematics-co-ordinate-geometry-674461e9,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4772,cbse-mathematics-co-ordinate-geometry-63926726,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4773,cbse-mathematics-co-ordinate-geometry-b0edd8de,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4774,cbse-mathematics-co-ordinate-geometry-62c5fa0b,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4775,cbse-mathematics-co-ordinate-geometry-9dba3fdb,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4776,cbse-mathematics-co-ordinate-geometry-6193adff,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4777,cbse-mathematics-co-ordinate-geometry-c94c433c,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4778,cbse-mathematics-co-ordinate-geometry-d946e5e0,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4779,cbse-mathematics-co-ordinate-geometry-14b38317,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4780,cbse-mathematics-co-ordinate-geometry-5b68cfd5,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4781,cbse-mathematics-co-ordinate-geometry-0aabe27c,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4782,cbse-mathematics-co-ordinate-geometry-e0346b66,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4783,cbse-mathematics-co-ordinate-geometry-64b65912,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4784,cbse-mathematics-co-ordinate-geometry-a978de0e,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4785,cbse-mathematics-co-ordinate-geometry-e457f3f8,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4786,cbse-mathematics-co-ordinate-geometry-57e88dc9,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4787,cbse-mathematics-co-ordinate-geometry-c39773fe,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4788,cbse-mathematics-co-ordinate-geometry-db52b7e0,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4789,cbse-mathematics-co-ordinate-geometry-71efdf0d,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4790,cbse-mathematics-co-ordinate-geometry-e7add973,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4791,cbse-mathematics-co-ordinate-geometry-fe4154ec,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4792,cbse-mathematics-co-ordinate-geometry-93b4b7d5,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4793,cbse-mathematics-co-ordinate-geometry-4a21d2d8,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4794,cbse-mathematics-co-ordinate-geometry-6979dd92,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4795,cbse-mathematics-co-ordinate-geometry-13ebba7d,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4796,cbse-mathematics-co-ordinate-geometry-4e07772f,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4797,cbse-mathematics-co-ordinate-geometry-bf2d853c,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4798,cbse-mathematics-co-ordinate-geometry-6ff9ab48,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4799,cbse-mathematics-co-ordinate-geometry-45087503,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4800,cbse-mathematics-co-ordinate-geometry-605e676a,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4801,cbse-mathematics-co-ordinate-geometry-ebedb1b4,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4802,cbse-mathematics-co-ordinate-geometry-2fdcdf53,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4803,cbse-mathematics-co-ordinate-geometry-5ff53ce7,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4804,cbse-mathematics-co-ordinate-geometry-c73e56d6,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4805,cbse-mathematics-co-ordinate-geometry-2ee0d658,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4806,cbse-mathematics-co-ordinate-geometry-193e2f33,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4807,cbse-mathematics-co-ordinate-geometry-fa222892,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4808,cbse-mathematics-co-ordinate-geometry-18247b72,Co-ordinate Geometry,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4809,cbse-mathematics-co-ordinate-geometry-64cbe955,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4810,cbse-mathematics-co-ordinate-geometry-04dcc543,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4811,cbse-mathematics-co-ordinate-geometry-774a9ea6,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4812,cbse-mathematics-co-ordinate-geometry-751cdb18,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4813,cbse-mathematics-co-ordinate-geometry-253a082a,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4814,cbse-mathematics-co-ordinate-geometry-bc7542e2,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4815,cbse-mathematics-co-ordinate-geometry-fa2d23c2,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4816,cbse-mathematics-co-ordinate-geometry-c8862b6d,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4817,cbse-mathematics-co-ordinate-geometry-61dcdad5,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4818,cbse-mathematics-co-ordinate-geometry-88e4f80c,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4819,cbse-mathematics-co-ordinate-geometry-29127a24,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4820,cbse-mathematics-co-ordinate-geometry-626fd04e,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4821,cbse-mathematics-co-ordinate-geometry-d48f6117,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4822,cbse-mathematics-co-ordinate-geometry-792db4be,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4823,cbse-mathematics-co-ordinate-geometry-ba2f6976,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4824,cbse-mathematics-co-ordinate-geometry-cc4b225d,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4825,cbse-mathematics-co-ordinate-geometry-0b161ef3,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4826,cbse-mathematics-co-ordinate-geometry-73f728bc,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4827,cbse-mathematics-co-ordinate-geometry-ec5426fe,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4828,cbse-mathematics-co-ordinate-geometry-0fb9a8c0,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4829,cbse-mathematics-co-ordinate-geometry-a98d8aae,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4830,cbse-mathematics-co-ordinate-geometry-b7e8ec05,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4832,cbse-mathematics-co-ordinate-geometry-bb16e54b,Co-ordinate Geometry,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4834,cbse-mathematics-co-ordinate-geometry-0ff56c8a,Co-ordinate Geometry,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4835,cbse-mathematics-co-ordinate-geometry-e4594357,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4836,cbse-mathematics-co-ordinate-geometry-883cc142,Co-ordinate Geometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4837,cbse-mathematics-co-ordinate-geometry-a6600f3a,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4838,cbse-mathematics-co-ordinate-geometry-61b64801,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4839,cbse-mathematics-co-ordinate-geometry-365a1f4d,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4840,cbse-mathematics-co-ordinate-geometry-438ad0c0,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4841,cbse-mathematics-co-ordinate-geometry-e566aadb,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4842,cbse-mathematics-co-ordinate-geometry-d1e39913,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4843,cbse-mathematics-co-ordinate-geometry-9c3b36fa,Co-ordinate Geometry,mcq,verified,not_needed,ready_now,
+4334,cbse-mathematics-trigonometric-identities-4675dda6,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4335,cbse-mathematics-trigonometric-identities-9f2614e7,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4336,cbse-mathematics-trigonometric-identities-a9f4b7f2,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4337,cbse-mathematics-trigonometric-identities-9de0b8b7,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4338,cbse-mathematics-trigonometric-identities-80661275,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4339,cbse-mathematics-trigonometric-identities-649b01d0,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4340,cbse-mathematics-trigonometric-identities-c1be2436,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4341,cbse-mathematics-trigonometric-identities-1e1bbd33,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4342,cbse-mathematics-trigonometric-identities-54c39aa2,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4343,cbse-mathematics-trigonometric-identities-7479bfe2,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4344,cbse-mathematics-trigonometric-identities-203e5736,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4345,cbse-mathematics-trigonometric-identities-e5e5becb,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4346,cbse-mathematics-trigonometric-identities-575a9a6a,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4347,cbse-mathematics-trigonometric-identities-b23506ca,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4348,cbse-mathematics-trigonometric-identities-ae40891f,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4349,cbse-mathematics-trigonometric-identities-565d9a43,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4350,cbse-mathematics-trigonometric-identities-82ed8609,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4351,cbse-mathematics-trigonometric-identities-8a41179e,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4352,cbse-mathematics-trigonometric-identities-cd7db039,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4353,cbse-mathematics-trigonometric-identities-1165cfde,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4354,cbse-mathematics-trigonometric-identities-507adaf3,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4355,cbse-mathematics-trigonometric-identities-e6286937,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4356,cbse-mathematics-trigonometric-identities-05a51544,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4357,cbse-mathematics-trigonometric-identities-7d510d67,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4358,cbse-mathematics-trigonometric-identities-059ce1e5,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4359,cbse-mathematics-trigonometric-identities-9ab194ca,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4360,cbse-mathematics-trigonometric-identities-946eb74d,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4361,cbse-mathematics-trigonometric-identities-33e88f5e,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4362,cbse-mathematics-trigonometric-identities-92d0139e,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4363,cbse-mathematics-trigonometric-identities-3634c240,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4364,cbse-mathematics-trigonometric-identities-2a0bcec7,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4365,cbse-mathematics-trigonometric-identities-b0b48e01,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4366,cbse-mathematics-trigonometric-identities-e070db97,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4367,cbse-mathematics-trigonometric-identities-45a44753,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4368,cbse-mathematics-trigonometric-identities-e3a92414,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4369,cbse-mathematics-trigonometric-identities-db983b9e,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4370,cbse-mathematics-trigonometric-identities-fe8c7389,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4371,cbse-mathematics-trigonometric-identities-2c0a8688,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4372,cbse-mathematics-trigonometric-identities-5f203d1a,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4373,cbse-mathematics-trigonometric-identities-fd52fd83,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4374,cbse-mathematics-trigonometric-identities-61b4afc4,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4375,cbse-mathematics-trigonometric-identities-f8112858,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4376,cbse-mathematics-trigonometric-identities-e89497e8,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4377,cbse-mathematics-trigonometric-identities-5004af87,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4378,cbse-mathematics-trigonometric-identities-2284fde2,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4379,cbse-mathematics-trigonometric-identities-7416c7ea,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4411,cbse-mathematics-trigonometric-ratios-0721e6cf,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4412,cbse-mathematics-trigonometric-ratios-1a0bc94f,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4414,cbse-mathematics-trigonometric-ratios-c2f1ccf8,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4415,cbse-mathematics-trigonometric-ratios-39f0607e,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4416,cbse-mathematics-trigonometric-ratios-4a0f606b,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4417,cbse-mathematics-trigonometric-ratios-10dfd323,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4418,cbse-mathematics-trigonometric-ratios-a81bab3b,Introduction to Trigonometry,case,verified,complete_extracted_image,ready_now,
+4419,cbse-mathematics-trigonometric-ratios-0380ed90,Introduction to Trigonometry,case,verified,complete_extracted_image,ready_now,
+4420,cbse-mathematics-trigonometric-ratios-46096398,Introduction to Trigonometry,open,verified,complete_extracted_image,ready_but_flagged,kind_open_not_autogradable
+4421,cbse-mathematics-trigonometric-ratios-6567c1ba,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4422,cbse-mathematics-trigonometric-ratios-f56deac6,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4423,cbse-mathematics-trigonometric-ratios-668c9309,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4891,cbse-mathematics-introduction-to-trigonometry-5d5992de,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4892,cbse-mathematics-introduction-to-trigonometry-19731a9d,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4893,cbse-mathematics-introduction-to-trigonometry-b7be8024,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4894,cbse-mathematics-introduction-to-trigonometry-2fa34027,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4895,cbse-mathematics-introduction-to-trigonometry-b96be537,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4896,cbse-mathematics-introduction-to-trigonometry-37bb8cbc,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4897,cbse-mathematics-introduction-to-trigonometry-a25afbdc,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4898,cbse-mathematics-introduction-to-trigonometry-38fc88a8,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4899,cbse-mathematics-introduction-to-trigonometry-a0ed42c3,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4900,cbse-mathematics-introduction-to-trigonometry-080a90ac,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4901,cbse-mathematics-introduction-to-trigonometry-e6099c62,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4902,cbse-mathematics-introduction-to-trigonometry-d287d1ac,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4903,cbse-mathematics-introduction-to-trigonometry-240ce0c8,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4904,cbse-mathematics-introduction-to-trigonometry-336ceb49,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4905,cbse-mathematics-introduction-to-trigonometry-7d9dd5bf,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4906,cbse-mathematics-introduction-to-trigonometry-9e28b280,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4907,cbse-mathematics-introduction-to-trigonometry-c0a68992,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4908,cbse-mathematics-introduction-to-trigonometry-4c65c7ef,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4909,cbse-mathematics-introduction-to-trigonometry-8905607c,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4910,cbse-mathematics-introduction-to-trigonometry-aecd1ada,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4911,cbse-mathematics-introduction-to-trigonometry-1285e276,Introduction to Trigonometry,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4912,cbse-mathematics-introduction-to-trigonometry-6cb14a52,Introduction to Trigonometry,mcq,verified,not_needed,ready_now,
+4913,cbse-mathematics-introduction-to-trigonometry-34cd8a91,Introduction to Trigonometry,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4914,cbse-mathematics-introduction-to-trigonometry-cf944986,Introduction to Trigonometry,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4594,cbse-mathematics-pair-of-linear-equations-in-two-variables-999acd06,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4595,cbse-mathematics-pair-of-linear-equations-in-two-variables-3cd8d85c,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4598,cbse-mathematics-pair-of-linear-equations-in-two-variables-027e5991,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4599,cbse-mathematics-pair-of-linear-equations-in-two-variables-6fd153e1,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4600,cbse-mathematics-pair-of-linear-equations-in-two-variables-4c2bd5db,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4601,cbse-mathematics-pair-of-linear-equations-in-two-variables-6bf4f955,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4602,cbse-mathematics-pair-of-linear-equations-in-two-variables-ce8070ae,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4603,cbse-mathematics-pair-of-linear-equations-in-two-variables-208148d6,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4604,cbse-mathematics-pair-of-linear-equations-in-two-variables-8280ab91,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4605,cbse-mathematics-pair-of-linear-equations-in-two-variables-dd28b08e,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4606,cbse-mathematics-pair-of-linear-equations-in-two-variables-11048780,Pair of Linear Equations in Two Variables,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4607,cbse-mathematics-pair-of-linear-equations-in-two-variables-34c3c01d,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4608,cbse-mathematics-pair-of-linear-equations-in-two-variables-a5df8b12,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4609,cbse-mathematics-pair-of-linear-equations-in-two-variables-481c4ddc,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4610,cbse-mathematics-pair-of-linear-equations-in-two-variables-a989f1ed,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4611,cbse-mathematics-pair-of-linear-equations-in-two-variables-39da2d72,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4612,cbse-mathematics-pair-of-linear-equations-in-two-variables-0cd3406c,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4613,cbse-mathematics-pair-of-linear-equations-in-two-variables-00d457f8,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4614,cbse-mathematics-pair-of-linear-equations-in-two-variables-87beaac3,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4615,cbse-mathematics-pair-of-linear-equations-in-two-variables-f4f31673,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4616,cbse-mathematics-pair-of-linear-equations-in-two-variables-e0f0fc4f,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4617,cbse-mathematics-pair-of-linear-equations-in-two-variables-fb04e4ed,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4618,cbse-mathematics-pair-of-linear-equations-in-two-variables-a30f6450,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4619,cbse-mathematics-pair-of-linear-equations-in-two-variables-02e39ba5,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4621,cbse-mathematics-pair-of-linear-equations-in-two-variables-bccddce7,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4623,cbse-mathematics-pair-of-linear-equations-in-two-variables-27518641,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4624,cbse-mathematics-pair-of-linear-equations-in-two-variables-30160af0,Pair of Linear Equations in Two Variables,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4625,cbse-mathematics-pair-of-linear-equations-in-two-variables-6c56bf7f,Pair of Linear Equations in Two Variables,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4626,cbse-mathematics-pair-of-linear-equations-in-two-variables-f1614268,Pair of Linear Equations in Two Variables,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4627,cbse-mathematics-pair-of-linear-equations-in-two-variables-fb65158f,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4628,cbse-mathematics-pair-of-linear-equations-in-two-variables-d128a68e,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4629,cbse-mathematics-pair-of-linear-equations-in-two-variables-ae214062,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4630,cbse-mathematics-pair-of-linear-equations-in-two-variables-479cadfa,Pair of Linear Equations in Two Variables,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4631,cbse-mathematics-pair-of-linear-equations-in-two-variables-614d3eb4,Pair of Linear Equations in Two Variables,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4632,cbse-mathematics-pair-of-linear-equations-in-two-variables-2800f728,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4633,cbse-mathematics-pair-of-linear-equations-in-two-variables-db57629f,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4634,cbse-mathematics-pair-of-linear-equations-in-two-variables-80b6db23,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4635,cbse-mathematics-pair-of-linear-equations-in-two-variables-660bf010,Pair of Linear Equations in Two Variables,mcq,verified,not_needed,ready_now,
+4531,cbse-mathematics-polynomials-3a2037ca,Polynomials,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4532,cbse-mathematics-polynomials-0f89abc4,Polynomials,mcq,verified,not_needed,ready_now,
+4533,cbse-mathematics-polynomials-b83cded3,Polynomials,mcq,verified,not_needed,ready_now,
+4534,cbse-mathematics-polynomials-b181a63a,Polynomials,mcq,verified,not_needed,ready_now,
+4535,cbse-mathematics-polynomials-6d651ad7,Polynomials,mcq,verified,not_needed,ready_now,
+4536,cbse-mathematics-polynomials-bd2f3c42,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4537,cbse-mathematics-polynomials-b5d4ec5d,Polynomials,mcq,verified,not_needed,ready_now,
+4538,cbse-mathematics-polynomials-e662dabc,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4539,cbse-mathematics-polynomials-cab0b5af,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4540,cbse-mathematics-polynomials-0a1d886d,Polynomials,mcq,verified,not_needed,ready_now,
+4541,cbse-mathematics-polynomials-e15a4700,Polynomials,mcq,verified,not_needed,ready_now,
+4542,cbse-mathematics-polynomials-6d2c439d,Polynomials,mcq,verified,not_needed,ready_now,
+4543,cbse-mathematics-polynomials-4c4038fa,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4544,cbse-mathematics-polynomials-a21d5cb8,Polynomials,mcq,verified,not_needed,ready_now,
+4545,cbse-mathematics-polynomials-f2bf7876,Polynomials,mcq,verified,not_needed,ready_now,
+4546,cbse-mathematics-polynomials-a82917f8,Polynomials,mcq,verified,not_needed,ready_now,
+4547,cbse-mathematics-polynomials-0d2c1e11,Polynomials,mcq,verified,not_needed,ready_now,
+4548,cbse-mathematics-polynomials-2e6a815e,Polynomials,mcq,verified,not_needed,ready_now,
+4549,cbse-mathematics-polynomials-add5a8b3,Polynomials,mcq,verified,not_needed,ready_now,
+4550,cbse-mathematics-polynomials-ad0226f8,Polynomials,mcq,verified,not_needed,ready_now,
+4551,cbse-mathematics-polynomials-d3164b5d,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4552,cbse-mathematics-polynomials-6c2e80c9,Polynomials,mcq,verified,not_needed,ready_now,
+4553,cbse-mathematics-polynomials-f670b75a,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4554,cbse-mathematics-polynomials-ae240cea,Polynomials,mcq,verified,not_needed,ready_now,
+4555,cbse-mathematics-polynomials-2ff08be5,Polynomials,mcq,verified,not_needed,ready_now,
+4556,cbse-mathematics-polynomials-376d49b8,Polynomials,mcq,verified,not_needed,ready_now,
+4557,cbse-mathematics-polynomials-e44ca55e,Polynomials,mcq,verified,not_needed,ready_now,
+4558,cbse-mathematics-polynomials-9d00ff9a,Polynomials,mcq,verified,not_needed,ready_now,
+4559,cbse-mathematics-polynomials-feca6a67,Polynomials,mcq,verified,not_needed,ready_now,
+4560,cbse-mathematics-polynomials-45c6ee21,Polynomials,mcq,verified,not_needed,ready_now,
+4561,cbse-mathematics-polynomials-5ca75ea6,Polynomials,mcq,verified,not_needed,ready_now,
+4562,cbse-mathematics-polynomials-5ff91ae6,Polynomials,mcq,verified,not_needed,ready_now,
+4563,cbse-mathematics-polynomials-26d3063c,Polynomials,mcq,verified,not_needed,ready_now,
+4564,cbse-mathematics-polynomials-f2b357cf,Polynomials,mcq,verified,not_needed,ready_now,
+4565,cbse-mathematics-polynomials-d0b4be58,Polynomials,mcq,verified,not_needed,ready_now,
+4566,cbse-mathematics-polynomials-76569bf9,Polynomials,mcq,verified,not_needed,ready_now,
+4567,cbse-mathematics-polynomials-9b0072bd,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4568,cbse-mathematics-polynomials-60750e8c,Polynomials,mcq,verified,not_needed,ready_now,
+4569,cbse-mathematics-polynomials-c8d33f9f,Polynomials,mcq,verified,not_needed,ready_now,
+4570,cbse-mathematics-polynomials-389601b2,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4571,cbse-mathematics-polynomials-6cd0dcbc,Polynomials,mcq,verified,not_needed,ready_now,
+4572,cbse-mathematics-polynomials-55c403d0,Polynomials,mcq,verified,not_needed,ready_now,
+4573,cbse-mathematics-polynomials-eebeda84,Polynomials,mcq,verified,not_needed,ready_now,
+4574,cbse-mathematics-polynomials-82343e57,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4575,cbse-mathematics-polynomials-752a6e3e,Polynomials,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4576,cbse-mathematics-polynomials-07bb60be,Polynomials,mcq,verified,not_needed,ready_now,
+4577,cbse-mathematics-polynomials-11c56e9b,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4578,cbse-mathematics-polynomials-ff085c0e,Polynomials,mcq,verified,not_needed,ready_now,
+4579,cbse-mathematics-polynomials-f8b29f89,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4580,cbse-mathematics-polynomials-03cd6312,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4581,cbse-mathematics-polynomials-400151e4,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4582,cbse-mathematics-polynomials-cc298a87,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4583,cbse-mathematics-polynomials-fba554c5,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4584,cbse-mathematics-polynomials-26b7a584,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4585,cbse-mathematics-polynomials-b08dc3c4,Polynomials,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4586,cbse-mathematics-polynomials-e62a2cc2,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4587,cbse-mathematics-polynomials-2c005cba,Polynomials,mcq,verified,not_needed,ready_now,
+4588,cbse-mathematics-polynomials-ec2b3790,Polynomials,mcq,verified,not_needed,ready_now,
+4589,cbse-mathematics-polynomials-a6d26fd2,Polynomials,mcq,verified,not_needed,ready_now,
+4590,cbse-mathematics-polynomials-469a3495,Polynomials,mcq,verified,not_needed,ready_now,
+4591,cbse-mathematics-polynomials-a456df66,Polynomials,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4592,cbse-mathematics-polynomials-2d903505,Polynomials,mcq,verified,not_needed,ready_now,
+4593,cbse-mathematics-polynomials-d4ec4484,Polynomials,mcq,verified,not_needed,ready_now,
+2682,cbse-mathematics-probability-a7506dac,Probability,mcq,source_provided,not_needed,ready_now,
+2683,cbse-mathematics-probability-c40bc1fd,Probability,mcq,source_provided,not_needed,ready_now,
+2684,cbse-mathematics-probability-14895918,Probability,mcq,source_provided,not_needed,ready_now,
+2685,cbse-mathematics-probability-6f0b7cbe,Probability,mcq,source_provided,not_needed,ready_now,
+2686,cbse-mathematics-probability-1052a494,Probability,mcq,source_provided,not_needed,ready_now,
+2687,cbse-mathematics-probability-e662963a,Probability,mcq,source_provided,not_needed,ready_now,
+2688,cbse-mathematics-probability-3318b247,Probability,mcq,source_provided,not_needed,ready_now,
+2689,cbse-mathematics-probability-ed2eb436,Probability,mcq,source_provided,not_needed,ready_now,
+2690,cbse-mathematics-probability-c09a3313,Probability,mcq,source_provided,not_needed,ready_now,
+2691,cbse-mathematics-probability-77d3e11b,Probability,mcq,source_provided,not_needed,ready_now,
+2692,cbse-mathematics-probability-6d49f970,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2693,cbse-mathematics-probability-d5a0667b,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2694,cbse-mathematics-probability-0c4a0d9a,Probability,mcq,source_provided,not_needed,ready_now,
+2695,cbse-mathematics-probability-212133e8,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2696,cbse-mathematics-probability-ce69be2c,Probability,mcq,source_provided,not_needed,ready_now,
+2697,cbse-mathematics-probability-9c3225b0,Probability,mcq,source_provided,not_needed,ready_now,
+2698,cbse-mathematics-probability-41ea08dd,Probability,mcq,source_provided,not_needed,ready_now,
+2699,cbse-mathematics-probability-52cbf51e,Probability,mcq,source_provided,not_needed,ready_now,
+2700,cbse-mathematics-probability-cd22cc01,Probability,mcq,source_provided,not_needed,ready_now,
+2701,cbse-mathematics-probability-9c33e60f,Probability,mcq,source_provided,not_needed,ready_now,
+2702,cbse-mathematics-probability-9b5a5fcb,Probability,mcq,source_provided,not_needed,ready_now,
+2703,cbse-mathematics-probability-a6fb2fe6,Probability,mcq,source_provided,not_needed,ready_now,
+2704,cbse-mathematics-probability-a9b41ca3,Probability,mcq,source_provided,not_needed,ready_now,
+2705,cbse-mathematics-probability-5d95654c,Probability,mcq,source_provided,not_needed,ready_now,
+2706,cbse-mathematics-probability-2f930a4e,Probability,mcq,source_provided,not_needed,ready_now,
+2707,cbse-mathematics-probability-b0ae2172,Probability,mcq,source_provided,not_needed,ready_now,
+2708,cbse-mathematics-probability-25baccda,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2709,cbse-mathematics-probability-9305cc61,Probability,mcq,source_provided,not_needed,ready_now,
+2710,cbse-mathematics-probability-637fa988,Probability,mcq,source_provided,not_needed,ready_now,
+2711,cbse-mathematics-probability-91475ab1,Probability,mcq,source_provided,not_needed,ready_now,
+2712,cbse-mathematics-probability-ad64ad1d,Probability,mcq,source_provided,not_needed,ready_now,
+2713,cbse-mathematics-probability-bf69726d,Probability,mcq,source_provided,not_needed,ready_now,
+2714,cbse-mathematics-probability-4dbfc050,Probability,mcq,source_provided,not_needed,ready_now,
+2715,cbse-mathematics-probability-e3d97d0d,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2716,cbse-mathematics-probability-45b39833,Probability,mcq,source_provided,not_needed,ready_now,
+2717,cbse-mathematics-probability-b9c326ae,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2718,cbse-mathematics-probability-3e955774,Probability,mcq,source_provided,not_needed,ready_now,
+2719,cbse-mathematics-probability-e362ecfc,Probability,mcq,source_provided,not_needed,ready_now,
+2720,cbse-mathematics-probability-19c2ddd0,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2721,cbse-mathematics-probability-f7db0838,Probability,mcq,source_provided,not_needed,ready_now,
+2722,cbse-mathematics-probability-10a25bd7,Probability,mcq,source_provided,not_needed,ready_now,
+2723,cbse-mathematics-probability-978dc5ef,Probability,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2724,cbse-mathematics-probability-e76aed9d,Probability,mcq,source_provided,not_needed,ready_now,
+2725,cbse-mathematics-probability-1b19fdd7,Probability,mcq,source_provided,not_needed,ready_now,
+2726,cbse-mathematics-probability-4a6c0b2d,Probability,mcq,source_provided,not_needed,ready_now,
+2727,cbse-mathematics-probability-92046b34,Probability,mcq,source_provided,not_needed,ready_now,
+2728,cbse-mathematics-probability-b08c0d52,Probability,mcq,source_provided,not_needed,ready_now,
+2729,cbse-mathematics-probability-c9082369,Probability,mcq,source_provided,not_needed,ready_now,
+2730,cbse-mathematics-probability-48dd9498,Probability,mcq,source_provided,not_needed,ready_now,
+2731,cbse-mathematics-probability-799d1867,Probability,mcq,source_provided,not_needed,ready_now,
+2732,cbse-mathematics-probability-39ffb3ca,Probability,mcq,source_provided,not_needed,ready_now,
+2733,cbse-mathematics-probability-c6efc240,Probability,mcq,source_provided,not_needed,ready_now,
+2734,cbse-mathematics-probability-cd95088c,Probability,mcq,source_provided,not_needed,ready_now,
+2735,cbse-mathematics-probability-8bde0f2c,Probability,mcq,source_provided,not_needed,ready_now,
+2736,cbse-mathematics-probability-a55096e6,Probability,mcq,source_provided,not_needed,ready_now,
+2737,cbse-mathematics-probability-eaf7a0ce,Probability,mcq,source_provided,not_needed,ready_now,
+2738,cbse-mathematics-probability-30c98931,Probability,mcq,source_provided,not_needed,ready_now,
+2739,cbse-mathematics-probability-f9cfab35,Probability,mcq,source_provided,not_needed,ready_now,
+2740,cbse-mathematics-probability-cf1605b4,Probability,mcq,source_provided,not_needed,ready_now,
+2741,cbse-mathematics-probability-5963139c,Probability,mcq,source_provided,not_needed,ready_now,
+4636,cbse-mathematics-quadratic-equations-b79c96b3,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4637,cbse-mathematics-quadratic-equations-70bb3478,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4638,cbse-mathematics-quadratic-equations-9ce90cd3,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4639,cbse-mathematics-quadratic-equations-37bd5d9b,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4640,cbse-mathematics-quadratic-equations-0ee587d1,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4641,cbse-mathematics-quadratic-equations-9b9def28,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4642,cbse-mathematics-quadratic-equations-1ad0c18c,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4643,cbse-mathematics-quadratic-equations-7bb831f9,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4644,cbse-mathematics-quadratic-equations-5bd2f073,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4645,cbse-mathematics-quadratic-equations-6f6b37b3,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4646,cbse-mathematics-quadratic-equations-0394f402,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4647,cbse-mathematics-quadratic-equations-2d7d0d03,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4648,cbse-mathematics-quadratic-equations-f9b120ae,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4649,cbse-mathematics-quadratic-equations-702f6d57,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4650,cbse-mathematics-quadratic-equations-dcfb35ec,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4651,cbse-mathematics-quadratic-equations-c4d82213,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4653,cbse-mathematics-quadratic-equations-0ba2a97f,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4654,cbse-mathematics-quadratic-equations-315bcd52,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4656,cbse-mathematics-quadratic-equations-483c3ce1,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4657,cbse-mathematics-quadratic-equations-07e7bd00,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4658,cbse-mathematics-quadratic-equations-253f211c,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4659,cbse-mathematics-quadratic-equations-d52306e7,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4660,cbse-mathematics-quadratic-equations-7bb284ec,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4661,cbse-mathematics-quadratic-equations-b99ecca6,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4662,cbse-mathematics-quadratic-equations-5d3d3ec3,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4663,cbse-mathematics-quadratic-equations-0b1dd543,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4664,cbse-mathematics-quadratic-equations-0419057b,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4665,cbse-mathematics-quadratic-equations-a21efcaa,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4666,cbse-mathematics-quadratic-equations-4d7d346a,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4667,cbse-mathematics-quadratic-equations-9ecfb9a0,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4668,cbse-mathematics-quadratic-equations-be57e58f,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4669,cbse-mathematics-quadratic-equations-fce84b85,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4670,cbse-mathematics-quadratic-equations-0821b529,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4671,cbse-mathematics-quadratic-equations-2355c5b4,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4672,cbse-mathematics-quadratic-equations-9763a61e,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4673,cbse-mathematics-quadratic-equations-e03f0ebd,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4674,cbse-mathematics-quadratic-equations-d8da4395,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4675,cbse-mathematics-quadratic-equations-e8447337,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4676,cbse-mathematics-quadratic-equations-cfbaaee5,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4677,cbse-mathematics-quadratic-equations-51113935,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4678,cbse-mathematics-quadratic-equations-1279e75d,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4680,cbse-mathematics-quadratic-equations-1de77dab,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4681,cbse-mathematics-quadratic-equations-f93ad5fb,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4682,cbse-mathematics-quadratic-equations-329a66f6,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4683,cbse-mathematics-quadratic-equations-8b00a3a5,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4684,cbse-mathematics-quadratic-equations-04e66951,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4685,cbse-mathematics-quadratic-equations-6fbdd109,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4686,cbse-mathematics-quadratic-equations-15cebce4,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4687,cbse-mathematics-quadratic-equations-3f949c0e,Quadratic Equations,case,verified,not_needed,ready_now,
+4688,cbse-mathematics-quadratic-equations-38b5633c,Quadratic Equations,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4689,cbse-mathematics-quadratic-equations-8578cb82,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4690,cbse-mathematics-quadratic-equations-277f6b69,Quadratic Equations,mcq,verified,not_needed,ready_now,
+4691,cbse-mathematics-quadratic-equations-ae6df7dd,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4692,cbse-mathematics-quadratic-equations-740bd165,Quadratic Equations,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4461,cbse-mathematics-real-numbers-9218b022,Real Numbers,mcq,verified,not_needed,ready_now,
+4462,cbse-mathematics-real-numbers-da0ce56a,Real Numbers,mcq,verified,not_needed,ready_now,
+4463,cbse-mathematics-real-numbers-4c942ade,Real Numbers,mcq,verified,not_needed,ready_now,
+4464,cbse-mathematics-real-numbers-58b598fa,Real Numbers,mcq,verified,not_needed,ready_now,
+4465,cbse-mathematics-real-numbers-90ee4e7c,Real Numbers,mcq,verified,not_needed,ready_now,
+4466,cbse-mathematics-real-numbers-68ea6478,Real Numbers,mcq,verified,not_needed,ready_now,
+4467,cbse-mathematics-real-numbers-3e83dd7a,Real Numbers,mcq,verified,not_needed,ready_now,
+4468,cbse-mathematics-real-numbers-a5cae7d8,Real Numbers,mcq,verified,not_needed,ready_now,
+4469,cbse-mathematics-real-numbers-b935a4ca,Real Numbers,mcq,verified,not_needed,ready_now,
+4470,cbse-mathematics-real-numbers-86840735,Real Numbers,mcq,verified,not_needed,ready_now,
+4471,cbse-mathematics-real-numbers-8ec6f284,Real Numbers,mcq,verified,not_needed,ready_now,
+4472,cbse-mathematics-real-numbers-185428b5,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4473,cbse-mathematics-real-numbers-dffaebd6,Real Numbers,mcq,verified,not_needed,ready_now,
+4474,cbse-mathematics-real-numbers-17dcbf35,Real Numbers,mcq,verified,not_needed,ready_now,
+4477,cbse-mathematics-real-numbers-d0d5db94,Real Numbers,mcq,verified,not_needed,ready_now,
+4478,cbse-mathematics-real-numbers-afe289bd,Real Numbers,mcq,verified,not_needed,ready_now,
+4479,cbse-mathematics-real-numbers-e5ce35a4,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4480,cbse-mathematics-real-numbers-0d28b7f0,Real Numbers,mcq,verified,not_needed,ready_now,
+4482,cbse-mathematics-real-numbers-b84157a4,Real Numbers,mcq,verified,not_needed,ready_now,
+4484,cbse-mathematics-real-numbers-ca1f796a,Real Numbers,mcq,verified,not_needed,ready_now,
+4485,cbse-mathematics-real-numbers-55ab5194,Real Numbers,mcq,verified,not_needed,ready_now,
+4486,cbse-mathematics-real-numbers-db39aac7,Real Numbers,mcq,verified,not_needed,ready_now,
+4487,cbse-mathematics-real-numbers-a9ad07dd,Real Numbers,mcq,verified,not_needed,ready_now,
+4488,cbse-mathematics-real-numbers-8bfb9eab,Real Numbers,mcq,verified,not_needed,ready_now,
+4489,cbse-mathematics-real-numbers-31e6f5be,Real Numbers,mcq,verified,not_needed,ready_now,
+4491,cbse-mathematics-real-numbers-e5453f3f,Real Numbers,mcq,verified,not_needed,ready_now,
+4493,cbse-mathematics-real-numbers-af71b030,Real Numbers,mcq,verified,not_needed,ready_now,
+4494,cbse-mathematics-real-numbers-8eca60ca,Real Numbers,mcq,verified,not_needed,ready_now,
+4495,cbse-mathematics-real-numbers-450181ec,Real Numbers,mcq,verified,not_needed,ready_now,
+4496,cbse-mathematics-real-numbers-f4820ddd,Real Numbers,mcq,verified,not_needed,ready_now,
+4497,cbse-mathematics-real-numbers-8de7971d,Real Numbers,mcq,verified,not_needed,ready_now,
+4498,cbse-mathematics-real-numbers-bd9abc51,Real Numbers,mcq,verified,not_needed,ready_now,
+4499,cbse-mathematics-real-numbers-1ea901a8,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4500,cbse-mathematics-real-numbers-49469eef,Real Numbers,mcq,verified,not_needed,ready_now,
+4501,cbse-mathematics-real-numbers-ea9e24ea,Real Numbers,mcq,verified,not_needed,ready_now,
+4502,cbse-mathematics-real-numbers-e012085c,Real Numbers,mcq,verified,not_needed,ready_now,
+4503,cbse-mathematics-real-numbers-f800eff1,Real Numbers,mcq,verified,not_needed,ready_now,
+4504,cbse-mathematics-real-numbers-2c9bd444,Real Numbers,mcq,verified,not_needed,ready_now,
+4505,cbse-mathematics-real-numbers-ccab5997,Real Numbers,mcq,verified,not_needed,ready_now,
+4506,cbse-mathematics-real-numbers-7f133622,Real Numbers,mcq,verified,not_needed,ready_now,
+4507,cbse-mathematics-real-numbers-af011108,Real Numbers,mcq,verified,not_needed,ready_now,
+4508,cbse-mathematics-real-numbers-042e0826,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4509,cbse-mathematics-real-numbers-66a81585,Real Numbers,mcq,verified,not_needed,ready_now,
+4510,cbse-mathematics-real-numbers-1d5d450d,Real Numbers,mcq,verified,not_needed,ready_now,
+4511,cbse-mathematics-real-numbers-8b6f19ba,Real Numbers,mcq,verified,not_needed,ready_now,
+4512,cbse-mathematics-real-numbers-8f67eb7c,Real Numbers,mcq,verified,not_needed,ready_now,
+4513,cbse-mathematics-real-numbers-10a1b2d2,Real Numbers,mcq,verified,not_needed,ready_now,
+4514,cbse-mathematics-real-numbers-2ba77d66,Real Numbers,mcq,verified,not_needed,ready_now,
+4515,cbse-mathematics-real-numbers-71e42871,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4516,cbse-mathematics-real-numbers-ddf2d46e,Real Numbers,mcq,verified,not_needed,ready_now,
+4517,cbse-mathematics-real-numbers-25da00be,Real Numbers,case,verified,not_needed,ready_now,
+4518,cbse-mathematics-real-numbers-c4d25b07,Real Numbers,case,verified,not_needed,ready_now,
+4519,cbse-mathematics-real-numbers-d868f206,Real Numbers,case,verified,not_needed,ready_now,
+4520,cbse-mathematics-real-numbers-758915dd,Real Numbers,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4521,cbse-mathematics-real-numbers-57460e5c,Real Numbers,mcq,verified,not_needed,ready_now,
+4522,cbse-mathematics-real-numbers-193ab8f2,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4523,cbse-mathematics-real-numbers-df08d2a6,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4525,cbse-mathematics-real-numbers-4ba1ebbc,Real Numbers,mcq,verified,not_needed,ready_now,
+4526,cbse-mathematics-real-numbers-3731ce3d,Real Numbers,mcq,verified,not_needed,ready_now,
+4527,cbse-mathematics-real-numbers-5eb04715,Real Numbers,mcq,verified,not_needed,ready_now,
+4528,cbse-mathematics-real-numbers-f4350a8b,Real Numbers,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4529,cbse-mathematics-real-numbers-24e43b5b,Real Numbers,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4530,cbse-mathematics-real-numbers-f6176620,Real Numbers,mcq,verified,not_needed,ready_now,
+2743,cbse-mathematics-statistics-16736535,Statistics,mcq,source_provided,not_needed,ready_now,
+2744,cbse-mathematics-statistics-095b2373,Statistics,mcq,source_provided,not_needed,ready_now,
+2745,cbse-mathematics-statistics-cefc30d0,Statistics,mcq,source_provided,not_needed,ready_now,
+2746,cbse-mathematics-statistics-3053b862,Statistics,mcq,source_provided,not_needed,ready_now,
+2747,cbse-mathematics-statistics-3f0b0692,Statistics,mcq,source_provided,not_needed,ready_now,
+2748,cbse-mathematics-statistics-41bf5e04,Statistics,mcq,source_provided,not_needed,ready_now,
+2749,cbse-mathematics-statistics-fb0bd410,Statistics,mcq,source_provided,not_needed,ready_but_flagged,text_missing_or_too_short
+2750,cbse-mathematics-statistics-622d5f89,Statistics,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2751,cbse-mathematics-statistics-445c9610,Statistics,mcq,source_provided,not_needed,ready_now,
+2752,cbse-mathematics-statistics-91e6e570,Statistics,mcq,source_provided,not_needed,ready_now,
+2753,cbse-mathematics-statistics-85646525,Statistics,mcq,source_provided,not_needed,ready_now,
+2754,cbse-mathematics-statistics-4a42d83d,Statistics,mcq,source_provided,not_needed,ready_now,
+2755,cbse-mathematics-statistics-2412e938,Statistics,mcq,source_provided,not_needed,ready_now,
+2756,cbse-mathematics-statistics-9f637b6e,Statistics,mcq,source_provided,not_needed,ready_now,
+2757,cbse-mathematics-statistics-f418da59,Statistics,mcq,source_provided,not_needed,ready_now,
+2758,cbse-mathematics-statistics-de9b3408,Statistics,mcq,source_provided,not_needed,ready_now,
+2759,cbse-mathematics-statistics-b99f2d79,Statistics,mcq,source_provided,not_needed,ready_now,
+2760,cbse-mathematics-statistics-052964a0,Statistics,mcq,source_provided,not_needed,ready_now,
+2761,cbse-mathematics-statistics-8417423b,Statistics,mcq,source_provided,not_needed,ready_now,
+2762,cbse-mathematics-statistics-72e6b745,Statistics,mcq,source_provided,not_needed,ready_now,
+2763,cbse-mathematics-statistics-108aebc8,Statistics,mcq,source_provided,not_needed,ready_now,
+2764,cbse-mathematics-statistics-7d4dc17c,Statistics,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2765,cbse-mathematics-statistics-e0204186,Statistics,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2766,cbse-mathematics-statistics-add652be,Statistics,mcq,source_provided,not_needed,ready_now,
+2767,cbse-mathematics-statistics-3e8bfb94,Statistics,mcq,source_provided,not_needed,ready_now,
+2768,cbse-mathematics-statistics-4c85e21e,Statistics,mcq,source_provided,not_needed,ready_now,
+2769,cbse-mathematics-statistics-fe7123fd,Statistics,mcq,source_provided,not_needed,ready_now,
+2770,cbse-mathematics-statistics-dad3c5e2,Statistics,mcq,source_provided,not_needed,ready_now,
+2771,cbse-mathematics-statistics-4c841841,Statistics,mcq,source_provided,not_needed,ready_now,
+2772,cbse-mathematics-statistics-f69c646a,Statistics,mcq,source_provided,not_needed,ready_now,
+2773,cbse-mathematics-statistics-e754ed55,Statistics,mcq,source_provided,not_needed,ready_now,
+2774,cbse-mathematics-statistics-23e06bd6,Statistics,mcq,source_provided,not_needed,ready_now,
+2775,cbse-mathematics-statistics-e3bbb86c,Statistics,mcq,source_provided,not_needed,ready_now,
+2776,cbse-mathematics-statistics-bda43d50,Statistics,mcq,source_provided,not_needed,ready_now,
+2777,cbse-mathematics-statistics-d782c124,Statistics,mcq,source_provided,not_needed,ready_now,
+2778,cbse-mathematics-statistics-929230cc,Statistics,mcq,source_provided,not_needed,ready_now,
+2779,cbse-mathematics-statistics-eb094c06,Statistics,mcq,source_provided,not_needed,ready_now,
+2780,cbse-mathematics-statistics-2b9f3be9,Statistics,mcq,source_provided,not_needed,ready_now,
+2781,cbse-mathematics-statistics-23c7e5ac,Statistics,mcq,source_provided,not_needed,ready_now,
+2782,cbse-mathematics-statistics-ffcde751,Statistics,mcq,source_provided,not_needed,ready_now,
+2783,cbse-mathematics-statistics-4b109091,Statistics,mcq,source_provided,not_needed,ready_now,
+2784,cbse-mathematics-statistics-0eacbbae,Statistics,mcq,source_provided,not_needed,ready_now,
+2785,cbse-mathematics-statistics-f05cbe15,Statistics,mcq,source_provided,not_needed,ready_now,
+2786,cbse-mathematics-statistics-5ce1b07a,Statistics,mcq,source_provided,not_needed,ready_now,
+2787,cbse-mathematics-statistics-4e1e4018,Statistics,mcq,source_provided,not_needed,ready_now,
+2788,cbse-mathematics-statistics-f9487c5f,Statistics,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2789,cbse-mathematics-statistics-f1b4803c,Statistics,mcq,source_provided,not_needed,ready_now,
+2790,cbse-mathematics-statistics-8e6c7343,Statistics,mcq,source_provided,not_needed,ready_now,
+2791,cbse-mathematics-statistics-6612ef18,Statistics,mcq,source_provided,not_needed,ready_now,
+2792,cbse-mathematics-statistics-00328935,Statistics,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2793,cbse-mathematics-statistics-8bfdf215,Statistics,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2795,cbse-mathematics-statistics-f12c2096,Statistics,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+4946,cbse-mathematics-statistics-706a0f80,Statistics,mcq,verified,not_needed,ready_now,
+4947,cbse-mathematics-statistics-b87271a6,Statistics,mcq,verified,not_needed,ready_now,
+4948,cbse-mathematics-statistics-cb839e92,Statistics,mcq,verified,not_needed,ready_now,
+4949,cbse-mathematics-statistics-c7416378,Statistics,mcq,verified,not_needed,ready_now,
+4950,cbse-mathematics-statistics-aeaa68b4,Statistics,mcq,verified,not_needed,ready_now,
+2796,cbse-mathematics-surface-areas-and-volumes-71e72b61,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2797,cbse-mathematics-surface-areas-and-volumes-aa4de7b3,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2798,cbse-mathematics-surface-areas-and-volumes-c0f453c2,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2799,cbse-mathematics-surface-areas-and-volumes-90fa4675,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2800,cbse-mathematics-surface-areas-and-volumes-97dcdf9a,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2801,cbse-mathematics-surface-areas-and-volumes-5d906f92,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2802,cbse-mathematics-surface-areas-and-volumes-7245588c,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2803,cbse-mathematics-surface-areas-and-volumes-f86a0a07,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2804,cbse-mathematics-surface-areas-and-volumes-cf472e1d,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2805,cbse-mathematics-surface-areas-and-volumes-45f4d823,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2806,cbse-mathematics-surface-areas-and-volumes-0b02806c,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2807,cbse-mathematics-surface-areas-and-volumes-0475e0ab,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2808,cbse-mathematics-surface-areas-and-volumes-613ed32e,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2809,cbse-mathematics-surface-areas-and-volumes-d41b0518,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2810,cbse-mathematics-surface-areas-and-volumes-e7fece76,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2811,cbse-mathematics-surface-areas-and-volumes-87f6aaf5,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2812,cbse-mathematics-surface-areas-and-volumes-ed24b4b9,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2813,cbse-mathematics-surface-areas-and-volumes-07711002,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2814,cbse-mathematics-surface-areas-and-volumes-1b13c44b,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2815,cbse-mathematics-surface-areas-and-volumes-c33e41d2,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2816,cbse-mathematics-surface-areas-and-volumes-f0cee432,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2817,cbse-mathematics-surface-areas-and-volumes-6d9f7c02,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2818,cbse-mathematics-surface-areas-and-volumes-5d40382e,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2819,cbse-mathematics-surface-areas-and-volumes-37b0337d,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2820,cbse-mathematics-surface-areas-and-volumes-3b604bd0,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2821,cbse-mathematics-surface-areas-and-volumes-e973813e,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2822,cbse-mathematics-surface-areas-and-volumes-8fe70249,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2823,cbse-mathematics-surface-areas-and-volumes-26354052,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2824,cbse-mathematics-surface-areas-and-volumes-8ccb84e2,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2825,cbse-mathematics-surface-areas-and-volumes-45c1013a,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2826,cbse-mathematics-surface-areas-and-volumes-9e2b4f2a,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2827,cbse-mathematics-surface-areas-and-volumes-38f51eca,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2829,cbse-mathematics-surface-areas-and-volumes-6e8d0896,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2830,cbse-mathematics-surface-areas-and-volumes-2e5a3c16,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2831,cbse-mathematics-surface-areas-and-volumes-f3c7e30f,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2832,cbse-mathematics-surface-areas-and-volumes-9bbc4a2b,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2833,cbse-mathematics-surface-areas-and-volumes-acd515d4,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2834,cbse-mathematics-surface-areas-and-volumes-337a973a,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2835,cbse-mathematics-surface-areas-and-volumes-5020e28a,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2837,cbse-mathematics-surface-areas-and-volumes-cf998aa6,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2838,cbse-mathematics-surface-areas-and-volumes-8f345b80,Surface Areas and Volumes,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2839,cbse-mathematics-surface-areas-and-volumes-31db0b6f,Surface Areas and Volumes,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2841,cbse-mathematics-surface-areas-and-volumes-a9e9a3ef,Surface Areas and Volumes,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2842,cbse-mathematics-surface-areas-and-volumes-ee15a6e4,Surface Areas and Volumes,open,source_provided,complete_extracted_image,ready_but_flagged,kind_open_not_autogradable;missing_answer_key_ref
+2843,cbse-mathematics-surface-areas-and-volumes-badac8a7,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2844,cbse-mathematics-surface-areas-and-volumes-5ba0772b,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2845,cbse-mathematics-surface-areas-and-volumes-ef7fa684,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2846,cbse-mathematics-surface-areas-and-volumes-844f7791,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2847,cbse-mathematics-surface-areas-and-volumes-238e9b49,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2848,cbse-mathematics-surface-areas-and-volumes-ffe3bef8,Surface Areas and Volumes,mcq,source_provided,not_needed,ready_now,
+2849,cbse-mathematics-surface-areas-and-volumes-3644ceb2,Surface Areas and Volumes,mcq,source_provided,complete_extracted_image,ready_now,
+2851,cbse-mathematics-triangles-083ce13b,Triangles,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2853,cbse-mathematics-triangles-569bb712,Triangles,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref;has_pending_duplicate_flag
+2854,cbse-mathematics-triangles-02837d78,Triangles,case,source_provided,complete_extracted_image,ready_but_flagged,missing_answer_key_ref
+2855,cbse-mathematics-triangles-6034f472,Triangles,mcq,source_provided,not_needed,ready_now,
+2856,cbse-mathematics-triangles-7fb5a70f,Triangles,mcq,source_provided,not_needed,ready_now,
+2857,cbse-mathematics-triangles-ab0e8dbe,Triangles,mcq,source_provided,not_needed,ready_now,
+2858,cbse-mathematics-triangles-2ef335b9,Triangles,mcq,source_provided,not_needed,ready_now,
+2859,cbse-mathematics-triangles-c63232b5,Triangles,mcq,source_provided,not_needed,ready_but_flagged,has_pending_duplicate_flag
+2860,cbse-mathematics-triangles-ae2a3fda,Triangles,mcq,source_provided,complete_extracted_image,ready_now,
+2861,cbse-mathematics-triangles-a12f3bed,Triangles,mcq,source_provided,not_needed,ready_now,
+4844,cbse-mathematics-triangles-860f86c9,Triangles,mcq,verified,not_needed,ready_now,
+4845,cbse-mathematics-triangles-dc676144,Triangles,mcq,verified,not_needed,ready_now,
+4846,cbse-mathematics-triangles-12763ff8,Triangles,mcq,verified,not_needed,ready_now,
+4847,cbse-mathematics-triangles-7493b50a,Triangles,mcq,verified,not_needed,ready_now,
+4849,cbse-mathematics-triangles-2906ac63,Triangles,mcq,verified,not_needed,ready_now,
+4850,cbse-mathematics-triangles-c349c3c5,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4851,cbse-mathematics-triangles-9ec9f37a,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4853,cbse-mathematics-triangles-bfcb6ef4,Triangles,mcq,verified,not_needed,ready_now,
+4854,cbse-mathematics-triangles-d7479b60,Triangles,mcq,verified,not_needed,ready_now,
+4855,cbse-mathematics-triangles-cc7ed71c,Triangles,mcq,verified,not_needed,ready_now,
+4856,cbse-mathematics-triangles-f9783497,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4857,cbse-mathematics-triangles-b008a80f,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4858,cbse-mathematics-triangles-035457b1,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4860,cbse-mathematics-triangles-985c6155,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4861,cbse-mathematics-triangles-66f513f9,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4862,cbse-mathematics-triangles-147b2fd5,Triangles,mcq,verified,not_needed,ready_now,
+4863,cbse-mathematics-triangles-e33d9482,Triangles,mcq,verified,not_needed,ready_now,
+4864,cbse-mathematics-triangles-5f546f20,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4865,cbse-mathematics-triangles-47b3ae13,Triangles,mcq,verified,not_needed,ready_now,
+4866,cbse-mathematics-triangles-217e8a00,Triangles,mcq,verified,not_needed,ready_now,
+4867,cbse-mathematics-triangles-937b660f,Triangles,mcq,verified,not_needed,ready_now,
+4868,cbse-mathematics-triangles-aafa9115,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4869,cbse-mathematics-triangles-d4e8183d,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4870,cbse-mathematics-triangles-99eeb32f,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4871,cbse-mathematics-triangles-d063695f,Triangles,mcq,verified,not_needed,ready_now,
+4872,cbse-mathematics-triangles-9f761577,Triangles,mcq,verified,not_needed,ready_now,
+4873,cbse-mathematics-triangles-e93a0b75,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4874,cbse-mathematics-triangles-d1df1b90,Triangles,mcq,verified,not_needed,ready_now,
+4875,cbse-mathematics-triangles-9aa4e4d7,Triangles,mcq,verified,not_needed,ready_now,
+4876,cbse-mathematics-triangles-4b53537b,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4878,cbse-mathematics-triangles-f374a25e,Triangles,mcq,verified,not_needed,ready_now,
+4879,cbse-mathematics-triangles-355367ad,Triangles,mcq,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4880,cbse-mathematics-triangles-f646b88a,Triangles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4881,cbse-mathematics-triangles-cf1909df,Triangles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4882,cbse-mathematics-triangles-e9121d86,Triangles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,has_pending_duplicate_flag;visual_not_yet_extracted_into_servable_image
+4883,cbse-mathematics-triangles-a788d85d,Triangles,case,verified,incomplete_references_source_pdf_only,blocked_missing_visual,visual_not_yet_extracted_into_servable_image
+4884,cbse-mathematics-triangles-1aac374a,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4885,cbse-mathematics-triangles-7c87671d,Triangles,mcq,verified,not_needed,ready_now,
+4886,cbse-mathematics-triangles-06696883,Triangles,mcq,verified,not_needed,ready_now,
+4887,cbse-mathematics-triangles-d6880e1f,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4888,cbse-mathematics-triangles-f3a66f17,Triangles,mcq,verified,not_needed,ready_but_flagged,has_pending_duplicate_flag
+4890,cbse-mathematics-triangles-65c516ad,Triangles,mcq,verified,not_needed,ready_now,

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-labelledby="abTitle abDesc">
+  <title id="abTitle">Angle bisector diagram for Question 1231</title>
+  <desc id="abDesc">Rays BA and BC drawn from vertex B, with a third ray from B bisecting angle ABC (angle ABD equals angle CBD). Point D lies on the bisector ray. Point E lies on ray BA, with segment ED drawn perpendicular to BA. Point F lies on ray BC, with segment DF drawn perpendicular to BC.</desc>
+  <!--
+    Board Ready generated visual (Batch 15, Task 9, proposed, NOT yet
+    associated with the live question -- content gate for 1231 has not
+    been independently cleared; this asset is not inserted into
+    visual_assets and diagram_status is left untouched at
+    'needs_visual_review').  asset_type (if approved): ai_generated -- a
+    clean, native redraw of the ORIGINAL SOURCE figure below, not the
+    source figure itself. Colors read from this host page's ink CSS custom
+    property via var(), no prefers-color-scheme fallback -- matches every
+    other generated visual in this pipeline (this file is only ever used
+    inlined into the DOM).
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/ICSE/Mathematics/chap_19.pdf, printed page 19.6, item (34)
+    (Assertion and Reasoning) -- the same source document and page as
+    question 1230's item (33), one item later. Cross-referenced directly
+    against the rendered source page (rendered at 9-20x zoom for this
+    reconstruction). Semantic content reproduced exactly, not invented:
+      - Vertex B with two rays drawn from it: ray BA (steeper, upper) and
+        ray BC (shallower/horizontal, lower), each ending in an open
+        arrowhead with its label (A, C) beyond the tip -- exactly the
+        source's own ray notation (an open ray, not a closed segment).
+      - A third, unlabeled ray from B lies between rays BA and BC, also
+        ending in an open arrowhead beyond its own tip -- exactly matching
+        the source, which draws this third ray but never labels its
+        direction. This is the bisector: the assertion states
+        angle ABD = angle CBD, i.e. this ray bisects angle ABC.
+      - Point D is marked on this third (bisector) ray, strictly between B
+        and the ray's own arrowhead tip -- exactly the source's placement.
+      - Point E is marked on ray BA, and segment ED is drawn from E to D.
+      - Point F is marked on ray BC, and segment DF is drawn from D to F.
+      - The source draws NO explicit right-angle (small square) mark at
+        either E or F, despite the assertion's text stating "ED is
+        perpendicular to BA" and "DF is perpendicular to BC" -- verified
+        directly by zooming into both points in the source scan at 20x.
+        This redraw reproduces that same omission rather than adding right-
+        angle marks the source does not have, per the standing instruction
+        to preserve the source's own notation exactly rather than
+        reinterpret or "improve" on it (the same principle already applied
+        to question 1508's redraw, which kept the source's arrow-based
+        parallel notation instead of substituting tick marks).
+      - No angle value or length is given anywhere in the source figure or
+        the question text -- none are added here either.
+
+    Geometric construction, disclosed (this is how the redraw's coordinates
+    were derived, not a source fact): the source sketch, like the other
+    figures in this chapter, is not drawn to exact scale. To make the
+    redrawn figure both faithful to the source's layout AND internally
+    consistent with the assertion it illustrates, E and F were computed
+    analytically as the feet of the perpendiculars dropped from D onto ray
+    BA and ray BC respectively (not eyeballed from the source sketch) --
+    this guarantees DE and DF are drawn at exactly equal length in this
+    redraw (both 126.05 SVG units, verified programmatically before
+    drawing), which is exactly what the Reason (R) asserts follows from D
+    lying on the angle bisector. This mirrors the same disclosed
+    scale-correction already used for 1230 (D placed at BC's exact
+    midpoint) and 1508 (D, E placed at the exact 3:1 point) rather than
+    reproducing a sketch's own imprecision. No content is added, removed,
+    or contradicted by this choice -- it only makes the drawn lengths match
+    what the text already asserts.
+  -->
+  <style>
+    .ab-ray { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .ab-seg { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .ab-arrow { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .ab-point { fill: var(--ink); }
+    .ab-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 30px; }
+  </style>
+
+  <!-- Ray BA -->
+  <line class="ab-ray" x1="90" y1="430" x2="291.4" y2="107.7" />
+  <path class="ab-arrow" d="M 278.5 117.1 L 291.4 107.7 L 288.6 123.5" />
+
+  <!-- Ray BC -->
+  <line class="ab-ray" x1="90" y1="430" x2="510" y2="430" />
+  <path class="ab-arrow" d="M 495.2 424.0 L 510 430 L 495.2 436.0" />
+
+  <!-- Bisector ray (unlabeled), passes through D -->
+  <line class="ab-ray" x1="90" y1="430" x2="369.9" y2="274.9" />
+  <path class="ab-arrow" d="M 354.0 276.8 L 369.9 274.9 L 359.8 287.3" />
+
+  <!-- Segment ED (E on ray BA to D on the bisector) -->
+  <line class="ab-seg" x1="210.5" y1="237.2" x2="317.4" y2="303.9" />
+
+  <!-- Segment DF (D on the bisector to F on ray BC) -->
+  <line class="ab-seg" x1="317.4" y1="303.9" x2="317.4" y2="430" />
+
+  <!-- Point markers -->
+  <circle class="ab-point" cx="90" cy="430" r="4.5" />
+  <circle class="ab-point" cx="317.4" cy="303.9" r="4.5" />
+  <circle class="ab-point" cx="210.5" cy="237.2" r="4.5" />
+  <circle class="ab-point" cx="317.4" cy="430" r="4.5" />
+
+  <!-- Labels -->
+  <text class="ab-label" x="300" y="98">A</text>
+  <text class="ab-label" x="520" y="452">C</text>
+  <text class="ab-label" x="62" y="460">B</text>
+  <text class="ab-label" x="322" y="330">D</text>
+  <text class="ab-label" x="172" y="230">E</text>
+  <text class="ab-label" x="308" y="460">F</text>
+</svg>

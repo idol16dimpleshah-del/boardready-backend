@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-labelledby="bptTitle bptDesc">
+  <title id="bptTitle">Triangle diagram for Question 1508</title>
+  <desc id="bptDesc">Triangle ABC with D on side AB and E on side AC, DE drawn parallel to BC (shown by matching rightward arrow marks on DE and BC), positioned so that AD:DB is 3:1 along AB and AE:EC is 3:1 along AC, per the Basic Proportionality Theorem.</desc>
+  <!--
+    Board Ready generated visual (Batch 15, Task 8, proposed, NOT yet
+    associated with the live question -- content gate for 1508 has not
+    been independently cleared; this asset is not inserted into
+    visual_assets and diagram_status is left untouched at
+    'needs_visual_review'). asset_type (if approved): ai_generated -- a
+    clean, native redraw of the ORIGINAL SOURCE figure below, not the
+    source figure itself. Colors read from this host page's ink/violet CSS
+    custom properties via var(), no prefers-color-scheme fallback --
+    matches every other generated visual in this pipeline (this file is
+    only ever used inlined into the DOM).
+
+    SOURCE OF TRUTH this was redrawn from (never modified):
+    source_library/ICSE/Mathematics/chap_16.pdf, printed page 16.5, item (23).
+    Cross-referenced directly against the rendered source page (rendered at
+    10x zoom for this reconstruction). Semantic content reproduced exactly,
+    not invented:
+      - Triangle ABC, with A at the apex (top), B at bottom-left, C at
+        bottom-right -- exactly the source figure's orientation.
+      - D lies on side AB, E lies on side AC -- exactly the source figure's
+        point placement (D on the left side, E on the right side).
+      - Segment DE is drawn between D and E, horizontal, inside the
+        triangle -- exactly matching the source.
+      - Both DE and BC carry a single rightward chevron/arrow mark at their
+        midpoint -- this is the source's own notation for "these two
+        segments are parallel" (an arrow-direction convention, not tick
+        marks), reproduced here exactly rather than substituted with a
+        different parallel notation (e.g. tick marks), since the source
+        itself uses arrows here and changing the notation would be a
+        reinterpretation, not a faithful redraw.
+      - No other point, angle value, or length is drawn inside the figure
+        in the source (the numeric values AD:DB=3:1 and EA=3.3cm appear
+        only in the question text, never as labels inside the diagram
+        itself) -- none are added here either.
+
+    Deliberate, disclosed departure from the source sketch's exact pixel
+    proportions: the source diagram, like most textbook sketches, is not
+    drawn to scale -- measuring the source image directly, D sits at
+    roughly the midpoint of AB (about 54% of the way from A to B), not at
+    the 75%-of-the-way point implied by the stated AD:DB = 3:1. Rather than
+    reproduce that inexact freehand placement, D and E are positioned here
+    at the mathematically exact point implied by the question's own given
+    ratio: D = A + 0.75*(B-A) and E = A + 0.75*(C-A) (so AD:DB = AE:EC =
+    3:1 exactly, and DE remains parallel to BC by construction, both
+    horizontal in this coordinate layout). This mirrors the precedent
+    already established for question 1230's redraw (docs/workstream-3i-
+    1594-1230-visual-reconstruction.md), where D was placed at the exact
+    midpoint of BC once the source text asserted "D is the mid-point of
+    BC," rather than copied from the source sketch's own rough proportions.
+    Content note: this diagram is only a spatial arrangement (which point
+    is where, what is parallel to what) -- it carries no length or ratio
+    label of its own, so this placement choice does not add, remove, or
+    contradict any information the question or diagram convey; the
+    question's numeric values (AD:DB=3:1, EA=3.3cm, and the derived
+    AC=4.4cm) live entirely in the question text and answer key, not in
+    this SVG, exactly as in the source.
+  -->
+  <style>
+    .bpt-side { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .bpt-mid { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+    .bpt-arrow { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .bpt-point { fill: var(--ink); }
+    .bpt-label { fill: var(--ink); font-family: "Manrope","Segoe UI",system-ui,sans-serif; font-size: 30px; }
+  </style>
+
+  <!-- Triangle sides AB and AC, plus base BC -->
+  <path class="bpt-side" d="M 300 60 L 80 440 L 520 440 Z" />
+
+  <!-- Segment DE, parallel to BC, with D on AB and E on AC at the 3:1 point from A -->
+  <line class="bpt-mid" x1="135" y1="345" x2="465" y2="345" />
+
+  <!-- Parallel-mark chevrons (source's own notation): one on DE, one on BC, both at their midpoint, pointing right -->
+  <path class="bpt-arrow" d="M 292 339 L 308 345 L 292 351" />
+  <path class="bpt-arrow" d="M 292 434 L 308 440 L 292 446" />
+
+  <!-- Vertex/point markers -->
+  <circle class="bpt-point" cx="300" cy="60" r="4.5" />
+  <circle class="bpt-point" cx="80" cy="440" r="4.5" />
+  <circle class="bpt-point" cx="520" cy="440" r="4.5" />
+  <circle class="bpt-point" cx="135" cy="345" r="4.5" />
+  <circle class="bpt-point" cx="465" cy="345" r="4.5" />
+
+  <!-- Labels -->
+  <text class="bpt-label" x="288" y="42">A</text>
+  <text class="bpt-label" x="45" y="462">B</text>
+  <text class="bpt-label" x="527" y="462">C</text>
+  <text class="bpt-label" x="98" y="352">D</text>
+  <text class="bpt-label" x="478" y="352">E</text>
+</svg>
