@@ -55,6 +55,32 @@ const { chromium } = require('playwright');
 
 const BASE = process.argv[2] || process.env.BASE_URL || 'http://localhost:4620';
 
+// ---- 2026 redesign UI helpers (redesign/board-ready-2026-ui) ----
+// Chapters and Board Simulation live on the Practice screen; submit is a
+// custom dialog (#submitDialog/#sdConfirm), not window.confirm; on phones the
+// question navigator is a collapsed drawer; logout sits in the account menu.
+// PW_CHANNEL (e.g. "chrome" or "msedge") drives an installed browser instead
+// of Playwright's bundled Chromium.
+const LAUNCH_OPTS = { headless: true, args: ['--no-sandbox'], ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}) };
+const PRACTICE_BTN = '#chaptersList [data-act="practice"]:not([disabled])';
+async function goToPractice(page, timeout) {
+  await page.click('.nav-link[data-nav="practice"]');
+  await page.waitForSelector('[data-screen="practice"]:not([hidden])', { timeout });
+}
+async function confirmSubmit(page, timeout) {
+  await page.waitForSelector('#submitDialog:not([hidden])', { timeout });
+  await page.click('#sdConfirm');
+}
+async function jumpToLastQuestion(page) {
+  if (await page.locator('#navToggleBtn').isVisible()) await page.click('#navToggleBtn');
+  await page.click('#testTrack .tdot >> nth=-1');
+}
+async function logout(page) {
+  await page.click('#avatarBtn');
+  await page.click('#logoutBtn');
+}
+async function modeName(page) { return ((await page.textContent('#testModeName')) || '').trim(); }
+
 function log(label, extra) { console.log(`[${new Date().toISOString().slice(11, 19)}] ${label}${extra !== undefined ? ' ' + JSON.stringify(extra) : ''}`); }
 
 async function main() {
@@ -63,7 +89,7 @@ async function main() {
   const failedRequests = [];
   const cspViolations = [];
 
-  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  const browser = await chromium.launch(LAUNCH_OPTS);
   const context = await browser.newContext();
   const page = await context.newPage();
 
@@ -103,21 +129,23 @@ async function main() {
   // has zero gradable questions today per content-rules.js's GRADABLE_STATUSES
   // gate — picking it would make the practice-generate call below fail with
   // a real, correct 422, not a bug in this script).
+  await goToPractice(page);
   await page.waitForSelector('#subjectPicker button');
   const mathsBtn = page.locator('#subjectPicker button', { hasText: 'Mathematics' }).first();
   await mathsBtn.click();
   log('3. Selected ICSE Mathematics subject');
-  await page.waitForSelector('#chaptersList [data-act="practice"]');
+  await page.waitForSelector(PRACTICE_BTN);
 
   // ---- PRACTICE (immediate feedback) TEST ----
   log('4. Starting a Practice test');
   await Promise.all([
     page.waitForSelector('[data-screen="test"]', { state: 'visible' }),
-    page.click('#chaptersList [data-act="practice"]'),
+    page.click(PRACTICE_BTN),
   ]);
   const practiceBadge = (await page.textContent('#modeBadge') || '').trim();
-  log('Practice mode badge', { text: practiceBadge });
-  if (!/practice/i.test(practiceBadge)) throw new Error(`Expected a Practice mode badge, got: "${practiceBadge}"`);
+  const practiceMode = await modeName(page);
+  log('Practice mode', { mode: practiceMode, badge: practiceBadge });
+  if (!/practice test/i.test(practiceMode) || !/instant feedback/i.test(practiceBadge)) throw new Error(`Expected Practice Test with instant feedback, got: "${practiceMode}" / "${practiceBadge}"`);
 
   let sawCorrectPick = false, sawWrongPick = false;
   const qCountText = await page.textContent('#testQCount');
@@ -137,7 +165,7 @@ async function main() {
     if (await page.locator('.opt.wrong-pick').count()) sawWrongPick = true;
     const isLast = i === totalQuestions - 1;
     await page.click('#nextBtn');
-    if (!isLast) await page.waitForSelector('#qOptions .opt');
+    if (isLast) await confirmSubmit(page); else await page.waitForSelector('#qOptions .opt');
   }
   log('5. Immediate-feedback reveal classes observed', { sawCorrectPick, sawWrongPick });
   if (!sawCorrectPick && !sawWrongPick) throw new Error('Never saw a correct-pick or wrong-pick class — immediate feedback UI did not render as expected.');
@@ -147,7 +175,10 @@ async function main() {
   log('6. Practice test Results screen reached', { resultLine });
 
   const improveCardHidden = await page.getAttribute('#improveCard', 'hidden');
-  if (improveCardHidden === null) {
+  const improveDisabled = improveCardHidden === null && await page.locator('#improveScoreBtn').isDisabled();
+  if (improveDisabled) {
+    log('7. "Improve My Score" is shown but disabled - every live question in the weak chapter(s) was already in this attempt', { reason: (await page.textContent('#improveMeta') || '').trim() });
+  } else if (improveCardHidden === null) {
     log('7. "Improve My Score" card is visible (this attempt lost marks) — starting it');
     await Promise.all([
       page.waitForSelector('[data-screen="test"]', { state: 'visible' }),
@@ -162,19 +193,20 @@ async function main() {
       await page.click('#qOptions .opt >> nth=0');
       const isLast = i === impTotal - 1;
       await page.click('#nextBtn');
-      if (!isLast) await page.waitForSelector('#qOptions .opt');
+      if (isLast) await confirmSubmit(page); else await page.waitForSelector('#qOptions .opt');
     }
-    await page.waitForSelector('[data-screen="results"]', { state: 'visible' });
-    const compareHidden = await page.getAttribute('#improveCompareCard', 'hidden');
-    log('Improvement test Results screen reached', { comparisonCardVisible: compareHidden === null });
+    await page.waitForSelector('[data-screen="improve"]', { state: 'visible' });
+    const compareVisible = await page.locator('#improveCompareCard').isVisible();
+    const delta = ((await page.textContent('#icDelta')) || '').trim();
+    log('Improve My Score screen reached', { comparisonCardVisible: compareVisible, delta, note: ((await page.textContent('#icNote')) || '').trim() });
+    if (!compareVisible) throw new Error('Improve My Score comparison card did not render after the targeted retest.');
   } else {
     log('7. "Improve My Score" card is hidden (this attempt lost no marks) — nothing to click, not an error');
   }
 
   // ---- BOARD SIMULATION (deferred feedback) TEST ----
-  log('8. Returning to dashboard to start a Board Simulation test');
-  await page.click('#backToDashBtn');
-  await page.waitForSelector('[data-screen="dash"]', { state: 'visible' });
+  log('8. Going to the Practice screen to start a Board Simulation test');
+  await goToPractice(page);
   await mathsBtn.click();
   await page.waitForSelector('#fullTestBtn');
   await Promise.all([
@@ -182,8 +214,9 @@ async function main() {
     page.click('#fullTestBtn'),
   ]);
   const simBadge = (await page.textContent('#modeBadge') || '').trim();
-  log('Board Simulation mode badge', { text: simBadge });
-  if (!/board simulation/i.test(simBadge)) throw new Error(`Expected a Board Simulation mode badge, got: "${simBadge}"`);
+  const simMode = await modeName(page);
+  log('Board Simulation mode', { mode: simMode, badge: simBadge });
+  if (!/board simulation/i.test(simMode) || !/no feedback until submit/i.test(simBadge)) throw new Error(`Expected Board Simulation with no feedback, got: "${simMode}" / "${simBadge}"`);
 
   await page.waitForSelector('#qOptions .opt');
   await page.click('#qOptions .opt >> nth=0');
@@ -195,16 +228,17 @@ async function main() {
 
   // Jump straight to the last question via the track navigator (no need to
   // answer every question to prove the deferred behavior above) and submit.
-  await page.click('#testTrack .tdot >> nth=-1');
+  await jumpToLastQuestion(page);
   await page.waitForSelector('#qOptions .opt');
-  await page.click('#nextBtn'); // "Submit test ->" on the last question, triggers window.confirm (auto-accepted above)
+  await page.click('#nextBtn'); // "Review & submit" on the last question opens #submitDialog
+  await confirmSubmit(page);
   await page.waitForSelector('[data-screen="results"]', { state: 'visible' });
   log('10. Board Simulation Results screen reached');
 
   // ---- LOGOUT + LOGIN (explicit login-form UI path) ----
   await page.click('#backToDashBtn');
   await page.waitForSelector('[data-screen="dash"]', { state: 'visible' });
-  await page.click('#logoutBtn');
+  await logout(page);
   await page.waitForSelector('[data-screen="login"]', { state: 'visible' });
   log('11. Logged out — back at login screen');
   // Logout resets both forms' fields but does not reset which TAB is

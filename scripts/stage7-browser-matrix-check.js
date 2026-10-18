@@ -29,6 +29,32 @@ const { chromium, devices } = require('playwright');
 
 const BASE = process.argv[2] || process.env.BASE_URL || 'http://localhost:4620';
 
+// ---- 2026 redesign UI helpers (redesign/board-ready-2026-ui) ----
+// Chapters and Board Simulation live on the Practice screen; submit is a
+// custom dialog (#submitDialog/#sdConfirm), not window.confirm; on phones the
+// question navigator is a collapsed drawer; logout sits in the account menu.
+// PW_CHANNEL (e.g. "chrome" or "msedge") drives an installed browser instead
+// of Playwright's bundled Chromium.
+const LAUNCH_OPTS = { headless: true, args: ['--no-sandbox'], ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}) };
+const PRACTICE_BTN = '#chaptersList [data-act="practice"]:not([disabled])';
+async function goToPractice(page, timeout) {
+  await page.click('.nav-link[data-nav="practice"]');
+  await page.waitForSelector('[data-screen="practice"]:not([hidden])', { timeout });
+}
+async function confirmSubmit(page, timeout) {
+  await page.waitForSelector('#submitDialog:not([hidden])', { timeout });
+  await page.click('#sdConfirm');
+}
+async function jumpToLastQuestion(page) {
+  if (await page.locator('#navToggleBtn').isVisible()) await page.click('#navToggleBtn');
+  await page.click('#testTrack .tdot >> nth=-1');
+}
+async function logout(page) {
+  await page.click('#avatarBtn');
+  await page.click('#logoutBtn');
+}
+async function modeName(page) { return ((await page.textContent('#testModeName')) || '').trim(); }
+
 function log(label, extra) { console.log(`[${new Date().toISOString().slice(11, 19)}] ${label}${extra !== undefined ? ' ' + JSON.stringify(extra) : ''}`); }
 
 // Roughly Chrome DevTools' "Slow 3G" preset.
@@ -77,17 +103,18 @@ async function runCoreWalkthrough(page, label, timeoutMs = 20_000) {
     page.click('#createForm button[type="submit"]'),
   ]);
 
+  await goToPractice(page, timeoutMs);
   await page.waitForSelector('#subjectPicker button', { timeout: timeoutMs });
   const mathsBtn = page.locator('#subjectPicker button', { hasText: 'Mathematics' }).first();
   await mathsBtn.click();
-  await page.waitForSelector('#chaptersList [data-act="practice"]', { timeout: timeoutMs });
+  await page.waitForSelector(PRACTICE_BTN, { timeout: timeoutMs });
 
   await Promise.all([
     page.waitForSelector('[data-screen="test"]', { state: 'visible', timeout: timeoutMs }),
-    page.click('#chaptersList [data-act="practice"]'),
+    page.click(PRACTICE_BTN),
   ]);
-  const practiceBadge = (await page.textContent('#modeBadge') || '').trim();
-  if (!/practice/i.test(practiceBadge)) findings.push(`Expected a Practice mode badge, got: "${practiceBadge}"`);
+  const practiceBadge = `${await modeName(page)} | ${(await page.textContent('#modeBadge') || '').trim()}`;
+  if (!/practice test/i.test(practiceBadge) || !/instant feedback/i.test(practiceBadge)) findings.push(`Expected Practice Test with instant feedback, got: "${practiceBadge}"`);
 
   // NOTE: the immediate-feedback reveal classes (.opt.correct-pick /
   // .opt.wrong-pick) are added by app.js only after the async
@@ -113,35 +140,35 @@ async function runCoreWalkthrough(page, label, timeoutMs = 20_000) {
     if (await page.locator('.opt.wrong-pick').count()) sawWrongPick = true;
     const isLast = i === totalQuestions - 1;
     await page.click('#nextBtn');
-    if (!isLast) await page.waitForSelector('#qOptions .opt');
+    if (isLast) await confirmSubmit(page, timeoutMs); else await page.waitForSelector('#qOptions .opt');
   }
   if (!sawCorrectPick && !sawWrongPick) findings.push('Never saw a correct-pick or wrong-pick class in Practice mode at this viewport.');
   await page.waitForSelector('[data-screen="results"]', { state: 'visible', timeout: timeoutMs });
 
   // ---- Board Simulation (deferred feedback) ----
-  await page.click('#backToDashBtn');
-  await page.waitForSelector('[data-screen="dash"]', { state: 'visible', timeout: timeoutMs });
+  await goToPractice(page, timeoutMs);
   await mathsBtn.click();
   await page.waitForSelector('#fullTestBtn', { timeout: timeoutMs });
   await Promise.all([
     page.waitForSelector('[data-screen="test"]', { state: 'visible', timeout: timeoutMs }),
     page.click('#fullTestBtn'),
   ]);
-  const simBadge = (await page.textContent('#modeBadge') || '').trim();
-  if (!/board simulation/i.test(simBadge)) findings.push(`Expected a Board Simulation mode badge, got: "${simBadge}"`);
+  const simBadge = `${await modeName(page)} | ${(await page.textContent('#modeBadge') || '').trim()}`;
+  if (!/board simulation/i.test(simBadge) || !/no feedback until submit/i.test(simBadge)) findings.push(`Expected Board Simulation with no feedback, got: "${simBadge}"`);
   await page.waitForSelector('#qOptions .opt', { timeout: timeoutMs });
   await page.click('#qOptions .opt >> nth=0');
   const revealCount = await page.locator('.opt.correct-pick, .opt.wrong-pick, .opt.correct-reveal').count();
   if (revealCount !== 0) findings.push('Board Simulation revealed a correct/wrong answer before submission at this viewport.');
-  await page.click('#testTrack .tdot >> nth=-1');
+  await jumpToLastQuestion(page);
   await page.waitForSelector('#qOptions .opt', { timeout: timeoutMs });
-  await page.click('#nextBtn'); // submit (confirm dialog auto-accepted)
+  await page.click('#nextBtn'); // opens #submitDialog
+  await confirmSubmit(page, timeoutMs);
   await page.waitForSelector('[data-screen="results"]', { state: 'visible', timeout: timeoutMs });
 
   // ---- logout / login ----
   await page.click('#backToDashBtn');
   await page.waitForSelector('[data-screen="dash"]', { state: 'visible', timeout: timeoutMs });
-  await page.click('#logoutBtn');
+  await logout(page);
   await page.waitForSelector('[data-screen="login"]', { state: 'visible', timeout: timeoutMs });
   await page.click('#tabLoginBtn');
   await page.waitForSelector('#loginForm', { state: 'visible' });
@@ -186,12 +213,13 @@ async function testBackButton(browser) {
     // accidental than deliberate); (2) after finishing a test, back from
     // Results should land somewhere real (the dashboard), never a blank or
     // external page.
+    await goToPractice(page);
     await page.waitForSelector('#subjectPicker button');
     await page.locator('#subjectPicker button', { hasText: 'Mathematics' }).first().click();
-    await page.waitForSelector('#chaptersList [data-act="practice"]');
+    await page.waitForSelector(PRACTICE_BTN);
     await Promise.all([
       page.waitForSelector('[data-screen="test"]', { state: 'visible', timeout: 20_000 }),
-      page.click('#chaptersList [data-act="practice"]'),
+      page.click(PRACTICE_BTN),
     ]);
 
     // --- (1) mid-test back-button must not abandon the attempt ---
@@ -219,7 +247,7 @@ async function testBackButton(browser) {
       ]);
       const isLast = i === totalQuestions - 1;
       await page.click('#nextBtn');
-      if (!isLast) await page.waitForSelector('#qOptions .opt');
+      if (isLast) await confirmSubmit(page); else await page.waitForSelector('#qOptions .opt');
     }
     await page.waitForSelector('[data-screen="results"]', { state: 'visible', timeout: 20_000 });
 
@@ -290,6 +318,7 @@ async function testAutosaveResume(browser) {
     await page.fill('#createEmail', email);
     await page.fill('#createPassword', password);
     await Promise.all([page.waitForSelector('[data-screen="dash"]', { state: 'visible', timeout: 20_000 }), page.click('#createForm button[type="submit"]')]);
+    await goToPractice(page);
     await page.waitForSelector('#subjectPicker button');
     await page.locator('#subjectPicker button', { hasText: 'Mathematics' }).first().click();
     // Deliberately Board Simulation, not Practice: reading public/app.js
@@ -360,17 +389,23 @@ async function testErrorState(browser) {
     // "my wifi dropped a packet", so the UI must handle both the same way:
     // a visible, non-crashing error, never a silent hang or a blank page.
     await page.route('**/api/practice/generate', (route) => route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ error: 'Internal server error' }) }), { times: 1 });
+    await goToPractice(page);
     await page.waitForSelector('#subjectPicker button');
     await page.locator('#subjectPicker button', { hasText: 'Mathematics' }).first().click();
-    await page.waitForSelector('#chaptersList [data-act="practice"]');
-    await page.click('#chaptersList [data-act="practice"]');
+    await page.waitForSelector(PRACTICE_BTN);
+    await page.click(PRACTICE_BTN);
     await page.waitForTimeout(1000);
 
-    const stillOnDashOrToast = await page.locator('[data-screen="dash"]:not([hidden])').count();
+    // Redesign: chapters live on the Practice screen, so a failed start must
+    // leave the student there with a visible error, not on a blank or
+    // half-started test screen.
+    const stillOnDashOrToast = await page.locator('[data-screen="practice"]:not([hidden])').count();
+    const toastText = ((await page.textContent('#toast')) || '').trim();
+    if (!/could not start/i.test(toastText)) findings.push(`A forced 500 on practice-generate showed no visible error message (toast was: "${toastText}").`);
     const pageErrorsDuringForcedFailure = [];
     page.once('pageerror', (err) => pageErrorsDuringForcedFailure.push(String(err)));
     await page.waitForTimeout(300);
-    if (!stillOnDashOrToast) findings.push('A forced 500 on practice-generate did not keep the user on a sane screen (dashboard) -- possible blank/crashed UI on a real backend error.');
+    if (!stillOnDashOrToast) findings.push('A forced 500 on practice-generate did not keep the user on a sane screen (Practice) -- possible blank/crashed UI on a real backend error.');
     if (pageErrorsDuringForcedFailure.length) findings.push(`Uncaught exception while handling a forced 500: ${pageErrorsDuringForcedFailure[0]}`);
   } catch (err) {
     findings.push(`Exception during error-state test: ${err.message}`);
@@ -381,7 +416,7 @@ async function testErrorState(browser) {
 }
 
 async function main() {
-  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  const browser = await chromium.launch(LAUNCH_OPTS);
   const report = { baseUrl: BASE, startedAt: new Date().toISOString(), profiles: [], behavioral: {} };
 
   for (const profile of PROFILES) {
