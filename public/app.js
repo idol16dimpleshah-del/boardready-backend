@@ -200,6 +200,8 @@
     const numEl = coreEl.querySelector('.core-num');
     const arc = coreEl.querySelector('.arc-fill');
     const v = value == null ? null : Math.max(0, Math.min(100, Math.round(value)));
+    // Any count-up still running from an earlier render must not overwrite this one.
+    const anim = (numEl._anim = (numEl._anim || 0) + 1);
     coreEl.classList.toggle('core-empty', v == null);
     coreEl.style.setProperty('--p', String((v ?? 0) / 100));
     if (arc) arc.setAttribute('stroke-dasharray', `${v ?? 0} 100`);
@@ -211,18 +213,24 @@
     }
     numEl.removeAttribute('aria-label');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { numEl.textContent = String(v); numEl.dataset.lastVal = String(v); return; }
+    // rAF never runs in a hidden tab, so a count-up started there would sit
+    // on its first frame; show the real value directly instead.
+    if (reduce || document.hidden) { numEl.textContent = String(v); numEl.dataset.lastVal = String(v); return; }
+    // Safety net: whatever happens to the animation frames, land on the real value.
+    setTimeout(() => { if (numEl._anim === anim) { numEl.textContent = String(v); numEl.dataset.lastVal = String(v); } }, 1200);
     const from = Number(numEl.dataset.lastVal) || 0;
     const start = performance.now();
     const dur = 900;
     (function tick(now) {
+      if (numEl._anim !== anim) return;
       const t = Math.min(1, (now - start) / dur);
       numEl.textContent = String(Math.round(from + (v - from) * (1 - Math.pow(1 - t, 3))));
       if (t < 1) requestAnimationFrame(tick); else numEl.dataset.lastVal = String(v);
     })(start);
   }
   function setBar(el, value) {
-    requestAnimationFrame(() => requestAnimationFrame(() => { el.style.width = `${Math.max(0, Math.min(100, value || 0))}%`; }));
+    // A timer, not rAF, so the bar still fills where animation frames are paused.
+    setTimeout(() => { el.style.width = `${Math.max(0, Math.min(100, value || 0))}%`; }, 30);
   }
 
   // ---------------------------------------------------------------------
@@ -482,7 +490,7 @@
       pick = {
         title: 'Continue Practice', subjectId: t.subject.id, subjectName: t.subject.name, chapterId: t.chapterId, chapterName: t.chapterName,
         why: t.status === 'insufficient_evidence'
-          ? `Only ${plural(t.summary.attempted, 'question')} answered here so far — a few more gives a reliable reading.`
+          ? `Only ${plural(t.summary.attempted, 'question')} from this chapter in your tests so far — a few more gives a reliable reading.`
           : `Your accuracy here is ${acc}% across ${plural(t.summary.attempted, 'question')} — your biggest opportunity right now.`,
       };
     } else {
@@ -587,7 +595,7 @@
       : `<div class="bar ${barClass(status)}"><i></i></div><b>${accuracy}%</b>`;
     row.innerHTML = `<span class="row-ic ${ic.cls}" aria-hidden="true">${escapeHtml(ic.glyph)}</span>
       <span class="row-sub">${escapeHtml(subjectName)}</span>
-      <span class="row-ch">${escapeHtml(chapterName)}<small>${plural(attempted || 0, 'question')} answered</small></span>
+      <span class="row-ch">${escapeHtml(chapterName)}<small>${plural(attempted || 0, 'question')} in your tests</small></span>
       <span class="row-acc" aria-label="Accuracy ${accuracy == null ? 'not available' : accuracy + ' percent'}">${accHtml}</span>
       <span class="pill ${pillCls}">${pillText}</span>
       <button class="btn btn-ghost btn-sm" type="button">${escapeHtml(practiceLabel || 'Practice')} <span aria-hidden="true">→</span></button>`;
@@ -700,7 +708,7 @@
       let barHtml = '<span></span>';
       if (!diag || !diag.unlocked) status = 'Progress shown with the report';
       else if (d && d.summary.attempted) {
-        status = `${plural(d.summary.attempted, 'question')} answered`;
+        status = `${plural(d.summary.attempted, 'question')} in your tests`;
         barHtml = d.status === 'insufficient_evidence'
           ? '<span class="pill pill-quiet">Too few answers</span>'
           : `<span class="row-acc"><span class="bar ${barClass(d.status)}"><i style="width:${d.summary.accuracyPct || 0}%"></i></span><b>${d.summary.accuracyPct}%</b></span>`;
@@ -791,6 +799,9 @@
 
   async function resumeAttempt(row) {
     try {
+      // Readiness only counts submitted attempts, so the value now is still
+      // the genuine "before" for this unfinished one.
+      await capturePreReadiness();
       const q = await api('GET', `/api/attempts/${row.id}/questions`);
       state.test = {
         id: row.testId, subjectId: row.subjectId, chapterId: row.chapterId, subConcept: row.subConcept,
@@ -1055,6 +1066,7 @@
         } else if (selected === i) { cls += ' sel'; icon = ICON_CHECK; sr = ' (selected)'; }
         btn.className = cls;
         btn.setAttribute('aria-pressed', selected === i ? 'true' : 'false');
+        btn.setAttribute('aria-label', `Option ${String.fromCharCode(65 + i)}: ${optText}${sr}`);
         btn.innerHTML = `<span class="letter" aria-hidden="true">${String.fromCharCode(65 + i)}</span><span>${escapeHtml(optText)}</span>${icon}${sr ? `<span class="sr-only">${escapeHtml(sr)}</span>` : ''}`;
         if (!locked) btn.addEventListener('click', () => (immediate ? checkAnswer(step, key, i) : selectDeferredAnswer(key, i)));
         optsEl.appendChild(btn);
@@ -1068,6 +1080,7 @@
     const flagged = state.flagged.has(key);
     setPressed($('#flagBtn'), flagged, 'on');
     $('#flagLabel').textContent = flagged ? 'Flagged for review' : 'Mark for review';
+    $('#flagBtn').setAttribute('aria-label', flagged ? 'Flagged for review' : 'Mark for review');
     $('#qLiveRegion').textContent = `Question ${state.idx + 1} of ${state.steps.length}${flagged ? ', flagged for review' : ''}`;
   }
 
@@ -1320,8 +1333,8 @@
     let s = parts.join(', ');
     const diffs = Object.entries(g.missedDiff).sort((a, b) => b[1] - a[1]);
     if (diffs.length) s += ` — missed ${diffs.map(([d, n]) => `${n} ${d.toLowerCase()}`).join(', ')}`;
-    if (g.correct === 0 && g.total >= 2) s += '. No correct answers here yet — revisit the core idea first.';
-    else if (g.blank && !g.wrong) s += '. Attempting these is the quickest gain.';
+    if (g.blank && !g.wrong) s += '. Attempting these is the quickest gain.';
+    else if (g.correct === 0 && g.wrong >= 2) s += '. No correct answers here yet — revisit the core idea first.';
     return s;
   }
 
@@ -1342,6 +1355,7 @@
     const m = r.meta;
     const modeLabel = m.improvesAttemptId ? 'Targeted Retest' : m.feedbackMode === 'deferred' ? 'Board Simulation' : 'Practice Test';
     $('#resSubtitle').textContent = `${modeLabel} · ${m.subjectName}${m.chapterName ? ' · ' + m.chapterName : ''} · ${m.board}`;
+    $('#resScopeNote').hidden = modeLabel !== 'Board Simulation';
 
     const score = r.score ?? 0; const max = r.maxScore ?? 0;
     $('#resScore').textContent = String(score);
@@ -1377,10 +1391,10 @@
     if (fresh && prevReadiness != null && newReadiness != null) {
       setCore(core, newReadiness, { from: prevReadiness });
       const d = newReadiness - prevReadiness;
-      cap.textContent = `Overall readiness ${d > 0 ? `rose ${d} points` : d < 0 ? `fell ${-d} points` : 'held steady'} after this test.`;
+      cap.textContent = `Overall readiness ${d > 0 ? `rose ${plural(d, 'point')}` : d < 0 ? `fell ${plural(-d, 'point')}` : 'held steady'} after this test.`;
     } else if (fresh && newReadiness != null) {
       setCore(core, newReadiness);
-      cap.textContent = 'Your first readiness score — a before/after comparison starts from your next test.';
+      cap.textContent = 'Your overall readiness after this test. No score from before it was available to compare against.';
     } else if (!fresh && state.readiness && state.readiness.examReadiness) {
       setCore(core, state.readiness.examReadiness.score);
       cap.textContent = 'Your current overall readiness, across all subjects.';
@@ -1563,6 +1577,8 @@
       $('#icDelta').textContent = `${d > 0 ? '+' : ''}${d}`;
       $('#icDeltaUnit').textContent = sameScale ? (Math.abs(d) === 1 ? 'mark' : 'marks') : 'accuracy points';
       wrap.className = 'cmp-delta' + (d < 0 ? ' down' : d === 0 ? ' flat' : '');
+      $('.cmp-now').classList.toggle('is-down', d < 0);
+      $('.cmp-now').classList.toggle('is-flat', d === 0);
     } else {
       $('#icDelta').textContent = '—'; $('#icDeltaUnit').textContent = 'not comparable'; wrap.className = 'cmp-delta flat';
     }
