@@ -1356,6 +1356,11 @@
     const modeLabel = m.improvesAttemptId ? 'Targeted Retest' : m.feedbackMode === 'deferred' ? 'Board Simulation' : 'Practice Test';
     $('#resSubtitle').textContent = `${modeLabel} · ${m.subjectName}${m.chapterName ? ' · ' + m.chapterName : ''} · ${m.board}`;
     $('#resScopeNote').hidden = modeLabel !== 'Board Simulation';
+    // The server accepts late submissions and records how late they were;
+    // say so rather than presenting an over-time score as a timed one.
+    const over = Number(r.timeExceededSeconds) || 0;
+    $('#resOvertimeNote').hidden = over <= 0;
+    if (over > 0) $('#resOvertimeNote').textContent = `Submitted ${fmtDuration(over)} after the time limit. Answers given after time ran out were still marked, so this is not a strictly timed score.`;
 
     const score = r.score ?? 0; const max = r.maxScore ?? 0;
     $('#resScore').textContent = String(score);
