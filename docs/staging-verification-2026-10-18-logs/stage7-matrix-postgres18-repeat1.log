@@ -1,0 +1,25 @@
+[13:58:09] Running core walkthrough on profile: Desktop
+[13:58:22] Profile "Desktop" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:58:22] Running core walkthrough on profile: Tablet (iPad Pro 11)
+[13:58:40] Profile "Tablet (iPad Pro 11)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:58:40] Running core walkthrough on profile: Mobile (iPhone 13)
+[13:58:56] Profile "Mobile (iPhone 13)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:58:56] Running core walkthrough on profile: Mobile (iPhone 13, slow 3G)
+[13:59:33] Profile "Mobile (iPhone 13, slow 3G)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:59:33] Running behavioral checks (Desktop viewport, each in its own isolated browser context)
+
+========== STAGE 7 BROWSER/DEVICE MATRIX SUMMARY ==========
+PASS — Desktop: findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Tablet (iPad Pro 11): findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Mobile (iPhone 13): findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Mobile (iPhone 13, slow 3G): findings=0, CSP violations=0, page errors=0, failed requests=0
+
+Behavioral checks (Desktop only):
+PASS — backButton
+PASS — sessionExpiration
+PASS — autosaveResume
+PASS — errorState
+
+Full report written to C:\Users\Admin\AppData\Local\Temp/stage7-matrix-pg18-repeat1.json
+
+RESULT: PASS — zero findings across the full device/network matrix and all behavioral checks.

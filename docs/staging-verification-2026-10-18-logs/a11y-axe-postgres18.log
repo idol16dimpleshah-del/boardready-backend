@@ -1,0 +1,54 @@
+[a11y] desktop-1440/dark/login: no violations
+[a11y] desktop-1440/light/login: no violations
+[a11y] desktop-1440/dark/login-create-tab: no violations
+[a11y] desktop-1440/dark/dashboard: no violations
+[a11y] desktop-1440/light/dashboard: no violations
+[a11y] desktop-1440/dark/practice: no violations
+[a11y] desktop-1440/light/practice: no violations
+[a11y] desktop-1440/dark/test-practice-feedback: no violations
+[a11y] desktop-1440/light/test-practice-feedback: no violations
+[a11y] desktop-1440/dark/submit-dialog: no violations
+[a11y] desktop-1440/dark/results: no violations
+[a11y] desktop-1440/light/results: no violations
+[a11y] desktop-1440/dark/test-targeted-retest: no violations
+[a11y] desktop-1440/dark/improve: no violations
+[a11y] desktop-1440/light/improve: no violations
+[a11y] mobile-390/dark/login: no violations
+[a11y] mobile-390/light/login: no violations
+[a11y] mobile-390/dark/login-create-tab: no violations
+[a11y] mobile-390/dark/dashboard: no violations
+[a11y] mobile-390/light/dashboard: no violations
+[a11y] mobile-390/dark/practice: no violations
+[a11y] mobile-390/light/practice: no violations
+[a11y] mobile-390/dark/test-practice-feedback: no violations
+[a11y] mobile-390/light/test-practice-feedback: no violations
+[a11y] mobile-390/dark/test-navigator-drawer: no violations
+[a11y] mobile-390/dark/submit-dialog: no violations
+[a11y] mobile-390/dark/results: no violations
+[a11y] mobile-390/light/results: no violations
+[a11y] mobile-390/dark/test-targeted-retest: no violations
+[a11y] mobile-390/dark/improve: no violations
+[a11y] mobile-390/light/improve: no violations
+[a11y] PASS keyboard: first Tab reaches the skip link
+[a11y] PASS keyboard: skip link becomes visible when focused
+[a11y] PASS keyboard: login email field is reachable by Tab
+[a11y] PASS keyboard: focused input shows a visible focus indicator
+[a11y] PASS keyboard: Enter on the Practice nav link opens Practice
+[a11y] PASS keyboard: nav link shows a focus ring (:focus-visible)
+[a11y] PASS keyboard: Practice test starts from the keyboard (Enter on chapter button)
+[a11y] PASS keyboard: letter key B answers the question (Practice feedback shown)
+[a11y] PASS keyboard: ArrowRight moves to the next question
+[a11y] PASS keyboard: question change is announced in the live region
+[a11y] PASS keyboard: submit dialog moves focus to "Keep working"
+[a11y] PASS keyboard: Tab stays inside the submit dialog (focus trap)
+[a11y] PASS keyboard: Escape closes the submit dialog
+[a11y] PASS keyboard: focus returns to the Submit button after closing
+[a11y] PASS keyboard: answer options expose an accessible name ("Option A: …")
+
+========== ACCESSIBILITY SUMMARY ==========
+States scanned: 31 (axe-core 4.10.2, tags: wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa)
+axe: no violations in any scanned state
+Keyboard/focus checks: all passed
+Full report: docs/staging-verification-2026-10-18-logs/a11y-axe-postgres18.json
+
+RESULT: PASS — no serious/critical axe violations and all keyboard checks passed
