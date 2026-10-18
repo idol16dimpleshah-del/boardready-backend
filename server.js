@@ -226,7 +226,18 @@ get('/api/chapters', async (req, res, params, query) => {
   requireAuth(req, ['student', 'teacher']);
   if (!query.subject_id) throw new HttpError(400, 'subject_id is required');
   const rows = await db.prepare('SELECT * FROM chapters WHERE subject_id = ? ORDER BY order_index, name').all(requirePositiveInt(query.subject_id, 'subject_id'));
-  sendJson(res, 200, { chapters: rows });
+  // gradableCount (2026 redesign, additive): how many questions in each
+  // chapter practice.generate could actually serve (same GRADABLE_STATUSES
+  // filter), so the UI never offers a chapter that would 422. Existing
+  // chapter fields are returned unchanged.
+  const gradablePlaceholders = GRADABLE_STATUSES.map(() => '?').join(',');
+  const counts = await db.prepare(`
+    SELECT q.chapter_id as "chapterId", COUNT(q.id) as "n"
+    FROM questions q JOIN chapters c ON c.id = q.chapter_id
+    WHERE c.subject_id = ? AND q.status IN (${gradablePlaceholders})
+    GROUP BY q.chapter_id`).all(requirePositiveInt(query.subject_id, 'subject_id'), ...GRADABLE_STATUSES);
+  const byChapter = new Map(counts.map((r) => [Number(r.chapterId), Number(r.n)]));
+  sendJson(res, 200, { chapters: rows.map((r) => ({ ...r, gradableCount: byChapter.get(Number(r.id)) || 0 })) });
 });
 
 // ---------------------------------------------------------------------------
@@ -295,7 +306,9 @@ post('/api/tests/generate', async (req, res) => {
 // targeted test from one specific finished attempt's actual wrong answers.
 // See practice.js's generateImprovementTest for the real selection logic
 // (weak sub-concepts -> weak chapters -> excludes every question already
-// seen in the source attempt). This never touches the source attempt itself.
+// seen in the source attempt; since 2026-10-18 also prefers questions the
+// student has never been served in ANY attempt, and reports `freshness`).
+// This never touches the source attempt itself.
 post('/api/tests/improve', async (req, res) => {
   const user = requireAuth(req, ['student']);
   const body = await readBody(req);
@@ -622,6 +635,40 @@ post('/api/attempts/:id/submit', async (req, res, params) => {
 
   await logEvent('attempt_submitted', 'test', test.id, user.id, { attemptId, score, maxScore, answeredCount, totalSteps: steps.length });
 
+  const responsePayload = await buildAttemptResultPayload({
+    attemptId, studentId: user.id, test, steps, gradedSteps, score, maxScore, answeredCount, ungradedCount, timeExceededSeconds,
+  });
+  sendJson(res, 200, responsePayload);
+});
+
+// Freshness of an "Improve My Score" attempt's questions (2026-10-18,
+// redesign API) — computed at READ time from the database, no schema
+// change: a question in this attempt's test counts as REUSED if it appears
+// in any test this same student had an attempt on that was started BEFORE
+// this attempt (ties on started_at, which SQLite stores at one-second
+// granularity, are broken by attempt id). Everything else is FRESH. Counts
+// distinct questions, not steps (a case question is one question).
+async function computeAttemptFreshness(attemptId, testId) {
+  const testQuestionRows = await db.prepare('SELECT DISTINCT question_id as qid FROM test_questions WHERE test_id = ?').all(testId);
+  const reusedRows = await db.prepare(`
+    SELECT DISTINCT ptq.question_id as qid
+    FROM attempts cur
+    JOIN attempts prev ON prev.student_id = cur.student_id AND prev.id <> cur.id
+      AND (prev.started_at < cur.started_at OR (prev.started_at = cur.started_at AND prev.id < cur.id))
+    JOIN test_questions ptq ON ptq.test_id = prev.test_id
+    WHERE cur.id = ? AND ptq.question_id IN (SELECT question_id FROM test_questions WHERE test_id = ?)`).all(attemptId, testId);
+  const totalQuestions = testQuestionRows.length;
+  const reusedCount = new Set(reusedRows.map((r) => Number(r.qid))).size;
+  return { totalQuestions, freshCount: totalQuestions - reusedCount, reusedCount };
+}
+
+// Shared response builder (2026-10-18, redesign API) for BOTH
+// POST /api/attempts/:id/submit and GET /api/attempts/:id/result, so the two
+// can never drift. Moved verbatim out of the submit handler — the only
+// additions are perQuestion's marks/kind/questionType and
+// improvementComparison.freshness, each appended after every pre-existing
+// key so the submit response's existing fields/order are unchanged.
+async function buildAttemptResultPayload({ attemptId, studentId, test, steps, gradedSteps, score, maxScore, answeredCount, ungradedCount, timeExceededSeconds }) {
   const responsePayload = {
     attemptId,
     score, maxScore,
@@ -640,12 +687,16 @@ post('/api/attempts/:id/submit', async (req, res, params) => {
     // only AFTER the attempt is submitted and graded — never before, so a
     // student can't inspect it mid-test. ungraded/submittedText added for
     // open-kind steps (never have correct/correctOptionIndex).
-    perQuestion: gradedSteps.map((s) => ({ questionId: s.questionId, label: s.label, text: s.text, options: s.options, correct: s.correct, ungraded: !!s.ungraded, answered: s.answered, submittedOptionIndex: s.submittedOptionIndex, submittedText: s.submittedText ?? null, correctOptionIndex: s.correctIndex, explanation: s.explanation ?? null, difficulty: s.difficulty, subConcept: s.subConcept, chapterId: s.chapterId, chapterName: s.chapterName })),
+    // marks/kind/questionType added 2026-10-18 (redesign API): the step's
+    // own marks (number), scoring shape ('mcq'|'case'|'open'), and the
+    // pedagogical question_type column (string|null) — appended last so
+    // every pre-existing key keeps its position.
+    perQuestion: gradedSteps.map((s) => ({ questionId: s.questionId, label: s.label, text: s.text, options: s.options, correct: s.correct, ungraded: !!s.ungraded, answered: s.answered, submittedOptionIndex: s.submittedOptionIndex, submittedText: s.submittedText ?? null, correctOptionIndex: s.correctIndex, explanation: s.explanation ?? null, difficulty: s.difficulty, subConcept: s.subConcept, chapterId: s.chapterId, chapterName: s.chapterName, marks: Number(s.marks), kind: s.kind, questionType: s.questionType ?? null })),
     timeExceededSeconds,
   };
 
   if (test.kind === 'practice' && test.practice_chapter_id) {
-    const scopedStepsAll = await diagnostics.getStudentStepHistory(user.id, { chapterId: test.practice_chapter_id });
+    const scopedStepsAll = await diagnostics.getStudentStepHistory(studentId, { chapterId: test.practice_chapter_id });
     const scopedSteps = scopedStepsAll.filter((s) => (test.practice_sub_concept ? s.subConcept === test.practice_sub_concept : true));
     const vsOriginal = retest.computeVsOriginal(scopedSteps);
     responsePayload.practiceProgress = { vsOriginal, chapterId: test.practice_chapter_id, subConcept: test.practice_sub_concept };
@@ -660,8 +711,8 @@ post('/api/attempts/:id/submit', async (req, res, params) => {
   // diagnostics already use) — nothing here is recomputed differently.
   if (test.improves_attempt_id) {
     const sourceAttempt = await db.prepare('SELECT * FROM attempts WHERE id = ?').get(test.improves_attempt_id);
-    if (sourceAttempt && sourceAttempt.student_id === user.id) {
-      const allSteps = await diagnostics.getStudentStepHistory(user.id, { subjectId: test.subject_id });
+    if (sourceAttempt && sourceAttempt.student_id === studentId) {
+      const allSteps = await diagnostics.getStudentStepHistory(studentId, { subjectId: test.subject_id });
       const sourceSteps = allSteps.filter((s) => s.attemptId === sourceAttempt.id);
       const newSteps = allSteps.filter((s) => s.attemptId === attemptId);
       responsePayload.improvementComparison = retest.computeImprovementComparison({
@@ -670,10 +721,76 @@ post('/api/attempts/:id/submit', async (req, res, params) => {
         sourceScore: sourceAttempt.score, sourceMaxScore: sourceAttempt.max_score,
         newScore: score, newMaxScore: maxScore,
       });
+      // freshness added 2026-10-18 (redesign API) — see computeAttemptFreshness.
+      responsePayload.improvementComparison.freshness = await computeAttemptFreshness(attemptId, test.id);
     }
   }
 
-  sendJson(res, 200, responsePayload);
+  return responsePayload;
+}
+
+// ---------------------------------------------------------------------------
+// GET /api/attempts/:id/result (2026-10-18, redesign API) — re-opens a
+// finished attempt's results screen (e.g. from history, or after a refresh)
+// without re-submitting. Returns exactly the submit response's shape, built
+// by the SAME buildAttemptResultPayload, with grading recomputed by the SAME
+// scoring.gradeSubmission against the attempt's STORED raw submission
+// (answers_json) and locked /check answers (locked_answers_json) — exactly
+// the inputs submit graded with. score/maxScore/timeExceededSeconds are the
+// values stored on the attempt row at submit time. Read-only: writes nothing.
+// A different student's attempt is reported as 404 (not 403) so this
+// endpoint never confirms another student's attempt id exists.
+// ---------------------------------------------------------------------------
+get('/api/attempts/:id/result', async (req, res, params) => {
+  const user = requireAuth(req, ['student']);
+  const attemptId = requirePositiveInt(params.id, 'id');
+  const attempt = await db.prepare('SELECT * FROM attempts WHERE id = ?').get(attemptId);
+  if (!attempt || attempt.student_id !== user.id) throw new HttpError(404, 'Attempt not found');
+  if (!attempt.submitted_at) throw new HttpError(409, 'This attempt has not been submitted yet');
+
+  const test = await db.prepare('SELECT * FROM tests WHERE id = ?').get(attempt.test_id);
+  const questions = await loadQuestionsForTest(test.id);
+  const steps = scoring.flattenAll(questions);
+  let storedAnswers = {};
+  if (attempt.answers_json) {
+    try { storedAnswers = JSON.parse(attempt.answers_json); } catch { storedAnswers = {}; }
+  }
+  let lockedAnswers = {};
+  if (attempt.locked_answers_json) {
+    try { lockedAnswers = JSON.parse(attempt.locked_answers_json); } catch { lockedAnswers = {}; }
+  }
+  const { gradedSteps, answeredCount, ungradedCount } = scoring.gradeSubmission(steps, storedAnswers || {}, lockedAnswers);
+
+  const responsePayload = await buildAttemptResultPayload({
+    attemptId: attempt.id, studentId: user.id, test, steps, gradedSteps,
+    score: attempt.score, maxScore: attempt.max_score, answeredCount, ungradedCount,
+    timeExceededSeconds: attempt.time_exceeded_seconds,
+  });
+
+  const startedMs = attempt.started_at != null ? parseDbTimestamp(attempt.started_at).getTime() : NaN;
+  const submittedMs = parseDbTimestamp(attempt.submitted_at).getTime();
+  const timeTakenSeconds = Number.isFinite(startedMs) && Number.isFinite(submittedMs) ? Math.max(0, Math.round((submittedMs - startedMs) / 1000)) : null;
+
+  const meta = await db.prepare(`
+    SELECT s.name as "subjectName", s.board as board, c.name as "chapterName"
+    FROM tests t
+    JOIN subjects s ON s.id = t.subject_id
+    LEFT JOIN chapters c ON c.id = t.practice_chapter_id
+    WHERE t.id = ?`).get(test.id);
+
+  sendJson(res, 200, {
+    ...responsePayload,
+    submittedAt: attempt.submitted_at,
+    startedAt: attempt.started_at,
+    durationSeconds: test.duration_seconds,
+    timeTakenSeconds,
+    test: {
+      id: test.id, kind: test.kind, feedbackMode: test.feedback_mode,
+      subjectId: test.subject_id, subjectName: meta ? meta.subjectName : null, board: meta ? meta.board : null,
+      chapterId: test.practice_chapter_id ?? null, chapterName: meta ? (meta.chapterName ?? null) : null,
+      subConcept: test.practice_sub_concept ?? null, improvesAttemptId: test.improves_attempt_id ?? null,
+    },
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -702,7 +819,8 @@ get('/api/attempts/me', async (req, res, params, query) => {
            a.score as score, a.max_score as "maxScore", a.time_exceeded_seconds as "timeExceededSeconds",
            t.subject_id as "subjectId", s.name as "subjectName", s.board as board, t.kind as kind,
            t.practice_chapter_id as "chapterId", c.name as "chapterName", t.practice_sub_concept as "subConcept",
-           t.duration_seconds as "durationSeconds", t.feedback_mode as "feedbackMode"
+           t.duration_seconds as "durationSeconds", t.feedback_mode as "feedbackMode",
+           t.improves_attempt_id as "improvesAttemptId"
     FROM attempts a
     JOIN tests t ON t.id = a.test_id
     JOIN subjects s ON s.id = t.subject_id
