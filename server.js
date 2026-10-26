@@ -738,6 +738,9 @@ async function buildAttemptResultPayload({ attemptId, studentId, test, steps, gr
 // (answers_json) and locked /check answers (locked_answers_json) — exactly
 // the inputs submit graded with. score/maxScore/timeExceededSeconds are the
 // values stored on the attempt row at submit time. Read-only: writes nothing.
+// answerKeyRevision is non-null when re-grading against the CURRENT answer
+// key no longer matches that stored score (an answer key was corrected after
+// submission) and carries the re-graded currentScore/currentMaxScore.
 // A different student's attempt is reported as 404 (not 403) so this
 // endpoint never confirms another student's attempt id exists.
 // ---------------------------------------------------------------------------
@@ -759,7 +762,16 @@ get('/api/attempts/:id/result', async (req, res, params) => {
   if (attempt.locked_answers_json) {
     try { lockedAnswers = JSON.parse(attempt.locked_answers_json); } catch { lockedAnswers = {}; }
   }
-  const { gradedSteps, answeredCount, ungradedCount } = scoring.gradeSubmission(steps, storedAnswers || {}, lockedAnswers);
+  const regraded = scoring.gradeSubmission(steps, storedAnswers || {}, lockedAnswers);
+  const { gradedSteps, answeredCount, ungradedCount } = regraded;
+  // Answer keys are corrected in place (scripts/apply-*-correct-answer-fix.js,
+  // apply-answer-index-defect-*.js), so perQuestion above reflects the CURRENT
+  // key while score/maxScore stay the values recorded at submit time. When
+  // the two disagree, say so explicitly rather than showing ticks that don't
+  // add up to the headline score. null when they agree.
+  const answerKeyRevision = (Number(regraded.score) !== Number(attempt.score) || Number(regraded.maxScore) !== Number(attempt.max_score))
+    ? { currentScore: regraded.score, currentMaxScore: regraded.maxScore }
+    : null;
 
   const responsePayload = await buildAttemptResultPayload({
     attemptId: attempt.id, studentId: user.id, test, steps, gradedSteps,
@@ -784,6 +796,7 @@ get('/api/attempts/:id/result', async (req, res, params) => {
     startedAt: attempt.started_at,
     durationSeconds: test.duration_seconds,
     timeTakenSeconds,
+    answerKeyRevision,
     test: {
       id: test.id, kind: test.kind, feedbackMode: test.feedback_mode,
       subjectId: test.subject_id, subjectName: meta ? meta.subjectName : null, board: meta ? meta.board : null,

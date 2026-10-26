@@ -266,6 +266,31 @@ describe('redesign-api: submit perQuestion fields and GET /api/attempts/:id/resu
     const anon = await api('GET', `/api/attempts/${practiceAttemptId}/result`);
     assert.equal(anon.status, 401);
   });
+
+  it('GET /result reports answerKeyRevision (null normally; current re-graded score when an answer key was corrected after submission) and keeps the stored score', async () => {
+    const s = await registerStudent('answer-key-revision');
+    const subjectId = await insertSubject(`Answer key revision ${stamp}`);
+    const chapterId = await insertChapter(subjectId, 'Revision chapter');
+    const q1 = await insertMcq(chapterId, 'Revision Q1');
+    const q2 = await insertMcq(chapterId, 'Revision Q2');
+    const testId = await insertTest(s.id, subjectId, [q1, q2], { chapterId });
+    // Answer 0 (correct) on both -> stored score 2/2.
+    const { attemptId, submit } = await startAndSubmit(s.token, testId, () => 0);
+    assert.equal(submit.score, 2);
+
+    const before = await api('GET', `/api/attempts/${attemptId}/result`, { token: s.token });
+    assert.equal(before.status, 200);
+    assert.equal(before.body.answerKeyRevision, null);
+
+    // Correct Q2's answer key after submission, the way the apply-*-fix scripts do.
+    await db.prepare('UPDATE questions SET correct = ? WHERE id = ?').run(1, q2);
+    const after = await api('GET', `/api/attempts/${attemptId}/result`, { token: s.token });
+    assert.equal(after.status, 200);
+    assert.equal(after.body.score, 2, 'the recorded score is unchanged');
+    assert.equal(after.body.maxScore, 2);
+    assert.deepEqual(after.body.answerKeyRevision, { currentScore: 1, currentMaxScore: 2 });
+    assert.equal(after.body.perQuestion.filter((p) => p.correct).length, 1, 'per-question marking uses the corrected key');
+  });
 });
 
 describe('redesign-api: Improve My Score freshness, improvementComparison.freshness, /attempts/me improvesAttemptId', () => {

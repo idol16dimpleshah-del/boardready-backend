@@ -1361,6 +1361,12 @@
     const over = Number(r.timeExceededSeconds) || 0;
     $('#resOvertimeNote').hidden = over <= 0;
     if (over > 0) $('#resOvertimeNote').textContent = `Submitted ${fmtDuration(over)} after the time limit. Answers given after time ran out were still marked, so this is not a strictly timed score.`;
+    // An answer key corrected after submission: the per-question marks below
+    // use the corrected key, the headline score is the one recorded at the
+    // time. Say so, so the two never silently disagree.
+    const rev = r.answerKeyRevision;
+    $('#resAnswerKeyNote').hidden = !rev;
+    if (rev) $('#resAnswerKeyNote').textContent = `An answer key in this test was corrected after you submitted it. Your recorded score is ${r.score ?? 0} / ${r.maxScore ?? 0}; the question-by-question marking below uses the corrected key, which gives ${rev.currentScore} / ${rev.currentMaxScore}.`;
 
     const score = r.score ?? 0; const max = r.maxScore ?? 0;
     $('#resScore').textContent = String(score);
