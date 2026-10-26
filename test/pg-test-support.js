@@ -29,6 +29,23 @@ const PG_ADMIN_ROLE = process.env.PG_TEST_ADMIN_ROLE || 'boardready_migration';
 const PG_ADMIN_PASSWORD = process.env.PG_TEST_ADMIN_PASSWORD || 'boardready_dev_pw';
 const PG_CONN_BASE = process.env.PG_TEST_CONN_BASE || `postgres://${PG_ADMIN_ROLE}:${PG_ADMIN_PASSWORD}@127.0.0.1:5432`;
 
+// Admin tooling for creating/dropping disposable databases. Default (Linux
+// sandbox, unchanged): `sudo -u postgres <tool>` over the local socket.
+// Opt-in portable mode (e.g. Windows, or a throwaway cluster on a custom
+// port): set PG_TEST_BIN_DIR to the folder holding createdb/psql/dropdb, plus
+// optionally PG_TEST_ADMIN_HOST / PG_TEST_ADMIN_PORT / PG_TEST_SUPERUSER.
+// Either way this only ever creates/drops the disposable database names
+// built below, never a FORBIDDEN_DB_NAMES name.
+const PG_TEST_BIN_DIR = process.env.PG_TEST_BIN_DIR || '';
+function pgAdmin(tool, args, asUser) {
+  if (!PG_TEST_BIN_DIR) {
+    return execFileSync('sudo', ['-u', 'postgres', tool, ...args], { stdio: 'pipe' });
+  }
+  const exe = path.join(PG_TEST_BIN_DIR, process.platform === 'win32' ? `${tool}.exe` : tool);
+  const conn = ['-h', process.env.PG_TEST_ADMIN_HOST || '127.0.0.1', '-p', process.env.PG_TEST_ADMIN_PORT || '5432', '-U', asUser || process.env.PG_TEST_SUPERUSER || 'postgres'];
+  return execFileSync(exe, [...conn, ...args], { stdio: 'pipe' });
+}
+
 function currentEngine() {
   return (process.env.DB_ENGINE || 'sqlite').toLowerCase();
 }
@@ -44,8 +61,11 @@ function createAndMigratePostgresDbSync(name) {
   if (FORBIDDEN_DB_NAMES.has(name)) {
     throw new Error(`FATAL: refusing to create a test database named "${name}" — reserved production/staging name.`);
   }
-  execFileSync('sudo', ['-u', 'postgres', 'createdb', '-O', PG_ADMIN_ROLE, name], { stdio: 'pipe' });
-  execFileSync('sudo', ['-u', 'postgres', 'psql', '-d', name, '-f', SCHEMA_SQL_PATH], { stdio: 'pipe' });
+  pgAdmin('createdb', ['-O', PG_ADMIN_ROLE, name]);
+  // Portable mode loads the schema as the app role itself, so that role owns
+  // its tables (as the application user does in a real deployment); the
+  // default sudo path is unchanged.
+  pgAdmin('psql', ['-d', name, '-f', SCHEMA_SQL_PATH], PG_TEST_BIN_DIR ? PG_ADMIN_ROLE : undefined);
   return `${PG_CONN_BASE}/${name}`;
 }
 
@@ -62,11 +82,10 @@ function dropPostgresDbSync(name) {
     // being torn down), then drop it. Best-effort throughout: a failure here
     // leaves an orphaned disposable test database behind, never touches the
     // live one, and never fails the test run itself.
-    execFileSync('sudo', ['-u', 'postgres', 'psql', '-d', 'postgres', '-c',
-      `SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${name}' AND pid <> pg_backend_pid();`],
-      { stdio: 'pipe' });
+    pgAdmin('psql', ['-d', 'postgres', '-c',
+      `SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${name}' AND pid <> pg_backend_pid();`]);
   } catch { /* fine — nothing to terminate, or the database never existed */ }
-  try { execFileSync('sudo', ['-u', 'postgres', 'dropdb', '--if-exists', name], { stdio: 'pipe' }); } catch { /* best-effort cleanup, never fails the test run */ }
+  try { pgAdmin('dropdb', ['--if-exists', name]); } catch { /* best-effort cleanup, never fails the test run */ }
 }
 
 function safeLabel(label) {

@@ -1,0 +1,131 @@
+{
+  "base": "http://localhost:4692",
+  "at": "2026-10-18T14:14:53.519Z",
+  "results": [
+    {
+      "state": "desktop-1440/dark/login",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/login",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/login-create-tab",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/dashboard",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/dashboard",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/practice",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/practice",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/test-practice-feedback",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/test-practice-feedback",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/submit-dialog",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/results",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/results",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/test-targeted-retest",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/dark/improve",
+      "violations": []
+    },
+    {
+      "state": "desktop-1440/light/improve",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/login",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/login",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/login-create-tab",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/dashboard",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/dashboard",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/practice",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/practice",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/test-practice-feedback",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/test-practice-feedback",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/test-navigator-drawer",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/submit-dialog",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/results",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/results",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/test-targeted-retest",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/dark/improve",
+      "violations": []
+    },
+    {
+      "state": "mobile-390/light/improve",
+      "violations": []
+    }
+  ],
+  "keyboardFindings": []
+}

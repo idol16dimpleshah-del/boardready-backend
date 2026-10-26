@@ -1,0 +1,32 @@
+[13:45:35] Running core walkthrough on profile: Desktop
+[13:45:47] Profile "Desktop" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:45:47] Running core walkthrough on profile: Tablet (iPad Pro 11)
+[13:45:58] Profile "Tablet (iPad Pro 11)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:45:58] Running core walkthrough on profile: Mobile (iPhone 13)
+[13:51:56] Profile "Mobile (iPhone 13)" done {"findings":1,"cspViolations":0,"pageErrors":0}
+[13:51:56] Running core walkthrough on profile: Mobile (iPhone 13, slow 3G)
+[13:52:57] Profile "Mobile (iPhone 13, slow 3G)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[13:52:57] Running behavioral checks (Desktop viewport, each in its own isolated browser context)
+
+========== STAGE 7 BROWSER/DEVICE MATRIX SUMMARY ==========
+PASS — Desktop: findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Tablet (iPad Pro 11): findings=0, CSP violations=0, page errors=0, failed requests=0
+FAIL — Mobile (iPhone 13): findings=1, CSP violations=0, page errors=0, failed requests=0
+   - Exception during walkthrough: page.click: Timeout 30000ms exceeded.
+Call log:
+  [2m- waiting for locator('#nextBtn')[22m
+[2m  -   locator resolved to <button id="nextBtn" type="button" class="btn btn-primary">…</button>[22m
+[2m  - attempting click action[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+
+PASS — Mobile (iPhone 13, slow 3G): findings=0, CSP violations=0, page errors=0, failed requests=0
+
+Behavioral checks (Desktop only):
+PASS — backButton
+PASS — sessionExpiration
+PASS — autosaveResume
+PASS — errorState
+
+Full report written to C:\Users\Admin\AppData\Local\Temp/stage7-matrix-report-pg18.json
+
+RESULT: FAIL — see findings above.

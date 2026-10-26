@@ -120,31 +120,61 @@ async function generateImprovementTest({ studentId, sourceAttemptId, count = 12 
   const gradablePlaceholders = GRADABLE_STATUSES.map(() => '?').join(',');
   const chapterPlaceholders = [...weakChapterIds].map(() => '?').join(',');
 
+  // Freshness (2026-10-18, redesign API): every question this student has
+  // EVER been served, in ANY test they've had an attempt on (submitted or
+  // not). Questions outside this set are "fresh" and are always preferred;
+  // questions inside it (but never the source attempt's own — those stay
+  // excluded entirely, as before) are only used to fill a shortfall.
+  const everSeenRows = await db.prepare('SELECT DISTINCT tq.question_id as qid FROM attempts a JOIN test_questions tq ON tq.test_id = a.test_id WHERE a.student_id = ?').all(studentId);
+  const everSeenQuestionIds = new Set(everSeenRows.map((r) => Number(r.qid)));
+  const isFresh = (id) => !everSeenQuestionIds.has(Number(id));
+
   // Pass 1: gradable questions in the exact weak sub-concepts, in the weak
   // chapters, excluding every question already seen in the source attempt.
-  let pool = [];
+  let pass1 = [];
   if (weakSubConcepts.size) {
     const subPlaceholders = [...weakSubConcepts].map(() => '?').join(',');
     const rows = await db.prepare(`SELECT id FROM questions WHERE chapter_id IN (${chapterPlaceholders}) AND status IN (${gradablePlaceholders}) AND sub_concept IN (${subPlaceholders})`)
       .all(...weakChapterIds, ...GRADABLE_STATUSES, ...weakSubConcepts);
-    pool = rows.map((r) => r.id).filter((id) => !seenQuestionIds.has(id));
+    pass1 = rows.map((r) => r.id).filter((id) => !seenQuestionIds.has(id));
   }
+  const pass1Fresh = pass1.filter(isFresh);
   // Pass 2: not enough narrowly-scoped content — widen to the whole weak
-  // chapter(s), still excluding already-seen questions. Mirrors generate()'s
-  // own fallback pattern above.
-  if (pool.length < Math.min(4, count)) {
+  // chapter(s), still excluding the source attempt's questions. Mirrors
+  // generate()'s own fallback pattern above. Same threshold as before, now
+  // measured against pass 1's FRESH questions, so a sub-concept whose pool
+  // is all previously-seen still widens to find fresh chapter content
+  // (anything that widened before still widens: fresh is a subset).
+  let pass2 = [];
+  const widenedToChapter = pass1Fresh.length < Math.min(4, count);
+  if (widenedToChapter) {
     const widenedRows = await db.prepare(`SELECT id FROM questions WHERE chapter_id IN (${chapterPlaceholders}) AND status IN (${gradablePlaceholders})`)
       .all(...weakChapterIds, ...GRADABLE_STATUSES);
-    const widened = widenedRows.map((r) => r.id).filter((id) => !seenQuestionIds.has(id));
-    pool = [...new Set([...pool, ...widened])];
+    const pass1Set = new Set(pass1);
+    pass2 = widenedRows.map((r) => r.id).filter((id) => !seenQuestionIds.has(id) && !pass1Set.has(id));
   }
+  // Priority tiers, each shuffled independently: pass-1 fresh, pass-2
+  // fresh, then (only if still short of `count`) pass-1 reused, pass-2
+  // reused.
+  const tiers = [
+    pass1Fresh,
+    pass2.filter(isFresh),
+    pass1.filter((id) => !isFresh(id)),
+    pass2.filter((id) => !isFresh(id)),
+  ];
+  const pool = tiers.flat();
   if (!pool.length) {
     const err = new Error('No new gradable questions are available yet for the areas you missed — the pool of unseen content on this topic is exhausted.');
     err.status = 422;
     throw err;
   }
 
-  const chosen = shuffle(pool).slice(0, Math.min(count, pool.length));
+  const prioritized = tiers.flatMap((t) => shuffle(t)).slice(0, Math.min(count, pool.length));
+  const freshCount = prioritized.filter(isFresh).length;
+  const freshness = { requestedCount: count, deliveredCount: prioritized.length, freshCount, reusedCount: prioritized.length - freshCount, widenedToChapter };
+  // Final in-test order is still random (fresh-first is a selection
+  // priority, not a presentation order).
+  const chosen = shuffle(prioritized);
   const durationSeconds = Math.max(300, chosen.length * 90);
   // feedback_mode = 'deferred' (2026-09-22, Phase 5) — deliberately NOT
   // 'immediate', even though this test's DB `kind` is 'practice'. The whole
@@ -164,7 +194,7 @@ async function generateImprovementTest({ studentId, sourceAttemptId, count = 12 
     await insertTQ.run(testId, qid, i);
   }
 
-  return { id: testId, subjectId: test.subject_id, chapterId: null, subConcept: null, questionCount: chosen.length, durationSeconds, improvesAttemptId: sourceAttemptId, targetedSubConcepts: [...weakSubConcepts], feedbackMode: 'deferred' };
+  return { id: testId, subjectId: test.subject_id, chapterId: null, subConcept: null, questionCount: chosen.length, durationSeconds, improvesAttemptId: sourceAttemptId, targetedSubConcepts: [...weakSubConcepts], feedbackMode: 'deferred', freshness };
 }
 
 module.exports = { generate, generateImprovementTest };

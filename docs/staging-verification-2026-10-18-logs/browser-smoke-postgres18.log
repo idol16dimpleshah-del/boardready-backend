@@ -1,0 +1,28 @@
+[14:09:38] 1. Navigating to landing screen {"BASE":"http://localhost:4692"}
+[14:09:38] CSP header on document response {"present":true,"value":"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"}
+[14:09:40] 2. Submitting real registration form (Create account UI path) {"email":"browser-check-1792332578346@boardready.test"}
+[14:09:41] Dashboard reached after registration
+[14:09:41] 3. Selected ICSE Mathematics subject
+[14:09:41] 4. Starting a Practice test
+[14:09:41] Practice mode {"mode":"Practice Test","badge":"Instant feedback"}
+[14:09:41] Question count {"totalQuestions":21}
+[14:09:46] 5. Immediate-feedback reveal classes observed {"sawCorrectPick":true,"sawWrongPick":true}
+[14:09:46] 6. Practice test Results screen reached {"resultLine":"21 / 21Questions attempted6 / 21Correct (29% of attempted)5sTime taken"}
+[14:09:46] 7. "Improve My Score" card is visible (this attempt lost marks) — starting it
+[14:09:47] Improvement test mode badge {"text":"No feedback until submit"}
+[14:09:52] Improve My Score screen reached {"comparisonCardVisible":true,"delta":"-1","note":"The two sets have different totals (21 vs 18 marks), so the change is shown as percentage of marks scored. All 12 questions were new to you."}
+[14:09:52] 8. Going to the Practice screen to start a Board Simulation test
+[14:09:52] Board Simulation mode {"mode":"Board Simulation","badge":"No feedback until submit"}
+[14:09:52] 9. Reveal classes present after answering in Board Simulation (must be 0) {"count":0}
+[14:09:52] Selection-only class present instead (expected 1) {"count":1}
+[14:09:53] 10. Board Simulation Results screen reached
+[14:09:54] 11. Logged out — back at login screen
+[14:09:54] 12. Logged back in via the real login form — dashboard reached again
+
+========== SUMMARY ==========
+Total console messages: 0
+CSP violations: 0
+Page errors (uncaught exceptions): 0
+Failed requests: 0
+
+RESULT: PASS — zero CSP violations across the full walkthrough (registration, dashboard, Practice test + immediate feedback, Results, Improve My Score, Board Simulation deferred feedback, logout, login).

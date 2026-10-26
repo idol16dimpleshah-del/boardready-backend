@@ -1,0 +1,25 @@
+[14:10:07] Running core walkthrough on profile: Desktop
+[14:10:17] Profile "Desktop" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[14:10:17] Running core walkthrough on profile: Tablet (iPad Pro 11)
+[14:10:27] Profile "Tablet (iPad Pro 11)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[14:10:27] Running core walkthrough on profile: Mobile (iPhone 13)
+[14:10:36] Profile "Mobile (iPhone 13)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[14:10:36] Running core walkthrough on profile: Mobile (iPhone 13, slow 3G)
+[14:11:04] Profile "Mobile (iPhone 13, slow 3G)" done {"findings":0,"cspViolations":0,"pageErrors":0}
+[14:11:04] Running behavioral checks (Desktop viewport, each in its own isolated browser context)
+
+========== STAGE 7 BROWSER/DEVICE MATRIX SUMMARY ==========
+PASS — Desktop: findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Tablet (iPad Pro 11): findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Mobile (iPhone 13): findings=0, CSP violations=0, page errors=0, failed requests=0
+PASS — Mobile (iPhone 13, slow 3G): findings=0, CSP violations=0, page errors=0, failed requests=0
+
+Behavioral checks (Desktop only):
+PASS — backButton
+PASS — sessionExpiration
+PASS — autosaveResume
+PASS — errorState
+
+Full report written to docs/staging-verification-2026-10-18-logs/stage7-matrix-postgres18.json
+
+RESULT: PASS — zero findings across the full device/network matrix and all behavioral checks.
